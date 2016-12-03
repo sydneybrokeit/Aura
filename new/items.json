@@ -1,0 +1,7 @@
+{
+    "items": {
+        "servers": "servers.json",
+        "switches": "master.json",
+        "projectors": "projectors.json"
+    }
+}

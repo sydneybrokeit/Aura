@@ -1,0 +1,22 @@
+{
+  "meta": {
+    "template_name": "General",
+    "category": "None"
+  },
+  "fields": {
+    "brand": "text",
+    "model": "text",
+    "power adaptor" : "checkbox",
+    "condition": {
+      "type": "radio",
+      "options": [
+        "Tested/Reset",
+        "Parts",
+        "Untestable",
+        "Terrible"
+      ]
+    },
+    "serial": "text",
+    "date": "date"
+  }
+}

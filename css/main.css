@@ -1,0 +1,74 @@
+/* Main */
+
+body {
+    font-family: sans-serif;
+    font-weight: 300;
+}
+
+.page-title {
+    font-weight: 300;
+}
+
+.wrapper {
+    width: 50%;
+    margin: 0 auto;
+    text-align: center;
+    margin-top: 25px;
+}
+
+#forms{
+  text-align: left;
+}
+.back {
+    margin-top: 25px;
+    color: black;
+    display: block;
+}
+
+ul {
+    list-style: none;
+    -webkit-margin-before: 0em;
+    -webkit-margin-after: 0em;
+    -webkit-margin-start: 0px;
+    -webkit-margin-end: 0px;
+    -webkit-padding-start: 0px;
+    border-bottom: 1px solid black;
+    padding: 25px;
+}
+h2{
+  font-weight: 200;
+}
+ul a{
+  color: black;
+}
+input{
+  text-align: left;
+}
+input[type="checkbox"]{
+  text-align: left!important;
+}
+/* Home Page */
+
+.links a{
+    color: purple;
+    text-decoration: none;
+    padding: 25px;
+}
+
+/* New Page */
+
+/* Results Page */
+
+.results_properties, .property_name, .property_value {
+    border: 1px solid black;
+}
+
+.results_properties {
+    margin: 0 auto;
+    display: block;
+    border-collapse: collapse;
+}
+
+.property_name, .property_value {
+    padding: 15px;
+}
