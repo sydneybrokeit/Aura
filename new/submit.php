@@ -26,23 +26,15 @@ function generateRandomString($length = 19)
 
 function sendSKU($printer = "Stage1", $sku)
 {
-	echo '<script>
-            var http = new XMLHttpRequest();
-            var url = "http://10.0.2.252/printer/aura.php";
-            var params = "sku='.$sku.'&printer=Stage1";
-            http.open("POST", url, true);
+	$root = $_SERVER["DOCUMENT_ROOT"] . "/";
+	$settings = json_decode(file_get_contents($root . "config.json"), true);
+	if($settings["printMethod"]){
+		header("location: /modules/print/?sku=" . $sku);
+	}else{
+		header("location: index.php?success=false&error='crap" . $settings);
+	}
 
-            //Send the proper header information along with the request
-            http.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
 
-            http.onreadystatechange = function() {//Call a function when the state changes.
-            if(http.readyState == 4 && http.status == 200) {
-                alert(http.responseText);
-            }
-        }
-        http.send(params);
-        window.location.href = "index.php?success=true&sku=' .$sku .'";
-        </script>';
 }
 function returnWithError($error = "None"){
 	echo '<script>window.location.href = "index.php?success=false&error='. $error . '"; </script>';
@@ -53,7 +45,7 @@ $filename = "../results/data/" . $sku . ".json";
 
 
 if(file_put_contents($filename, json_encode($_POST))){
-	
+
 	sendSKU("Stage1", $sku);
 }else{
 	returnWithError(is_writable($filename));
