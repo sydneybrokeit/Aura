@@ -16,7 +16,7 @@ function directPrinting($sku){
 	}
 }
 if (!isset($_GET["sku"]) && empty($_GET["sku"])) {
-	header("location: /");
+	header("location: /Aura/");
 	
 }
 

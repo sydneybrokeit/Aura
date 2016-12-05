@@ -1,7 +1,7 @@
 <html>
 <head>
   <title>Aura|New</title>
-  <link rel="stylesheet" type="text/css" href="/css/main.css">
+  <link rel="stylesheet" type="text/css" href="/Aura/css/main.css">
   <script src="https://ajax.aspnetcdn.com/ajax/jQuery/jquery-3.1.1.min.js"></script>
 </head>
 <body>

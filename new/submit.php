@@ -26,10 +26,10 @@ function generateRandomString($length = 19)
 
 function sendSKU($printer = "Stage1", $sku)
 {
-	$root = $_SERVER["DOCUMENT_ROOT"] . "/";
+	$root = $_SERVER["DOCUMENT_ROOT"] . "/Aura/";
 	$settings = json_decode(file_get_contents($root . "config.json"), true);
 	if($settings["printMethod"]){
-		header("location: /modules/print/?sku=" . $sku);
+		header("location: /Aura/modules/print/?sku=" . $sku);
 	}else{
 		header("location: index.php?success=false&error='crap" . $settings);
 	}

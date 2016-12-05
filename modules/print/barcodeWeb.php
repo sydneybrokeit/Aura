@@ -25,7 +25,7 @@ function sendSKU($sku)
             }
         }
         http.send(params);
-		window.location.href = "/new/index.php?success=true&sku=' .$sku .'";
+		window.location.href = "/Aura/new/index.php?success=true&sku=' .$sku .'";
         </script>';
 }
 
