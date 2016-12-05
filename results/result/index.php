@@ -1,5 +1,5 @@
 <head>
-  <link rel="stylesheet" type="text/css" href="/css/main.css">
+  <link rel="stylesheet" type="text/css" href="/Aura/css/main.css">
   <title>Aura|<?php
   if (isset($_GET["sku"])) {
       echo $_GET["sku"];

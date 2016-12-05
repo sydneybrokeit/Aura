@@ -12,8 +12,7 @@
       "options": [
         "Tested/Reset",
         "Parts",
-        "Untestable",
-        "Terrible"
+        "Untestable"
       ]
     },
     "serial": "text",
