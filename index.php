@@ -2,7 +2,7 @@
 
 <html>
 <head>
-    <link rel="stylesheet" type="text/css" href="/css/main.css">
+    <link rel="stylesheet" type="text/css" href="css/main.css">
 
     <title>Aura</title>
 </head>
@@ -12,7 +12,7 @@
         <h1 class="page-title">Aura</h1>
 
         <div class="links">
-            <a href="/new">New</a> <a href="/results">Search</a>
+            <a href="new">New</a> <a href="results">Search</a>
         </div>
 
         <div class="recent">

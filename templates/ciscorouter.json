@@ -1,13 +1,11 @@
 {
   "meta": {
-    "template_name": "Cisco Switches",
+    "template_name": "Cisco Routers",
     "category": "none"
   },
   "fields": {
     "number of ethernet ports": "text",
-    "number of SFP/fiber ports": "text",
     "gigabit ethernet?": "checkbox",
-    "POE": "checkbox",
     "IOS version": "text"
   }
 }
