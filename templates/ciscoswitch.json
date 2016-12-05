@@ -1,0 +1,12 @@
+{
+	"meta": {
+		"template_name": "Cisco Switches",
+		"category": "none"
+	}
+
+	"fields": {
+		"number of ports": "text",
+		"POE": "checkbox",
+		"IOS version": "text"
+	}
+}
