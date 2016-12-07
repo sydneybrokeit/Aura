@@ -73,7 +73,7 @@ li {
 
 .results_properties {
 	margin:0 auto;
-	display:block;
+/*	display:block; */
 	border-collapse:collapse;
 }
 
