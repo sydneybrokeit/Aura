@@ -51,7 +51,7 @@ function setupPageFromTemplate($template)
 	basicForms();
 	foreach ($template['fields'] as $field => $type) {
 		if (is_array($type) && $type["type"] == "radio") {
-			echo "<h3>" . ucwords($field) . ":</h3>";
+			echo "<h4>" . ucwords($field) . ":</h4>";
 			foreach ($type["options"] as $condition) {
 				echo "<input type=" . $type["type"] . " name=". strtolower($field) . " value=" . strtolower($condition) .">" . $condition ."<br>";
 			}
@@ -77,7 +77,7 @@ function basicForms()
 	echo "<h2>Template: " . ucwords(str_replace(".json", "", $_POST["template"])) ."</h2><form action='submit.php' method='post'>";
 	foreach ($template['fields'] as $field => $type) {
 		if (is_array($type) && $type["type"] == "radio") {
-			echo "<h2>" . ucwords($field) . ":</h2>";
+			echo "<h3>" . ucwords($field) . ":</h3>";
 			foreach ($type["options"] as $condition) {
 				echo "<input type=" . $type["type"] . " name=". strtolower($field) . " value=" . strtolower($condition) .">" . $condition ."<br>";
 			}

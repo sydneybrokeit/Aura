@@ -2,6 +2,7 @@
 body {
 	font-family:sans-serif;
 	font-weight:300;
+	background-color: #dddddd;
 }
 
 .page-title {
@@ -79,4 +80,25 @@ li {
 
 .property_name,.property_value {
 	padding:15px;
+}
+
+.property_name {
+	background-color: #444444;
+	color: #ffffff;
+}
+
+.property_value {
+	background-color: #ffffff;
+}
+
+.property_value#condition {
+	text-transform: capitalize;
+}
+
+.property_value#model, .property_value#brand {
+	text-transform: uppercase;
+}
+
+span.radio {
+	background-color= #bbbbbb;
 }
