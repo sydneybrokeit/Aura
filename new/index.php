@@ -54,18 +54,27 @@ function setupPageFromTemplate($template)
 function basicFormsInserting($inserted)
 {
     $template = parseMasterTemplate();
-    $name = $template['meta']['template_name'];
-    $category = $template['meta']['category'];
+    $name = $inserted['meta']['template_name'];
+    $category = $inserted['meta']['category'];
     $inherited = null;
     if ($inserted['meta']['inherit']) {
         $inherited = $inserted['meta']['inherit'];
     }
-    echo '<h2>Template: '.ucwords(str_replace('.json', '', $_POST['template']))."</h2><form  class='template' action='submit.php' method='post'>";
+    echo '<h2>Template: '.$name."</h2><form id='template' class='template' action='submit.php' method='post'>";
     foreach ($template['fields'] as $field => $type) {
         if (is_array($type) && $type['type'] == 'radio') {
             echo '<div class="'.$type['type'].'"><h3>'.ucwords($field).':</h3>';
             foreach ($type['options'] as $condition) {
-                echo '<input type='.$type['type'].' name='.strtolower($field).' value='.strtolower($condition).'>'.$condition.'<br>';
+                echo '<div class="tooltip">';
+                if (isset($template['tooltips'][strtolower($condition)]) && in_array($condition, $type['reason']) == false) {
+                    echo '<span class="tooltiptext tooltip-right">'.$template['tooltips'][strtolower($condition)].'</span>';
+                    echo '<input type='.$type['type'].' name='.strtolower($field).' value='.strtolower($condition).'>'.$condition;
+                } else {
+                    echo '<span class="tooltiptext tooltip-right tooltip-extra">'.$template['tooltips'][strtolower($condition)].'</span>';
+                    echo '<input type='.$type['type'].' name='.strtolower($field).' value='.strtolower($condition).'>'.$condition;
+                    echo '<input type=text name=reason  placeholder="Reason">';
+                }
+                echo '</div><br>';
             }
             echo '</div><br>';
         } elseif ($type == 'insertion') {
@@ -78,11 +87,16 @@ function basicFormsInserting($inserted)
                 echo ucwords($field).':<br>';
 
                 $name = str_replace(' ', '_', $field);
+                echo '<div class="tooltip form-option">';
                 if ($type != 'date') {
-                    echo '<input type='.$type.' name='.$name.'><br>';
+                    if (isset($template['tooltips'][$name])) {
+                        echo ' <span class="tooltiptext tooltip-right">'.$template['tooltips'][$name].'</span>';
+                    }
+                    echo '<input class='.$name.' type='.$type.' name='.$name.'><br>';
                 } else {
                     echo "<input id='date' type=".$type.' name='.$name.' value='.date('Y-m-d').'><br>';
                 }
+                echo '</div>';
             }
         }
     }
@@ -101,11 +115,17 @@ function htmlFromTemplate($template)
         } else {
             echo ucwords($field).':<br>';
             $name = str_replace(' ', '_', $field);
+
+            echo '<div class="tooltip form-option">';
             if ($type != 'date') {
-                echo '<input type='.$type.' name='.$name.'><br>';
+                if (isset($template['tooltips'][$name])) {
+                    echo ' <span class="tooltiptext tooltip-right">'.$template['tooltips'][$name].'</span>';
+                }
+                echo '<input class='.$name.' type='.$type.' name='.$name.'><br>';
             } else {
                 echo "<input id='date' type=".$type.' name='.$name.' value='.date('Y-m-d').'><br>';
             }
+            echo '</div>';
         }
     }
 }

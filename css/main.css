@@ -1,116 +1,179 @@
 /* Main */
+
 body {
-	font-family:sans-serif;
-	font-weight:300;
-	background-color: #dddddd;
+    font-family: sans-serif;
+    font-weight: 300;
+    background-color: #dddddd;
 }
 
 .page-title {
-	font-weight:300;
+    font-weight: 300;
 }
 
 .wrapper {
-	width:50%;
-	margin:0 auto;
-	text-align:center;
-	margin-top:25px;
+    width: 50%;
+    margin: 0 auto;
+    text-align: center;
+    margin-top: 25px;
 }
 
 #forms {
-	text-align:left;
+    text-align: left;
 }
 
 .back {
-	margin-top:25px;
-	color:#000;
-	display:block;
+    margin-top: 25px;
+    color: #000;
+    display: block;
 }
 
 ul {
-	list-style:none;
-	-webkit-margin-before:0;
-	-webkit-margin-after:0;
-	-webkit-margin-start:0;
-	-webkit-margin-end:0;
-	-webkit-padding-start:0;
-	border-bottom:1px solid #000;
-	padding:25px;
+    list-style: none;
+    -webkit-margin-before: 0;
+    -webkit-margin-after: 0;
+    -webkit-margin-start: 0;
+    -webkit-margin-end: 0;
+    -webkit-padding-start: 0;
+    border-bottom: 1px solid #000;
+    padding: 25px;
 }
 
 h2 {
-	font-weight:200;
+    font-weight: 200;
 }
 
 ul a {
-	color:#000;
+    color: #000;
 }
 
 input {
-	text-align:left;
-	margin: 10px;
-	margin-bottom: 15px;
+    text-align: left;
+    margin: 10px;
+    margin-bottom: 15px;
 }
 
 input[type="checkbox"] {
-	text-align:left!important;
+    text-align: left!important;
 }
 
 li {
-	padding:10px;
+    padding: 10px;
 }
+
 
 /* Home Page */
+
 .links a {
-	color:purple;
-	text-decoration:none;
-	padding:25px;
+    color: purple;
+    text-decoration: none;
+    padding: 25px;
 }
 
+
 /* New Page */
+
+
 /* Results Page */
-.results_properties,.property_name,.property_value {
-	border:1px solid #000;
+
+.results_properties, .property_name, .property_value {
+    border: 1px solid #000;
 }
 
 .results_properties {
-	margin:0 auto;
-/*	display:block; */
-	border-collapse:collapse;
+    margin: 0 auto;
+    /*	display:block; */
+    border-collapse: collapse;
 }
 
-.property_name,.property_value {
-	padding:15px;
+.property_name, .property_value {
+    padding: 15px;
 }
 
 .property_name {
-	background-color: #444444;
-	color: #ffffff;
+    background-color: #444444;
+    color: #ffffff;
 }
 
 .property_value {
-	background-color: #ffffff;
+    background-color: #ffffff;
 }
 
 .property_value#condition {
-	text-transform: capitalize;
+    text-transform: capitalize;
 }
 
 .property_value#model, .property_value#brand {
-	text-transform: uppercase;
+    text-transform: uppercase;
 }
 
 div#forms form.template {
-	background-color: #cccccc;
-	padding: 8px;
+    background-color: #cccccc;
+    padding: 8px;
 }
 
 div.radio {
-	background-color: #aaaaaa;
-	padding: 5px 10px 5px 10px;
-	border-radius: 12px;
+    background-color: #aaaaaa;
+    padding: 5px 10px 5px 10px;
+    border-radius: 12px;
 }
 
 div.radio h3 {
-	-webkit-margin-before: 0px;
-	-webkit-margin-after: 0px;
+    -webkit-margin-before: 0px;
+    -webkit-margin-after: 0px;
+}
+
+
+/* tooltip */
+
+
+/* Tooltip container */
+
+.tooltip {
+    position: relative;
+    display: block;
+}
+
+
+/* Tooltip text */
+
+.tooltip .tooltiptext {
+    visibility: hidden;
+    position: absolute;
+    width: 120px;
+    background-color: #555;
+    color: #fff;
+    text-align: center;
+    padding: 5px 0;
+    border-radius: 6px;
+    z-index: 1;
+    opacity: 0;
+    transition: opacity 1s;
+}
+
+.tooltip-right {
+    top: 135%;
+    left: 50%;
+    margin-left: -60px;
+}
+
+
+/* Tooltip arrow */
+
+.tooltip .tooltiptext::after {
+    content: "";
+    position: absolute;
+    bottom: 100%;
+    left: 50%;
+    margin-left: -5px;
+    border-width: 5px;
+    border-style: solid;
+    border-color: transparent transparent #555 transparent;
+}
+
+
+/* Show the tooltip text when you mouse over the tooltip container */
+
+.tooltip:hover .tooltiptext {
+    visibility: visible;
+    opacity: 1;
 }

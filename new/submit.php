@@ -41,15 +41,20 @@ function returnWithError($error = 'None')
 }
 $sku = generateRandomString(15);
 $filename = '../results/data/'.$sku.'.json';
-
-file_put_contents($filename, json_encode($_POST));
+$clean = $_POST;
+foreach ($unclean as $key => $value) {
+    if ($value == '') {
+        $unclean[$key] = null;
+    }
+}
+if (file_put_contents($filename, json_encode($unclean))) {
     if (isset($_POST['printer'])) {
         setcookie('printer', $_POST['printer']);
         sendSKU($_POST['printer'], $sku);
     } else {
         sendSKU('None', $sku);
     }
-
+}
 ?>
     </table>
 </body>
