@@ -1,8 +1,9 @@
 <html>
 <head>
   <title>Aura|New</title>
-  <link rel="stylesheet" type="text/css" href="/Aura/css/main.css">
+  <link rel="stylesheet" type="text/css" href="<?php echo str_replace(basename($_SERVER['PHP_SELF']), '', $_SERVER['REQUEST_URI']); ?>../css/main.css">
   <script src="https://ajax.aspnetcdn.com/ajax/jQuery/jquery-3.1.1.min.js"></script>
+    <script src="print-list.js"></script>
 </head>
 <body>
   <div class="wrapper" id="forms">
@@ -92,7 +93,7 @@ function basicForms()
     $template = parseMasterTemplate();
     $name = $template['meta']['template_name'];
     $category = $template['meta']['category'];
-    echo '<h2>Template: '.ucwords(str_replace('.json', '', $_POST['template']))."</h2><form action='submit.php' method='post'>";
+    echo '<h2>Template: '.ucwords(str_replace('.json', '', $_POST['template']))."</h2><form class='template' action='submit.php' method='post'>";
     foreach ($template['fields'] as $field => $type) {
         if (is_array($type) && $type['type'] == 'radio') {
             echo "<div class='radio'>";
@@ -131,6 +132,15 @@ function htmlFromTemplate($template)
                 echo "<input id='date' type=".$type.' name='.$name.' value='.date('Y-m-d').'><br>';
             }
         }
+    }
+}
+function getPrint()
+{
+    $settings = json_decode(file_get_contents('../config.json'), true);
+    if ($settings['printMethod'] != 'system') {
+        echo '<p>Printer: <select id="printer" name="printer">
+
+                    </select></p>';
     }
 }
 function parseTemplate($file)
