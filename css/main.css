@@ -98,3 +98,7 @@ li {
 .property_value#model, .property_value#brand {
 	text-transform: uppercase;
 }
+
+div.radio {
+	background-color: #aaaaaa;
+}

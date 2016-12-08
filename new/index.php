@@ -77,11 +77,13 @@ function basicForms()
 	echo "<h2>Template: " . ucwords(str_replace(".json", "", $_POST["template"])) ."</h2><form action='submit.php' method='post'>";
 	foreach ($template['fields'] as $field => $type) {
 		if (is_array($type) && $type["type"] == "radio") {
+			echo "<div class='radio'>";
 			echo "<h3>" . ucwords($field) . ":</h3>";
 			foreach ($type["options"] as $condition) {
 				echo "<input type=" . $type["type"] . " name=". strtolower($field) . " value=" . strtolower($condition) .">" . $condition ."<br>";
 			}
 			echo "<br>";
+			echo "</div>";
 		} else {
 			echo ucwords($field) . ":<br>";
 			$name = str_replace(" ", "_", $field);

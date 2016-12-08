@@ -20,6 +20,6 @@
     },
     "serial": "text",
     "date": "date",
-    "issues": "text"
+    "notes": "text"
   }
 }
