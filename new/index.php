@@ -60,7 +60,7 @@ function basicFormsInserting($inserted)
     if ($inserted['meta']['inherit']) {
         $inherited = $inserted['meta']['inherit'];
     }
-    echo '<h2>Template: '.$name."</h2><form id='template' class='template' action='submit.php' method='post'>";
+    echo '<h2>Template: '.$name.'</h2><form id="template" class="template" action="submit.php" method="post"><input type="hidden" value='.$name.' name="category">';
     foreach ($template['fields'] as $field => $type) {
         if (is_array($type) && $type['type'] == 'radio') {
             echo '<div class="'.$type['type'].'"><h3>'.ucwords($field).':</h3>';
@@ -72,7 +72,8 @@ function basicFormsInserting($inserted)
                 } else {
                     echo '<span class="tooltiptext tooltip-right tooltip-extra">'.$template['tooltips'][strtolower($condition)].'</span>';
                     echo '<input type='.$type['type'].' name='.strtolower($field).' value='.strtolower($condition).'>'.$condition;
-                    echo '<input type=text name=reason  placeholder="Reason">';
+
+                    echo '<div class="reveal-if-active"><input type=text name=reason  placeholder="Reason"></div>';
                 }
                 echo '</div><br>';
             }
@@ -107,11 +108,21 @@ function htmlFromTemplate($template)
 {
     foreach ($template['fields'] as $field => $type) {
         if (is_array($type) && $type['type'] == 'radio') {
-            echo '<h4>'.ucwords($field).':</h4>';
+            echo '<div class="'.$type['type'].'"><h3>'.ucwords($field).':</h3>';
             foreach ($type['options'] as $condition) {
-                echo '<input type='.$type['type'].' name='.strtolower($field).' value='.strtolower($condition).'>'.$condition.'<br>';
+                echo '<div class="tooltip">';
+                if (isset($template['tooltips'][strtolower($condition)]) && in_array($condition, $type['reason']) == false) {
+                    echo '<span class="tooltiptext tooltip-right">'.$template['tooltips'][strtolower($condition)].'</span>';
+                    echo '<input type='.$type['type'].' name='.strtolower($field).' value='.strtolower($condition).'>'.$condition;
+                } else {
+                    echo '<span class="tooltiptext tooltip-right tooltip-extra">'.$template['tooltips'][strtolower($condition)].'</span>';
+                    echo '<input type='.$type['type'].' name='.strtolower($field).' value='.strtolower($condition).'>'.$condition;
+
+                    echo '<div class="reveal-if-active"><input type=text name=reason  placeholder="Reason"></div>';
+                }
+                echo '</div><br>';
             }
-            echo '<br>';
+            echo '</div><br>';
         } else {
             echo ucwords($field).':<br>';
             $name = str_replace(' ', '_', $field);

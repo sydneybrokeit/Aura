@@ -108,7 +108,8 @@ li {
 
 div#forms form.template {
     background-color: #cccccc;
-    padding: 8px;
+    padding: 18px;
+    border-radius: 10px;
 }
 
 div.radio {
@@ -122,19 +123,10 @@ div.radio h3 {
     -webkit-margin-after: 0px;
 }
 
-
-/* tooltip */
-
-
-/* Tooltip container */
-
 .tooltip {
     position: relative;
     display: block;
 }
-
-
-/* Tooltip text */
 
 .tooltip .tooltiptext {
     visibility: hidden;
@@ -156,9 +148,6 @@ div.radio h3 {
     margin-left: -60px;
 }
 
-
-/* Tooltip arrow */
-
 .tooltip .tooltiptext::after {
     content: "";
     position: absolute;
@@ -170,10 +159,19 @@ div.radio h3 {
     border-color: transparent transparent #555 transparent;
 }
 
-
-/* Show the tooltip text when you mouse over the tooltip container */
-
 .tooltip:hover .tooltiptext {
     visibility: visible;
     opacity: 1;
+}
+
+.reveal-if-active {
+    opacity: 0;
+    max-height: 0;
+    overflow: hidden;
+}
+input[type="radio"]:checked ~ .reveal-if-active,
+input[type="checkbox"]:checked ~ .reveal-if-active {
+  opacity: 1;
+  max-height: 100px; /* little bit of a magic number :( */
+  overflow: visible;
 }

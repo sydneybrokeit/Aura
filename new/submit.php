@@ -42,12 +42,12 @@ function returnWithError($error = 'None')
 $sku = generateRandomString(15);
 $filename = '../results/data/'.$sku.'.json';
 $clean = $_POST;
-foreach ($unclean as $key => $value) {
+foreach ($_POST as $key => $value) {
     if ($value == '') {
-        $unclean[$key] = null;
+        unset($clean[$key]);
     }
 }
-if (file_put_contents($filename, json_encode($unclean))) {
+if (file_put_contents($filename, json_encode($clean))) {
     if (isset($_POST['printer'])) {
         setcookie('printer', $_POST['printer']);
         sendSKU($_POST['printer'], $sku);

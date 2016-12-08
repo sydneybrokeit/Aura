@@ -13,22 +13,23 @@
 <ul>
 
 <?php
-$path    = 'data';
+$path = 'data';
 $files = scandir($path);
 $files = array_diff(scandir($path), array('.', '..'));
 
 foreach ($files as $key => $value) {
+    if (strpos($value, '.json')) {
+        $sku = str_replace('.json', '', $value);
+        $jsondata = json_decode(file_get_contents('./data/'.$sku.'.json'), true);
 
-	$sku = str_replace(".json", "", $value);
-	$jsondata = json_decode(file_get_contents("./data/" . $sku . ".json"), true);
-	
-	if($jsondata["brand"] == ""){
-		$jsondata["brand"] = "Not supplied";
-	}
-	if($jsondata["model"] == ""){
-		$jsondata["model"] = "Not supplied";
-	}
-	echo "<a href='result/index.php?sku=" . $sku . "'><li>" . $sku . ". Brand: " . $jsondata['brand'] . ". Model:" .$jsondata['model'] ."</li></a>";
+        if ($jsondata['brand'] == '') {
+            $jsondata['brand'] = 'Not supplied';
+        }
+        if ($jsondata['model'] == '') {
+            $jsondata['model'] = 'Not supplied';
+        }
+        echo "<a href='result/index.php?sku=".$sku."'><li>".$sku.'. Brand: '.$jsondata['brand'].'. Model:'.$jsondata['model'].'</li></a>';
+    }
 }
 ?>
 </ul>

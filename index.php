@@ -26,16 +26,18 @@ $files = array_diff(scandir($path), array('.', '..'));
 $files = array_slice($files, -3, 3, true);
 
 foreach ($files as $key => $value) {
-    $sku = str_replace('.json', '', $value);
-    $jsondata = json_decode(file_get_contents('results/data/'.$sku.'.json'), true);
+    if (strpos($value, '.json')) {
+        $sku = str_replace('.json', '', $value);
+        $jsondata = json_decode(file_get_contents('results/data/'.$sku.'.json'), true);
 
-    if ($jsondata['brand'] == '') {
-        $jsondata['brand'] = 'Not supplied';
+        if ($jsondata['brand'] == '') {
+            $jsondata['brand'] = 'Not supplied';
+        }
+        if ($jsondata['model'] == '') {
+            $jsondata['model'] = 'Not supplied';
+        }
+        echo "<a href='results/result/index.php?sku=".$sku."'><li>".$sku.'. Brand: '.$jsondata['brand'].'. Model: '.$jsondata['model'].'</li></a>';
     }
-    if ($jsondata['model'] == '') {
-        $jsondata['model'] = 'Not supplied';
-    }
-    echo "<a href='results/result/index.php?sku=".$sku."'><li>".$sku.'. Brand: '.$jsondata['brand'].'. Model:'.$jsondata['model'].'</li></a>';
 }
 ?>
             </ul>
