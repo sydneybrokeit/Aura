@@ -12,7 +12,7 @@
   Category:  <select name="template" id="template" onchange="this.form.submit()">
       <option disabled selected value> -- select an option -- </option>
       <?php
-$types = json_decode(file_get_contents("items.json"), true);
+$types = json_decode(file_get_contents("../templates/items.json"), true);
 foreach ($types["items"] as $field => $type) {
 	echo "<option name='template' value=" .$type.">" .ucwords($field)."</option>";
 }
