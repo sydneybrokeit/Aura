@@ -1,4 +1,9 @@
 <?php
+	
+	use Aura\Settings as Settings;
+	include ('../../settings/settings.php');
+
+
 if ($_SERVER['REQUEST_METHOD'] === 'GET') {
 	if (isset($_GET["sku"]) && !empty($_GET["sku"])) {
 		sendSku($_GET["sku"]);
@@ -10,6 +15,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'GET') {
 function sendSKU($sku)
 {
 	$printer = "Stage1";
+	$settings = new Settings;
 	echo '<script>
             var http = new XMLHttpRequest();
             var url = "http://10.0.2.252/printer/aura.php";
@@ -25,7 +31,7 @@ function sendSKU($sku)
             }
         }
         http.send(params);
-		window.location.href = "/Aura/new/index.php?success=true&sku=' .$sku .'";
+		window.location.href = "'. $settings->getRoot() .'/new/index.php?success=true&sku=' .$sku .'";
         </script>';
 }
 

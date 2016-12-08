@@ -10,6 +10,8 @@
         <?php
 
 error_reporting(E_ALL | E_STRICT);
+include('../settings/settings.php');
+use Aura\Settings as Settings;
 ini_set('display_errors', 'On');
 
 header('Access-Control-Allow-Origin: *');
@@ -26,12 +28,13 @@ function generateRandomString($length = 19)
 
 function sendSKU($printer = "Stage1", $sku)
 {
-	$root = $_SERVER["DOCUMENT_ROOT"] . "/Aura/";
-	$settings = json_decode(file_get_contents($root . "config.json"), true);
-	if($settings["printMethod"]){
-		header("location: /Aura/modules/print/?sku=" . $sku);
+	$settings = new Settings;
+	$root = $settings->getRoot();
+	
+	if($settings->getPrintMethod() == "Web"){
+		header("location: " . $settings->getRoot() . "/modules/print/?sku=" . $sku);
 	}else{
-		header("location: index.php?success=false&error='crap" . $settings);
+		header("location: index.php?success=false&error=" . $settings);
 	}
 
 

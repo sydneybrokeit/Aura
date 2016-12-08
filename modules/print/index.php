@@ -1,6 +1,7 @@
 <?php
-$root = $_SERVER["DOCUMENT_ROOT"] . "/";
-$settings = json_decode(file_get_contents($root . "config.json"), true);
+	use Aura\Settings as Settings;
+	include ('../../settings/settings.php');
+	
 
 if ($_SERVER['REQUEST_METHOD'] === 'GET') {
 	if (isset($_GET["sku"]) && !empty($_GET["sku"])) {
@@ -9,14 +10,16 @@ if ($_SERVER['REQUEST_METHOD'] === 'GET') {
 }
 
 function directPrinting($sku){
-	if($settings['printMethod'] == "system"){
+	$settings = new Settings;
+	if($settings->getPrintMethod() == "System"){
 		header("location: systemPrinting.php?sku=" . $sku);
 	}else{
 		header("location: barcodeWeb.php?sku=" . $sku);
 	}
 }
 if (!isset($_GET["sku"]) && empty($_GET["sku"])) {
-	header("location: /Aura/");
+	$settings = new Settings;
+	header("location: " , $settings->getRoot());
 	
 }
 
