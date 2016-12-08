@@ -1,3 +1,5 @@
 *.swp
 *.env
 results/data/*.json
+.DS_Store
+._.DS_Store
