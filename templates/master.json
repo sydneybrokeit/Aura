@@ -10,6 +10,7 @@
     "brand": "text",
     "model": "text",
     "power adaptor" : "checkbox",
+    "yield": "insertion",
     "condition": {
       "type": "radio",
       "options": [

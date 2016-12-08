@@ -40,7 +40,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'GET') {
 			}else{
 				echo"<h1>Uh oh! The SKU was unable to be saved.</h1>";
 			}
-			
+
 		}
 	}
 }
@@ -48,10 +48,58 @@ if ($_SERVER['REQUEST_METHOD'] === 'GET') {
 
 function setupPageFromTemplate($template)
 {
-	basicForms();
+	basicFormsInserting($template);
+	echo "<input type='submit' value='Submit'>
+    </form>";
+}
+function basicFormsInserting($inserted)
+{
+	$template = parseMasterTemplate();
+	$name = $template['meta']['template_name'];
+	$category = $template['meta']['category'];
+	$inherited = null;
+	if ($inserted['meta']['inherit']){
+		$inherited = $inserted['meta']['inherit'];
+	}
+	echo "<h2>Template: " . ucwords(str_replace(".json", "", $_POST["template"])) ."</h2><form action='submit.php' method='post'>";
 	foreach ($template['fields'] as $field => $type) {
 		if (is_array($type) && $type["type"] == "radio") {
-			echo "<h4>" . ucwords($field) . ":</h4>";
+			echo "<h3>" . ucwords($field) . ":</h3>";
+			foreach ($type["options"] as $condition) {
+				echo "<input type=" . $type["type"] . " name=". strtolower($field) . " value=" . strtolower($condition) .">" . $condition ."<br>";
+			}
+			echo "<br>";
+		} else if ( $type == "insertion"){
+				if($inherited != null){
+					htmlFromTemplate(parseTemplate($inherited));
+				}
+				htmlFromTemplate($inserted);
+			} else {
+			if ($type != "insertion"){
+				echo ucwords($field) . ":<br>";
+
+				$name = str_replace(" ", "_", $field);
+				if ($type != "date") {
+
+					echo "<input type=". $type ." name=". $name ."><br>";
+
+				} else {
+					echo "<input id='date' type=". $type ." name=". $name ." value=" .  date('Y-m-d') ."><br>";
+				}
+			}
+		}
+	}
+}
+
+function basicForms()
+{
+	$template = parseMasterTemplate();
+	$name = $template['meta']['template_name'];
+	$category = $template['meta']['category'];
+	echo "<h2>Template: " . ucwords(str_replace(".json", "", $_POST["template"])) ."</h2><form action='submit.php' method='post'>";
+	foreach ($template['fields'] as $field => $type) {
+		if (is_array($type) && $type["type"] == "radio") {
+			echo "<h3>" . ucwords($field) . ":</h3>";
 			foreach ($type["options"] as $condition) {
 				echo "<input type=" . $type["type"] . " name=". strtolower($field) . " value=" . strtolower($condition) .">" . $condition ."<br>";
 			}
@@ -66,18 +114,11 @@ function setupPageFromTemplate($template)
 			}
 		}
 	}
-	echo "<input type='submit' value='Submit'>
-    </form>";
 }
-function basicForms()
-{
-	$template = parseMasterTemplate();
-	$name = $template['meta']['template_name'];
-	$category = $template['meta']['category'];
-	echo "<h2>Template: " . ucwords(str_replace(".json", "", $_POST["template"])) ."</h2><form action='submit.php' method='post'>";
+function htmlFromTemplate($template){
 	foreach ($template['fields'] as $field => $type) {
 		if (is_array($type) && $type["type"] == "radio") {
-			echo "<h3>" . ucwords($field) . ":</h3>";
+			echo "<h4>" . ucwords($field) . ":</h4>";
 			foreach ($type["options"] as $condition) {
 				echo "<input type=" . $type["type"] . " name=". strtolower($field) . " value=" . strtolower($condition) .">" . $condition ."<br>";
 			}

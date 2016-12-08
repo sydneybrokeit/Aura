@@ -1,7 +1,8 @@
 {
   "meta": {
     "template_name": "Cisco Routers",
-    "category": "none"
+    "category": "none",
+    "inherit": "servers.json"
   },
   "fields": {
     "number of ethernet ports": "text",
