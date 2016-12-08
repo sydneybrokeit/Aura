@@ -1,3 +1,6 @@
 [submodule "php-barcode-generator"]
 	path = php-barcode-generator
 	url = https://github.com/picqer/php-barcode-generator
+[submodule "templates"]
+	path = templates
+	url = https://github.com/128keaton/aura-templates/
