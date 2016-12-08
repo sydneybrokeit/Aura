@@ -99,6 +99,18 @@ li {
 	text-transform: uppercase;
 }
 
+div#forms form.template {
+	background-color: #cccccc;
+	padding: 8px;
+}
+
 div.radio {
 	background-color: #aaaaaa;
+	padding: 5px 10px 5px 10px;
+	border-radius: 12px;
+}
+
+div.radio h3 {
+	-webkit-margin-before: 0px;
+	-webkit-margin-after: 0px;
 }

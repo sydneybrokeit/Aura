@@ -1,4 +1,6 @@
 {
-  "printMethod" : "barcodeWeb"
-  
+  "printMethod" : "barcodeWeb",
+  "allowPrintDropdown": false,
+  "barcodeWebURL": "http://10.0.2.232/printer/"
+
 }

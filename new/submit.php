@@ -10,52 +10,45 @@
         <?php
 
 error_reporting(E_ALL | E_STRICT);
-include('../settings/settings.php');
-use Aura\Settings as Settings;
+
 ini_set('display_errors', 'On');
 
 header('Access-Control-Allow-Origin: *');
 function generateRandomString($length = 19)
 {
-	$characters = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';
-	$charactersLength = strlen($characters);
-	$randomString = '';
-	for ($i = 0; $i < $length; $i++) {
-		$randomString .= $characters[rand(0, $charactersLength - 1)];
-	}
-	return $randomString;
+    $characters = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';
+    $charactersLength = strlen($characters);
+    $randomString = '';
+    for ($i = 0; $i < $length; ++$i) {
+        $randomString .= $characters[rand(0, $charactersLength - 1)];
+    }
+
+    return $randomString;
 }
 
-function sendSKU($printer = "Stage1", $sku)
+function sendSKU($printer, $sku)
 {
-	$settings = new Settings;
-	$root = $settings->getRoot();
-	
-	if($settings->getPrintMethod() == "Web"){
-		header("location: " . $settings->getRoot() . "/modules/print/?sku=" . $sku);
-	}else{
-		header("location: index.php?success=false&error=" . $settings);
-	}
-
-
+    $settings = json_decode(file_get_contents('../config.json'), true);
+    if ($settings['printMethod'] == 'barcodeWeb') {
+        header('location: '.str_replace(basename($_SERVER['PHP_SELF']), '', $_SERVER['REQUEST_URI']).'../modules/print/?sku='.$sku);
+    } else {
+        header('location: index.php?success=false&error='.$settings);
+    }
 }
-function returnWithError($error = "None"){
-	echo '<script>window.location.href = "index.php?success=false&error='. $error . '"; </script>';
+function returnWithError($error = 'None')
+{
+    echo '<script>window.location.href = "index.php?success=false&error='.$error.'"; </script>';
 }
 $sku = generateRandomString(15);
-$filename = "../results/data/" . $sku . ".json";
+$filename = '../results/data/'.$sku.'.json';
 
-
-
-if(file_put_contents($filename, json_encode($_POST))){
-
-	sendSKU("Stage1", $sku);
-}else{
-	returnWithError(is_writable($filename));
-	echo $filename;
-	echo "File not writable";
-}
-
+file_put_contents($filename, json_encode($_POST));
+    if (isset($_POST['printer'])) {
+        setcookie('printer', $_POST['printer']);
+        sendSKU($_POST['printer'], $sku);
+    } else {
+        sendSKU('None', $sku);
+    }
 
 ?>
     </table>

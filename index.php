@@ -2,7 +2,7 @@
 
 <html>
 <head>
-    <link rel="stylesheet" type="text/css" href="css/main.css">
+    <link rel="stylesheet" type="text/css" href="<?php echo str_replace(basename($_SERVER['PHP_SELF']), '', $_SERVER['REQUEST_URI']); ?>css/main.css">
 
     <title>Aura</title>
 </head>
@@ -20,23 +20,22 @@
 
             <ul>
                 <?php
-$path    = 'results/data';
+$path = 'results/data';
 $files = scandir($path);
 $files = array_diff(scandir($path), array('.', '..'));
 $files = array_slice($files, -3, 3, true);
 
 foreach ($files as $key => $value) {
+    $sku = str_replace('.json', '', $value);
+    $jsondata = json_decode(file_get_contents('results/data/'.$sku.'.json'), true);
 
-	$sku = str_replace(".json", "", $value);
-	$jsondata = json_decode(file_get_contents("results/data/" . $sku . ".json"), true);
-
-	if($jsondata["brand"] == ""){
-		$jsondata["brand"] = "Not supplied";
-	}
-	if($jsondata["model"] == ""){
-		$jsondata["model"] = "Not supplied";
-	}
-	echo "<a href='results/result/index.php?sku=" . $sku . "'><li>" . $sku . ". Brand: " . $jsondata['brand'] . ". Model:" .$jsondata['model'] ."</li></a>";
+    if ($jsondata['brand'] == '') {
+        $jsondata['brand'] = 'Not supplied';
+    }
+    if ($jsondata['model'] == '') {
+        $jsondata['model'] = 'Not supplied';
+    }
+    echo "<a href='results/result/index.php?sku=".$sku."'><li>".$sku.'. Brand: '.$jsondata['brand'].'. Model:'.$jsondata['model'].'</li></a>';
 }
 ?>
             </ul>
@@ -47,18 +46,15 @@ foreach ($files as $key => $value) {
             <ul>
                 <?php
 if ($handle = opendir('modules/')) {
-	$blacklist = array('.', '..', 'somedir', 'somefile.php');
-	while (false !== ($file = readdir($handle))) {
-		if (!in_array($file, $blacklist)) {
-			$jsondata = json_decode(file_get_contents("modules/" . $file . "/meta.json"), true);
+    $blacklist = array('.', '..', 'somedir', 'somefile.php');
+    while (false !== ($file = readdir($handle))) {
+        if (!in_array($file, $blacklist)) {
+            $jsondata = json_decode(file_get_contents('modules/'.$file.'/meta.json'), true);
 
-	
-
-
-			echo "<p>" . $jsondata["name"] . " (v" . $jsondata["version"] . ", " . $jsondata["author"] . ")</p>";
-		}
-	}
-	closedir($handle);
+            echo '<p>'.$jsondata['name'].' (v'.$jsondata['version'].', '.$jsondata['author'].')</p>';
+        }
+    }
+    closedir($handle);
 }                ?>
             </ul>
         </div>

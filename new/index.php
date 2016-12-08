@@ -3,7 +3,7 @@
   <title>Aura|New</title>
   <link rel="stylesheet" type="text/css" href="<?php echo str_replace(basename($_SERVER['PHP_SELF']), '', $_SERVER['REQUEST_URI']); ?>../css/main.css">
   <script src="https://ajax.aspnetcdn.com/ajax/jQuery/jquery-3.1.1.min.js"></script>
-    <script src="print-list.js"></script>
+
 </head>
 <body>
   <div class="wrapper" id="forms">
@@ -60,7 +60,7 @@ function basicFormsInserting($inserted)
     if ($inserted['meta']['inherit']) {
         $inherited = $inserted['meta']['inherit'];
     }
-    echo '<h2>Template: '.ucwords(str_replace('.json', '', $_POST['template']))."</h2><form action='submit.php' method='post'>";
+    echo '<h2>Template: '.ucwords(str_replace('.json', '', $_POST['template']))."</h2><form  class='template' action='submit.php' method='post'>";
     foreach ($template['fields'] as $field => $type) {
         if (is_array($type) && $type['type'] == 'radio') {
             echo '<div class="'.$type['type'].'"><h3>'.ucwords($field).':</h3>';
@@ -86,34 +86,9 @@ function basicFormsInserting($inserted)
             }
         }
     }
+    getPrint();
 }
 
-function basicForms()
-{
-    $template = parseMasterTemplate();
-    $name = $template['meta']['template_name'];
-    $category = $template['meta']['category'];
-    echo '<h2>Template: '.ucwords(str_replace('.json', '', $_POST['template']))."</h2><form class='template' action='submit.php' method='post'>";
-    foreach ($template['fields'] as $field => $type) {
-        if (is_array($type) && $type['type'] == 'radio') {
-            echo "<div class='radio'>";
-            echo '<h3>'.ucwords($field).':</h3>';
-            foreach ($type['options'] as $condition) {
-                echo '<input type='.$type['type'].' name='.strtolower($field).' value='.strtolower($condition).'>'.$condition.'<br>';
-            }
-            echo '<br>';
-            echo '</div>';
-        } else {
-            echo ucwords($field).':<br>';
-            $name = str_replace(' ', '_', $field);
-            if ($type != 'date') {
-                echo '<input type='.$type.' name='.$name.'><br>';
-            } else {
-                echo "<input id='date' type=".$type.' name='.$name.' value='.date('Y-m-d').'><br>';
-            }
-        }
-    }
-}
 function htmlFromTemplate($template)
 {
     foreach ($template['fields'] as $field => $type) {
@@ -137,8 +112,8 @@ function htmlFromTemplate($template)
 function getPrint()
 {
     $settings = json_decode(file_get_contents('../config.json'), true);
-    if ($settings['printMethod'] != 'system') {
-        echo '<p>Printer: <select id="printer" name="printer">
+    if ($settings['printMethod'] != 'system' && $settings['allowPrintDropdown'] == true) {
+        echo '<script src="print-list.js"></script><p>Printer: <select style="transform: rotate(90deg);" id="printer" name="printer">
 
                     </select></p>';
     }
