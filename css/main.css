@@ -176,20 +176,13 @@ input {
     display: block;
 }
 
-.notes {
-    width: 50%;
-    margin-left: 25%;
-    padding-bottom: 50px;
-}
-
 .reason-field {
     width: 60%;
 }
+
 .notes{
-	width: 50%;
-margin-left: 25%;
-/* padding: 10px; */
-margin-bottom: 20px;
+	    width: 40%;
+			padding-bottom: 20px;
 }
 
 /* Results Page */

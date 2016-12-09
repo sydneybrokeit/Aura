@@ -16,7 +16,7 @@
       <?php
 $types = json_decode(file_get_contents('../templates/items.json'), true);
 foreach ($types['items'] as $field => $type) {
-    echo "<option name='template' value=".$type.'>'.ucwords($field).'</option>';
+    echo "<option name='template' value=".$type.'>'.$field.'</option>';
 }
 
 ?>
@@ -66,7 +66,7 @@ function basicFormsInserting($inserted)
     echo '<label class="field-title">Template: </label><p class="template-title">'.$name.'</p>';
     foreach ($template['fields'] as $field => $type) {
         if (is_array($type) && $type['type'] == 'radio') {
-            echo '<div class="'.$type['type'].'"><label class="field-title">'.ucwords($field).'</label>';
+            echo '<div class="'.$type['type'].'"><label class="field-title">'.$field.'</label>';
             foreach ($type['options'] as $condition) {
                 echo '<div class="tooltip radio-option">';
                 if (isset($template['tooltips'][strtolower($condition)]) && in_array($condition, $type['reason']) == false) {
@@ -89,7 +89,7 @@ function basicFormsInserting($inserted)
         } else {
             if ($type != 'insertion') {
                 echo '<div class="tooltip form-option">';
-                echo '<label class="field-title">'.ucwords($field).':</label>';
+                echo '<label class="field-title">'.$field.':</label>';
 
                 $name = str_replace(' ', '_', $field);
 
@@ -117,7 +117,7 @@ function htmlFromTemplate($template)
 {
     foreach ($template['fields'] as $field => $type) {
         if (is_array($type) && $type['type'] == 'radio') {
-            echo '<div class="'.$type['type'].'"><h3>'.ucwords($field).':</h3>';
+            echo '<div class="'.$type['type'].'"><h3>'.$field.':</h3>';
             foreach ($type['options'] as $condition) {
                 echo '<div class="tooltip">';
                 if (isset($template['tooltips'][strtolower($condition)]) && in_array($condition, $type['reason']) == false) {
@@ -134,7 +134,7 @@ function htmlFromTemplate($template)
             echo '</div>';
         } else {
             echo '<div class="tooltip form-option">';
-            echo '<label class="field-title">'.ucwords($field).':</label>';
+            echo '<label class="field-title">'.$field.':</label>';
             $name = str_replace(' ', '_', $field);
 
             if ($type != 'date') {
