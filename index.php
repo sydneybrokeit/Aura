@@ -10,17 +10,21 @@
 </head>
 
 <body>
+  <div class="header" id="home">
+    <h1 class="page-title">Aura</h1>
+
+    <div class="links">
+        <a href="new">New</a> <a href="results">Search</a>
+    </div>
+  </div>
     <div class="wrapper">
-        <h1 class="page-title">Aura</h1>
 
-        <div class="links">
-            <a href="new">New</a> <a href="results">Search</a>
-        </div>
 
+      <div class="inner-wrapper">
         <div class="recent">
             <h3>Recent SKUs:</h3>
 
-            <table>
+            <table class="recent">
                 <?php
 
 
@@ -29,15 +33,16 @@ include 'php-barcode-generator/src/BarcodeGeneratorPNG.php';
 
 function date_compare($a, $b)
 {
-	$t1 = strtotime($a['date']);
-	$t2 = strtotime($b['date']);
+    $t1 = strtotime($a['date']);
+    $t2 = strtotime($b['date']);
 
-	return $t2 - $t1;
+    return $t2 - $t1;
 }
 function generateBarcodeFrom($sku)
 {
-	$generator = new \Picqer\Barcode\BarcodeGeneratorPNG();
-	return  '<img src="data:image/png;base64,'.base64_encode($generator->getBarcode($sku, $generator::TYPE_CODE_93)).'"><br>' . $sku;
+    $generator = new \Picqer\Barcode\BarcodeGeneratorPNG();
+
+    return  '<img src="data:image/png;base64,'.base64_encode($generator->getBarcode($sku, $generator::TYPE_CODE_93)).'"><br>'.$sku;
 }
 $path = 'results/data';
 $files = scandir($path);
@@ -45,46 +50,32 @@ $files = array_diff(scandir($path), array('.', '..'));
 
 usort($files, 'date_compare');
 $files = array_slice($files, 0, 4, true);
-
+echo '<tr><td class="header">SKU</td><td class="header">Information</td><td class="header">Brand</td>';
 foreach ($files as $key => $value) {
-	if (strpos($value, '.json')) {
-		echo '<tr>';
-		$sku = str_replace('.json', '', $value);
-		$jsondata = json_decode(file_get_contents('results/data/'.$sku.'.json'), true);
+    if (strpos($value, '.json')) {
+        echo '<tr>';
+        $sku = str_replace('.json', '', $value);
+        $jsondata = json_decode(file_get_contents('results/data/'.$sku.'.json'), true);
 
-		if ($jsondata['Brand'] == '') {
-			$jsondata['Brand'] = 'Not supplied';
-		}
-		if ($jsondata['Model'] == '') {
-			$jsondata['Model'] = 'Not supplied';
-		}
-		echo "<td class='barcode'>" . generateBarcodeFrom($sku) . "</td>";
-		echo "<td class='info'><a href='results/result/index.php?sku=".$sku."'>". "" .' Brand: '.$jsondata['Brand'].'. Model: '.$jsondata['Model'].'</a></td>';
-		echo '</tr>';
-	}
+        if ($jsondata['Brand'] == '') {
+            $jsondata['Brand'] = 'Not supplied';
+        }
+        if ($jsondata['Model'] == '') {
+            $jsondata['Model'] = 'Not supplied';
+        }
+        echo "<td class='barcode'>".generateBarcodeFrom($sku).'</td>';
+        echo "<td class='model'>".$jsondata['Model'].', '.$jsondata['condition']."</td><td class='brand'>".$jsondata['Brand'].'</td>';
+        echo '</tr>';
+    }
 }
 ?>
             </table>
         </div>
-        <div class="modules">
-            <h3>Modules:</h3>
 
-            <ul>
-                <?php
-if ($handle = opendir('modules/')) {
-	$blacklist = array('.', '..', 'somedir', 'somefile.php');
-	while (false !== ($file = readdir($handle))) {
-		if (!in_array($file, $blacklist)) {
-			$jsondata = json_decode(file_get_contents('modules/'.$file.'/meta.json'), true);
-
-			echo '<p>'.$jsondata['name'].' (v'.$jsondata['version'].', '.$jsondata['author'].')</p>';
-		}
-	}
-	closedir($handle);
-}                ?>
-            </ul>
-        </div>
-
+      </div>
+      <div class="footer">
+        <p>Copyright (c) 2016 ER2.</p>
+      </div>
     </div>
 </body>
 </html>

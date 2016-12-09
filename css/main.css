@@ -18,6 +18,24 @@ body {
     border-top-left-radius: 17px;
 }
 
+.footer {
+    color: #000;
+    display: block;
+    text-align: center;
+    padding: 20px 0 20px 0;
+    background-color: black;
+    color: white;
+    display: block;
+    width: 90%;
+    margin: 0 auto;
+    text-align: center;
+}
+
+.footer p {
+    text-align: center;
+    display: block;
+}
+
 .page-title {
     font-weight: 300;
 }
@@ -78,13 +96,105 @@ li {
 
 /* Home Page */
 
+.links{
+  text-align: center;
+}
 .links a {
-    color: purple;
     text-decoration: none;
     padding: 25px;
+    font-size: 25px;
+    color: white!important;
+    text-align: center;
 }
-td.barcode img{
-	width: 60%;
+
+.links a:hover {
+    text-decoration: underline;
+}
+
+.recent h3 {
+    font-size: 30px;
+    font-weight: 100;
+    margin-top: 0;
+    margin-bottom: 0;
+    color: white;
+}
+
+#home {
+    background-color: #046380;
+    float: left;
+    width: 20%;
+    height: 100%;
+    position: fixed;
+    z-index: 2;
+    color: white;
+    padding-bottom: 12px;
+    border-radius: 0;
+    margin-top: 0;
+    opacity: 0.99;
+}
+
+#home h1 {
+    font-size: 100px;
+}
+
+.inner-wrapper {
+    display: table;
+    width: 80%;
+    padding: 40px;
+    margin: 0 auto;
+
+}
+
+td {
+    padding-top: 1.5em;
+    border: 1px solid black;
+}
+
+td.barcode img {
+    width: 90%;
+    padding: 10px;
+}
+
+td.header {
+    background-color: black!important;
+    border-radius: 0;
+    margin-bottom: 20;
+    padding: 10px;
+    padding-top: .5em;
+    padding-bottom: .5em;
+    color: white;
+    border: none!important;
+    -webkit-box-shadow:none !important;
+   -moz-box-shadow:none !important;
+   box-shadow:none !important;
+}
+
+table.recent {
+    width: auto;
+    margin: 0 auto;
+    margin-top: 50px;
+    text-align: center;
+    border-collapse: collapse;
+    background-color: #4e6767;
+}
+
+table td:first-child {
+    width: 30%;
+    white-space: nowrap;
+    background-color: white;
+    -webkit-box-shadow:inset 0px 0px 0px 100px white;
+   -moz-box-shadow:inset 0px 0px 0px 100px white;
+   box-shadow:inset 0px 0px 0px 100px white;
+    box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+    border-radius: 8px;
+
+}
+
+td.model {
+    text-align: left;
+    padding: 10px;
 }
 
 
@@ -183,10 +293,11 @@ input {
     width: 60%;
 }
 
-.notes{
-	    width: 40%;
-			padding-bottom: 20px;
+.notes {
+    width: 40%;
+    padding-bottom: 20px;
 }
+
 
 /* Results Page */
 
