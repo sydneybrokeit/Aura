@@ -1,10 +1,9 @@
 <?php
 
-$root = str_replace(basename($_SERVER['PHP_SELF']), '', $_SERVER['REQUEST_URI']);
-$settings = json_decode(file_get_contents($root.'config.json'), true);
 
 if ($_SERVER['REQUEST_METHOD'] === 'GET') {
     if (isset($_GET['sku']) && !empty($_GET['sku'])) {
+        $settings = json_decode(file_get_contents('http://'.$_SERVER['HTTP_HOST'].dirname($_SERVER['SCRIPT_NAME']).'/../../config.json'), true);
         if ($settings['printMethod'] == 'system') {
             systemPrint($_GET['sku']);
         } else {
@@ -15,6 +14,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'GET') {
 
 function systemPrint($sku)
 {
+    echo 'system';
     header('location: systemPrinting.php?sku='.$sku);
 }
 function barcodeWeb($sku, $printer)

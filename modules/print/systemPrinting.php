@@ -1,6 +1,6 @@
 <?php
 
-$root = $_SERVER['DOCUMENT_ROOT'].'/';
+$root = 'http://'.$_SERVER['HTTP_HOST'].dirname($_SERVER['SCRIPT_NAME']).'/../../';
 include $root.'php-barcode-generator/src/BarcodeGenerator.php';
 include $root.'php-barcode-generator/src/BarcodeGeneratorPNG.php';
 

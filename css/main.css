@@ -83,6 +83,9 @@ li {
     text-decoration: none;
     padding: 25px;
 }
+td.barcode img{
+	width: 60%;
+}
 
 
 /* New Page */

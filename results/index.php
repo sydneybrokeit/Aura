@@ -22,13 +22,13 @@ foreach ($files as $key => $value) {
         $sku = str_replace('.json', '', $value);
         $jsondata = json_decode(file_get_contents('./data/'.$sku.'.json'), true);
 
-        if ($jsondata['brand'] == '') {
-            $jsondata['brand'] = 'Not supplied';
+        if ($jsondata['Brand'] == '') {
+            $jsondata['Brand'] = 'Not supplied';
         }
-        if ($jsondata['model'] == '') {
-            $jsondata['model'] = 'Not supplied';
+        if ($jsondata['Model'] == '') {
+            $jsondata['Model'] = 'Not supplied';
         }
-        echo "<a href='result/index.php?sku=".$sku."'><li>".$sku.'. Brand: '.$jsondata['brand'].'. Model:'.$jsondata['model'].'</li></a>';
+        echo "<a href='result/index.php?sku=".$sku."'><li>".$sku.'. Brand: '.$jsondata['Brand'].'. Model:'.$jsondata['Model'].'</li></a>';
     }
 }
 ?>

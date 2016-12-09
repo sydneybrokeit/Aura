@@ -28,16 +28,12 @@ function generateRandomString($length = 19)
 
 function sendSKU($printer, $sku)
 {
-    $settings = json_decode(file_get_contents('../config.json'), true);
-    if ($settings['printMethod'] == 'barcodeWeb') {
-        header('location: '.str_replace(basename($_SERVER['PHP_SELF']), '', $_SERVER['REQUEST_URI']).'../modules/print/?sku='.$sku);
-    } else {
-        header('location: index.php?success=false&error='.$settings);
-    }
+    header('location: '.str_replace(basename($_SERVER['PHP_SELF']), '', $_SERVER['REQUEST_URI']).'../modules/print/?sku='.$sku);
 }
 function returnWithError($error = 'None')
 {
-    echo '<script>window.location.href = "index.php?success=false&error='.$error.'"; </script>';
+    echo $error;
+    //echo '<script>window.location.href = "index.php?success=false&error='.$error.'"; </script>';
 }
 $sku = generateRandomString(15);
 $filename = '../results/data/'.$sku.'.json';

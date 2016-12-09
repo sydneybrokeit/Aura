@@ -2,7 +2,7 @@
 <head>
   <title>Aura|New</title>
   <link rel="stylesheet" type="text/css" href="<?php echo str_replace(basename($_SERVER['PHP_SELF']), '', $_SERVER['REQUEST_URI']); ?>../css/main.css">
-  <script src="https://ajax.aspnetcdn.com/ajax/jQuery/jquery-3.1.1.min.js"></script>
+  <script src="../js/jquery-3.1.1.min.js"></script>
 
 </head>
 <body>
@@ -69,14 +69,14 @@ function basicFormsInserting($inserted)
             echo '<div class="'.$type['type'].'"><label class="field-title">'.$field.'</label>';
             foreach ($type['options'] as $condition) {
                 echo '<div class="tooltip radio-option">';
-                if (isset($template['tooltips'][strtolower($condition)]) && in_array($condition, $type['reason']) == false) {
+                if (isset($template['tooltips'][strtolower($condition)]) && in_array($condition, $type['condition_reason']) == false) {
                     echo '<span class="tooltiptext tooltip-right">'.$template['tooltips'][strtolower($condition)].'</span>';
                     echo '<input type='.$type['type'].' name='.strtolower($field).' value='.strtolower($condition).'>'.$condition;
                 } else {
                     echo '<span class="tooltiptext tooltip-right tooltip-extra">'.$template['tooltips'][strtolower($condition)].'</span>';
                     echo '<input type='.$type['type'].' name='.strtolower($field).' value='.strtolower($condition).'>'.$condition;
 
-                    echo '<div class="reveal-if-active"><input type=text name=reason class="reason-field"  placeholder="Reason"></div>';
+                    echo '<div class="reveal-if-active"><input type=text name="condition_reason" class="reason-field"  placeholder="Reason"></div>';
                 }
                 echo '</div>';
             }
@@ -120,14 +120,14 @@ function htmlFromTemplate($template)
             echo '<div class="'.$type['type'].'"><h3>'.$field.':</h3>';
             foreach ($type['options'] as $condition) {
                 echo '<div class="tooltip">';
-                if (isset($template['tooltips'][strtolower($condition)]) && in_array($condition, $type['reason']) == false) {
+                if (isset($template['tooltips'][strtolower($condition)]) && in_array($condition, $type['condition_reason']) == false) {
                     echo '<span class="tooltiptext tooltip-right">'.$template['tooltips'][strtolower($condition)].'</span>';
                     echo '<input class='.$name.' type='.$type['type'].' name='.strtolower($field).' value='.strtolower($condition).'>'.$condition;
                 } else {
                     echo '<span class="tooltiptext tooltip-right tooltip-extra">'.$template['tooltips'][strtolower($condition)].'</span>';
                     echo '<input class='.$name.' type='.$type['type'].' name='.strtolower($field).' value='.strtolower($condition).'>'.$condition;
 
-                    echo '<div class="reveal-if-active"><input class="reason-field" type=text name=reason  placeholder="Reason"></div>';
+                    echo '<div class="reveal-if-active"><input class="reason-field" type=text name="condition_reason"  placeholder="Reason"></div>';
                 }
                 echo '</div>';
             }
