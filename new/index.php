@@ -6,24 +6,26 @@
 
 </head>
 <body>
-  <div class="wrapper" id="forms">
-    <div class="header">
-    <h1 class="page-title">Create a new label</h1>
+  <div class="container">
+  <div class="header">
+  <h1 class="page-title">Create a new label</h1>
 
-  <form action="." method="POST" class="template-selector">
-  Category:  <select name="template" id="template" onchange="this.form.submit()">
-      <option disabled selected value> -- select an option -- </option>
-      <?php
+<form action="." method="POST" class="template-selector">
+Category:  <select name="template" id="template" onchange="this.form.submit()">
+    <option disabled selected value> -- select an option -- </option>
+    <?php
 $types = json_decode(file_get_contents('../templates/items.json'), true);
 foreach ($types['items'] as $field => $type) {
     echo "<option name='template' value=".$type.'>'.$field.'</option>';
 }
 
 ?>
-    </select>
+  </select>
 </form>
-
+  <a class='back' href='../'>Home</a></form>
 </div>
+  <div class="wrapper" id="forms">
+
 
 <?php
 date_default_timezone_set('UTC');
@@ -50,8 +52,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'GET') {
 function setupPageFromTemplate($template)
 {
     basicFormsInserting($template);
-    echo "<input class='submit-button' type='submit' value='Submit'>
-    <a class='back' href='../'>Home</a></form>";
+    echo "<input class='submit-button' type='submit' value='Submit'></form>";
 }
 function basicFormsInserting($inserted)
 {
@@ -168,4 +169,5 @@ function parseMasterTemplate()
     return  json_decode(file_get_contents('../templates/master.json'), true);
 }
 ?>
+</div>
 </div>

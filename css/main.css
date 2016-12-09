@@ -1,11 +1,23 @@
 /* Main */
 
+body, html {
+    height: 100%!important;
+    padding: 0;
+    margin: 0;
+}
+
 body {
     font-family: sans-serif;
     font-weight: 300;
     background-color: #e2e2e2;
     overflow-x: hidden;
     margin: 0;
+}
+
+.container {
+    flex-wrap: wrap;
+    display: flex;
+    height: 100%;
 }
 
 .header {
@@ -18,6 +30,23 @@ body {
     border-top-left-radius: 17px;
 }
 
+div.header {
+        background-color: #031f27;
+    float: left;
+    height: 100%;
+    position: relative;
+    z-index: 2;
+    color: white;
+    padding-bottom: 12px;
+    border-radius: 0;
+    margin-top: -10px;
+    opacity: 0.99;
+    width: 330px;
+    margin-left: 0;
+    margin-right: 0;
+    height: 100%;
+}
+
 .footer {
     color: #000;
     display: block;
@@ -26,9 +55,11 @@ body {
     background-color: black;
     color: white;
     display: block;
-    width: 90%;
     margin: 0 auto;
     text-align: center;
+    position: absolute;
+    bottom: 0;
+    width: 100%;
 }
 
 .footer p {
@@ -41,13 +72,10 @@ body {
 }
 
 .wrapper {
-    width: 50%;
-    margin: 0 auto;
     text-align: center;
-}
-
-#forms {
-    text-align: left;
+    min-width: 600px;
+    flex-grow: 1;
+    height: 100%;
 }
 
 .back {
@@ -96,9 +124,10 @@ li {
 
 /* Home Page */
 
-.links{
-  text-align: center;
+.links {
+    text-align: center;
 }
+
 .links a {
     text-decoration: none;
     padding: 25px;
@@ -112,29 +141,18 @@ li {
 }
 
 .recent h3 {
-    font-size: 30px;
+    font-size: 50px;
     font-weight: 100;
     margin-top: 0;
     margin-bottom: 0;
-    color: white;
+    color: black;
 }
 
-#home {
-    background-color: #046380;
-    float: left;
-    width: 20%;
-    height: 100%;
-    position: fixed;
-    z-index: 2;
-    color: white;
-    padding-bottom: 12px;
-    border-radius: 0;
-    margin-top: 0;
-    opacity: 0.99;
-}
 
 #home h1 {
     font-size: 100px;
+        background-color: #da2626;
+        padding-bottom: 20px;
 }
 
 .inner-wrapper {
@@ -142,12 +160,21 @@ li {
     width: 80%;
     padding: 40px;
     margin: 0 auto;
-
 }
 
 td {
-    padding-top: 1.5em;
     border: 1px solid black;
+}
+
+div.barcode {
+    background-color: white;
+    width: 90%;
+    display: block;
+    margin: 0 auto;
+    margin-top: 5px;
+    margin-bottom: 5px;
+    border-radius: 8px;
+    color: black;
 }
 
 td.barcode img {
@@ -164,9 +191,9 @@ td.header {
     padding-bottom: .5em;
     color: white;
     border: none!important;
-    -webkit-box-shadow:none !important;
-   -moz-box-shadow:none !important;
-   box-shadow:none !important;
+    -webkit-box-shadow: none !important;
+    -moz-box-shadow: none !important;
+    box-shadow: none !important;
 }
 
 table.recent {
@@ -176,20 +203,11 @@ table.recent {
     text-align: center;
     border-collapse: collapse;
     background-color: #4e6767;
+    color: white;
 }
 
 table td:first-child {
     width: 30%;
-    white-space: nowrap;
-    background-color: white;
-    -webkit-box-shadow:inset 0px 0px 0px 100px white;
-   -moz-box-shadow:inset 0px 0px 0px 100px white;
-   box-shadow:inset 0px 0px 0px 100px white;
-    box-sizing: border-box;
-    -moz-box-sizing: border-box;
-    -webkit-box-sizing: border-box;
-    border-radius: 8px;
-
 }
 
 td.model {
@@ -199,10 +217,6 @@ td.model {
 
 
 /* New Page */
-
-#forms {
-    width: 100%;
-}
 
 .page-title {
     width: 100%;
@@ -216,12 +230,13 @@ td.model {
     display: inline-block;
     margin-left: 15px;
     font-size: 20px;
+    margin-top: 20px;
     padding: 0;
     margin-bottom: 10px;
 }
 
 .template-selector {
-    width: 100%;
+    width: 97%;
     margin-bottom: 0;
     background-color: #1eef79;
     text-align: center;
@@ -245,17 +260,24 @@ td.model {
     width: auto
 }
 
+.form-option {
+    text-align: left!important;
+}
+
 .template {
     display: table;
-    width: 50%;
+    width: 100%;
     margin: 0 auto;
     background-color: white;
+    min-height: 100%;
+    height: 100%;
 }
 
 .field-title {
     font-size: 20px;
-    min-width: 50%;
-    text-align: right;
+    min-width: 260px;
+    text-align: left;
+    margin-left: 20px;
 }
 
 div.radio {
@@ -263,12 +285,13 @@ div.radio {
     width: 100%;
     color: white;
     padding-top: 20px;
+    text-align: left;
     padding-bottom: 20px;
     margin-bottom: 20px;
 }
 
 .radio-option {
-    margin-left: 50%;
+    margin-left: 20px;
 }
 
 p {
@@ -287,6 +310,7 @@ input {
     text-align: center;
     margin: 0 auto;
     display: block;
+    margin-bottom: 55px;
 }
 
 .reason-field {

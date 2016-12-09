@@ -10,11 +10,16 @@
 </head>
 
 <body>
+  <div class="container">
   <div class="header" id="home">
     <h1 class="page-title">Aura</h1>
 
     <div class="links">
         <a href="new">New</a> <a href="results">Search</a>
+    </div>
+    <div class="footer">
+      <p>
+        Support: Yell at Harold for help</p>
     </div>
   </div>
     <div class="wrapper">
@@ -50,7 +55,7 @@ $files = array_diff(scandir($path), array('.', '..'));
 
 usort($files, 'date_compare');
 $files = array_slice($files, 0, 4, true);
-echo '<tr><td class="header">SKU</td><td class="header">Information</td><td class="header">Brand</td>';
+echo '<tr><a href="results/result/?"><td class="header">SKU</td><td class="header">Information</td><td class="header">Brand</td>';
 foreach ($files as $key => $value) {
     if (strpos($value, '.json')) {
         echo '<tr>';
@@ -63,9 +68,9 @@ foreach ($files as $key => $value) {
         if ($jsondata['Model'] == '') {
             $jsondata['Model'] = 'Not supplied';
         }
-        echo "<td class='barcode'>".generateBarcodeFrom($sku).'</td>';
+        echo "<td class='barcode'><div class='barcode'>".generateBarcodeFrom($sku).'</div></td>';
         echo "<td class='model'>".$jsondata['Model'].', '.$jsondata['condition']."</td><td class='brand'>".$jsondata['Brand'].'</td>';
-        echo '</tr>';
+        echo '</tr></a>';
     }
 }
 ?>
@@ -73,9 +78,8 @@ foreach ($files as $key => $value) {
         </div>
 
       </div>
-      <div class="footer">
-        <p>Copyright (c) 2016 ER2.</p>
-      </div>
+
     </div>
+  </div>
 </body>
 </html>
