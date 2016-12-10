@@ -18,8 +18,7 @@
         <a href="new">New</a> <a href="results">Search</a>
     </div>
     <div class="footer">
-      <p>
-        Support: Yell at Harold for help</p>
+      <a href="https://github.com/hschreck/Aura/issues">Support</a>
     </div>
   </div>
     <div class="wrapper">
@@ -55,7 +54,7 @@ $files = array_diff(scandir($path), array('.', '..'));
 
 usort($files, 'date_compare');
 $files = array_slice($files, 0, 4, true);
-echo '<tr><a href="results/result/?"><td class="header">SKU</td><td class="header">Information</td><td class="header">Brand</td>';
+echo '<tr><td class="header">SKU</td><td class="header">Information</td><td class="header">Brand</td>';
 foreach ($files as $key => $value) {
     if (strpos($value, '.json')) {
         echo '<tr>';
