@@ -28,10 +28,11 @@ body {
 	margin-top:20px;
 	border-top-left-radius:17px;
 }
-.action{
-	text-align: center;
-	background-color: red;
-	padding: 10px;
+
+.action {
+	text-align:center;
+	background-color:#e43e04;
+	padding:10px;
 }
 
 div.header {
@@ -342,6 +343,40 @@ h2.help {
 	text-align:left!important;
 }
 
+.quote {
+	width:78%;
+	margin:0 auto;
+	margin-top:25px;
+}
+
+.quote a:before {
+	content:"- ";
+}
+
+.quote a {
+	color:red;
+	text-decoration:none;
+	text-align:center;
+	display:block;
+	padding-top:12px;
+	font-style:italic;
+}
+
+.quote::first-line {
+	display:none;
+	color:transparent!important;
+}
+
+@media (max-width: 1040px) {
+	.template {
+		padding-top:60px;
+	}
+	
+	.quote {
+		display:none;
+	}
+}
+
 .template {
 	display:table;
 	width:100%;
@@ -416,7 +451,6 @@ input {
 }
 
 /* Results Page */
-
 .results_properties tr:nth-child(odd) {
 	background-color:#EBEBEB;
 	color:#1B1F25;
@@ -432,7 +466,7 @@ input {
 }
 
 .results_properties,.property_name,.property_value {
-	    border: 1px solid #98a5b9;
+	border:1px solid #98a5b9;
 }
 
 .results_properties {
@@ -454,8 +488,6 @@ input {
 	border-color:#282C32;
 	border-right:3px solid #A0A6AD;
 }
-
-
 
 .property_value#condition {
 	text-transform:capitalize;

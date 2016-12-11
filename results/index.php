@@ -15,7 +15,7 @@
 <body>
     <div class="container">
         <div class="header" id="home">
-            <img class="page-title" src="../images/AuraLogo.png">
+             <a href="../"><img class="page-title" src="../images/AuraLogo.png"></a>
 
             <div class="action">
                 <h2 class="page-title">Search</h2>

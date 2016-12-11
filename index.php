@@ -15,16 +15,21 @@
 <body>
     <div class="container">
         <div class="header" id="home">
-            <img class="page-title" src="images/AuraLogo.png">
-			<div class="action">
-            <div class="links">
-                <a href="new">New</a> <a href="results">Search</a>
+             <a href="."><img class="page-title" src="images/AuraLogo.png"></a>
+
+            <div class="action">
+                <div class="links">
+                    <a href="new">New</a> <a href="results">Search</a>
+                </div>
             </div>
-				</div>
+            <div class="quote">
+	     
+            <script type="text/javascript" src="https://www.brainyquote.com/link/quotear.js"></script>
+            </div>
+
             <div class="footer">
                 <a href="https://github.com/hschreck/Aura/issues">Support</a>
             </div>
-		
         </div>
 
         <div class="wrapper">
@@ -36,55 +41,55 @@
                         <?php
 
 
-                        include 'php-barcode-generator/src/BarcodeGenerator.php';
-                        include 'php-barcode-generator/src/BarcodeGeneratorPNG.php';
-                        date_default_timezone_set('America/Chicago');
+                                                include 'php-barcode-generator/src/BarcodeGenerator.php';
+                                                include 'php-barcode-generator/src/BarcodeGeneratorPNG.php';
+                                                date_default_timezone_set('America/Chicago');
 
-                        function date_compare($a, $b)
-                        {
-                            $f1 = json_decode(file_get_contents('results/data/'. $a), true);
-                            $f2 = json_decode(file_get_contents('results/data/'. $b), true);
-                            $t1 = strtotime($f1['Date']);
-                            $t2 = strtotime($f2['Date']);
+                                                function date_compare($a, $b)
+                                                {
+                                                    $f1 = json_decode(file_get_contents('results/data/'. $a), true);
+                                                    $f2 = json_decode(file_get_contents('results/data/'. $b), true);
+                                                    $t1 = strtotime($f1['Date']);
+                                                    $t2 = strtotime($f2['Date']);
 
-                            return $t2 - $t1;
-                        }
-                        function generateBarcodeFrom($sku)
-                        {
-                            $generator = new \Picqer\Barcode\BarcodeGeneratorPNG();
+                                                    return $t2 - $t1;
+                                                }
+                                                function generateBarcodeFrom($sku)
+                                                {
+                                                    $generator = new \Picqer\Barcode\BarcodeGeneratorPNG();
 
-                            return  '<img src="data:image/png;base64,'.base64_encode($generator->getBarcode($sku, $generator::TYPE_CODE_93)).'"><br>'.$sku;
-                        }
-                        $path = 'results/data';
-                        $files = scandir($path);
-                        $files = array_diff(scandir($path), array('.', '..'));
+                                                    return  '<img src="data:image/png;base64,'.base64_encode($generator->getBarcode($sku, $generator::TYPE_CODE_93)).'"><br>'.$sku;
+                                                }
+                                                $path = 'results/data';
+                                                $files = scandir($path);
+                                                $files = array_diff(scandir($path), array('.', '..'));
 
-                        if(empty($files) == false){
+                                                if(empty($files) == false){
 
-                            usort($files, 'date_compare');  
-                            $files = array_slice($files, 0, 4, true);
-                        echo '<tr><td class="table-header">SKU</td><td class="table-header">Information</td><td class="table-header">Brand</td>';
-                        foreach ($files as $key => $value) {
-                            if (strpos($value, '.json')) {
-                                echo '<tr>';
-                                $sku = str_replace('.json', '', $value);
-                                $jsondata = json_decode(file_get_contents('results/data/'.$sku.'.json'), true);
+                                                    usort($files, 'date_compare');  
+                                                    $files = array_slice($files, 0, 4, true);
+                                                echo '<tr><td class="table-header">SKU</td><td class="table-header">Information</td><td class="table-header">Brand</td>';
+                                                foreach ($files as $key => $value) {
+                                                    if (strpos($value, '.json')) {
+                                                        echo '<tr>';
+                                                        $sku = str_replace('.json', '', $value);
+                                                        $jsondata = json_decode(file_get_contents('results/data/'.$sku.'.json'), true);
 
-                                if ($jsondata['Brand'] == '') {
-                                    $jsondata['Brand'] = 'Not supplied';
-                                }
-                                if ($jsondata['Model'] == '') {
-                                    $jsondata['Model'] = 'Not supplied';
-                                }
-                                echo "<td class='barcode'><div class='barcode'>".generateBarcodeFrom($sku).'</div></td>';
-                                echo "<td class='model'>Model: ".$jsondata['Model'].', Date: '. $jsondata["Date"]."</td><td class='brand'>".$jsondata['Brand'].'</td>';
-                                echo '</tr></a>';
-                            }
-                        }
-                        }
+                                                        if ($jsondata['Brand'] == '') {
+                                                            $jsondata['Brand'] = 'Not supplied';
+                                                        }
+                                                        if ($jsondata['Model'] == '') {
+                                                            $jsondata['Model'] = 'Not supplied';
+                                                        }
+                                                        echo "<td class='barcode'><div class='barcode'>".generateBarcodeFrom($sku).'</div></td>';
+                                                        echo "<td class='model'>Model: ".$jsondata['Model'].', Date: '. $jsondata["Date"]."</td><td class='brand'>".$jsondata['Brand'].'</td>';
+                                                        echo '</tr></a>';
+                                                    }
+                                                }
+                                                }
 
 
-                        ?>
+                                                ?>
                     </table>
                 </div>
             </div>
