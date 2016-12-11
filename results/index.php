@@ -3,11 +3,23 @@
   <title>Aura|SKUs</title>
 </head>
 <body>
+	  <div class="container">
   <div class="wrapper">
-<form action="result/" method="GET">
+	  
+	    <div class="header" id="home">
+   <img class="page-title" src="../images/AuraLogo.png">
+     <h2 class="page-title">Search</h1>
+
+   <form action="result/" method="GET">
 <input type="text" name="sku" placeholder="search">
 <input type="submit" name="Submit">
 </form>
+
+    <div class="footer">
+      <a href="../">Home</a>
+    </div>
+  </div>
+  
 
 <h2>SKUs:</h2>
 <table class="recent">
@@ -16,14 +28,17 @@
 
 include '../php-barcode-generator/src/BarcodeGenerator.php';
 include '../php-barcode-generator/src/BarcodeGeneratorPNG.php';
-
+date_default_timezone_set('America/Chicago');
 function date_compare($a, $b)
 {
-    $t1 = strtotime($a['date']);
-    $t2 = strtotime($b['date']);
+	$f1 = json_decode(file_get_contents('data/'. $a), true);
+	$f2 = json_decode(file_get_contents('data/'. $b), true);
+	$t1 = strtotime($f1['Date']);
+	$t2 = strtotime($f2['Date']);
 
-    return $t2 - $t1;
+	return $t2 - $t1;
 }
+
 function generateBarcodeFrom($sku)
 {
     $generator = new \Picqer\Barcode\BarcodeGeneratorPNG();
@@ -50,13 +65,14 @@ foreach ($files as $key => $value) {
             $jsondata['Model'] = 'Not supplied';
         }
         echo "<td class='barcode'><div class='barcode'>".generateBarcodeFrom($sku).'</div></td>';
-        echo "<td class='model'>".$jsondata['Model'].', '.$jsondata['condition']."</td><td class='brand'>".$jsondata['Brand'].'</td>';
+        echo "<td class='model'>".$jsondata['Model'].', '.$jsondata['Date']."</td><td class='brand'>".$jsondata['Brand'].'</td>';
         echo '</tr>';
     }
 }
 ?>
 </table>
-<a class="back" href="../">Home</a>
 
+
+</div>
 </div>
 </body>

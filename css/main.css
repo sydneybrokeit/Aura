@@ -59,6 +59,9 @@ div.header {
 		float:none!important;
 		flex-direction:column;
 	}
+	img.page-title{
+		width: 50px;
+	}
 	
 	.page-title {
 		margin-top:0!important;

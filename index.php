@@ -4,6 +4,11 @@
 
 <html>
 <head>
+	<link rel="icon" type="image/png" sizes="32x32" href="<?php echo str_replace(basename($_SERVER['PHP_SELF']), '', $_SERVER['REQUEST_URI']); ?>images/favicon/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="96x96" href="<?php echo str_replace(basename($_SERVER['PHP_SELF']), '', $_SERVER['REQUEST_URI']); ?>images/favicon/favicon-96x96.png">
+<link rel="icon" type="image/png" sizes="16x16" href="<?php echo str_replace(basename($_SERVER['PHP_SELF']), '', $_SERVER['REQUEST_URI']); ?>images/favicon/favicon-16x16.png">
+<link rel="shortcut icon" href="<?php echo str_replace(basename($_SERVER['PHP_SELF']), '', $_SERVER['REQUEST_URI']); ?>images/favicon/favicon.ico" type="image/x-icon">
+<link rel="icon" href="<?php echo str_replace(basename($_SERVER['PHP_SELF']), '', $_SERVER['REQUEST_URI']); ?>images/favicon/favicon.ico" type="image/x-icon">
     <link rel="stylesheet" type="text/css" href="<?php echo str_replace(basename($_SERVER['PHP_SELF']), '', $_SERVER['REQUEST_URI']); ?>css/main.css">
 
     <title>Aura</title>
@@ -12,7 +17,7 @@
 <body>
   <div class="container">
   <div class="header" id="home">
-    <h1 class="page-title">Aura</h1>
+   <img class="page-title" src="images/AuraLogo.png">
 
     <div class="links">
         <a href="new">New</a> <a href="results">Search</a>
@@ -34,44 +39,52 @@
 
 include 'php-barcode-generator/src/BarcodeGenerator.php';
 include 'php-barcode-generator/src/BarcodeGeneratorPNG.php';
+date_default_timezone_set('America/Chicago');
 
 function date_compare($a, $b)
 {
-    $t1 = strtotime($a['date']);
-    $t2 = strtotime($b['date']);
+	$f1 = json_decode(file_get_contents('results/data/'. $a), true);
+	$f2 = json_decode(file_get_contents('results/data/'. $b), true);
+	$t1 = strtotime($f1['Date']);
+	$t2 = strtotime($f2['Date']);
 
-    return $t2 - $t1;
+	return $t2 - $t1;
 }
 function generateBarcodeFrom($sku)
 {
-    $generator = new \Picqer\Barcode\BarcodeGeneratorPNG();
+	$generator = new \Picqer\Barcode\BarcodeGeneratorPNG();
 
-    return  '<img src="data:image/png;base64,'.base64_encode($generator->getBarcode($sku, $generator::TYPE_CODE_93)).'"><br>'.$sku;
+	return  '<img src="data:image/png;base64,'.base64_encode($generator->getBarcode($sku, $generator::TYPE_CODE_93)).'"><br>'.$sku;
 }
 $path = 'results/data';
 $files = scandir($path);
 $files = array_diff(scandir($path), array('.', '..'));
 
-usort($files, 'date_compare');
-$files = array_slice($files, 0, 4, true);
+if(empty($files) == false){
+
+	usort($files, 'date_compare');	
+	$files = array_slice($files, 0, 4, true);
 echo '<tr><td class="header">SKU</td><td class="header">Information</td><td class="header">Brand</td>';
 foreach ($files as $key => $value) {
-    if (strpos($value, '.json')) {
-        echo '<tr>';
-        $sku = str_replace('.json', '', $value);
-        $jsondata = json_decode(file_get_contents('results/data/'.$sku.'.json'), true);
+	if (strpos($value, '.json')) {
+		echo '<tr>';
+		$sku = str_replace('.json', '', $value);
+		$jsondata = json_decode(file_get_contents('results/data/'.$sku.'.json'), true);
 
-        if ($jsondata['Brand'] == '') {
-            $jsondata['Brand'] = 'Not supplied';
-        }
-        if ($jsondata['Model'] == '') {
-            $jsondata['Model'] = 'Not supplied';
-        }
-        echo "<td class='barcode'><div class='barcode'>".generateBarcodeFrom($sku).'</div></td>';
-        echo "<td class='model'>".$jsondata['Model'].', '.$jsondata['condition']."</td><td class='brand'>".$jsondata['Brand'].'</td>';
-        echo '</tr></a>';
-    }
+		if ($jsondata['Brand'] == '') {
+			$jsondata['Brand'] = 'Not supplied';
+		}
+		if ($jsondata['Model'] == '') {
+			$jsondata['Model'] = 'Not supplied';
+		}
+		echo "<td class='barcode'><div class='barcode'>".generateBarcodeFrom($sku).'</div></td>';
+		echo "<td class='model'>".$jsondata['Model'].', '. $jsondata["Date"]."</td><td class='brand'>".$jsondata['Brand'].'</td>';
+		echo '</tr></a>';
+	}
 }
+}
+
+
 ?>
             </table>
         </div>

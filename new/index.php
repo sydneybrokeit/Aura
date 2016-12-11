@@ -8,6 +8,7 @@
 <body>
   <div class="container">
   <div class="header">
+	     <img class="page-title" src="../images/AuraLogo.png">
   <h1 class="page-title">New Label</h1>
 
 <form action="." method="POST" class="template-selector">
