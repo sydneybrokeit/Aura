@@ -64,7 +64,7 @@ if(empty($files) == false){
 
 	usort($files, 'date_compare');	
 	$files = array_slice($files, 0, 4, true);
-echo '<tr><td class="header">SKU</td><td class="header">Information</td><td class="header">Brand</td>';
+echo '<tr><td class="table-header">SKU</td><td class="table-header">Information</td><td class="table-header">Brand</td>';
 foreach ($files as $key => $value) {
 	if (strpos($value, '.json')) {
 		echo '<tr>';
@@ -78,7 +78,7 @@ foreach ($files as $key => $value) {
 			$jsondata['Model'] = 'Not supplied';
 		}
 		echo "<td class='barcode'><div class='barcode'>".generateBarcodeFrom($sku).'</div></td>';
-		echo "<td class='model'>".$jsondata['Model'].', '. $jsondata["Date"]."</td><td class='brand'>".$jsondata['Brand'].'</td>';
+		echo "<td class='model'>Model: ".$jsondata['Model'].', Date: '. $jsondata["Date"]."</td><td class='brand'>".$jsondata['Brand'].'</td>';
 		echo '</tr></a>';
 	}
 }

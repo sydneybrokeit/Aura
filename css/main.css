@@ -47,8 +47,13 @@ div.header {
 	display:flex;
 	flex-direction:column;
 }
-
-@media (max-width: 960px) {
+@media (max-width: 650px) {
+	.inner-wrapper{
+		width: 100%!important;
+		padding: 10px!important;
+	}
+	}
+@media (max-width: 1040px) {
 	.header {
 		background-color:#031f27;
 		height:200px!important;
@@ -120,7 +125,7 @@ div.header {
 	padding-bottom:20px;
 }
 
-@media (max-width: 960px) {
+@media (max-width: 1040px) {
 
 	.back{
 		background-color: #031f27!important;
@@ -204,31 +209,50 @@ td {
 div.barcode {
 	background-color:#fff;
 	width:90%;
+	min-width: 180px;
+
 	display:block;
 	margin:0 auto;
 	margin-top:5px;
 	margin-bottom:5px;
+		margin-left: 10px;
+	margin-right: 10px;
 	border-radius:8px;
 	color:#000;
+}
+.table-header{
+	height: 50px;
+	text-align: left;
+	padding-left: 24px;
+	font-size: 20px;
+	padding-top: 15px;
+	    border-color: #282C32;
+	    padding-bottom: 13px;
+	border-bottom: 3px solid #A0A6AD;
+	background-color: #1B1F25;
+	font-weight: 100;
+	color: white;
+	
 }
 
 td.barcode img {
 	width:90%;
 	padding:10px;
 }
+.recent tr:nth-child(odd){
+	background-color: #EBEBEB;
+	color: #1B1F25;
+}
+.recent tr:nth-child(even) div.barcode {
+	border: 2px solid #EBEBEB;
+}
+.recent tr:nth-child(odd) div.barcode {
+	border: 2px solid #FFFFFF;
+}
 
-td.header {
-	background-color:#000!important;
-	border-radius:0;
-	margin-bottom:20px;
-	padding:10px;
-	padding-top:.5em;
-	padding-bottom:.5em;
-	color:#fff;
-	border:none!important;
-	-webkit-box-shadow:none!important;
-	-moz-box-shadow:none!important;
-	box-shadow:none!important;
+.recent tr:nth-child(even){
+	background-color: #FFFFFF;
+	color: #1B1F25;
 }
 
 table.recent {
@@ -239,6 +263,8 @@ table.recent {
 	border-collapse:collapse;
 	background-color:#4e6767;
 	color:#fff;
+	border: none;
+	    border-color: #282C32;
 }
 
 table td:first-child {
@@ -367,7 +393,7 @@ input {
 	padding-bottom:20px;
 }
 
-@media (max-width: 960px) {
+@media (max-width: 1040px) {
 	.page-title {
 		margin-top:10px!important;
 	}
@@ -381,6 +407,9 @@ input {
 }
 
 /* Results Page */
+.search{
+	margin: 0 auto;
+}
 .results_properties,.property_name,.property_value {
 	border:1px solid #000;
 }
