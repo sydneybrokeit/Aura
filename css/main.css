@@ -28,6 +28,11 @@ body {
 	margin-top:20px;
 	border-top-left-radius:17px;
 }
+.action{
+	text-align: center;
+	background-color: red;
+	padding: 10px;
+}
 
 div.header {
 	background-color:#031f27;
@@ -47,12 +52,14 @@ div.header {
 	display:flex;
 	flex-direction:column;
 }
+
 @media (max-width: 650px) {
-	.inner-wrapper{
-		width: 100%!important;
-		padding: 10px!important;
+	.inner-wrapper {
+		width:100%!important;
+		padding:10px!important;
 	}
-	}
+}
+
 @media (max-width: 1040px) {
 	.header {
 		background-color:#031f27;
@@ -64,15 +71,17 @@ div.header {
 		float:none!important;
 		flex-direction:column;
 	}
-	img.page-title{
-		width: 50px;
+	
+	img.page-title {
+		width:50px;
 	}
 	
 	.page-title {
 		margin-top:0!important;
 	}
-	.footer{
-		display: none!important;
+	
+	.footer {
+		display:none!important;
 	}
 }
 
@@ -99,7 +108,6 @@ div.header {
 
 .page-title {
 	font-weight:300;
-	margin-top:50%!important;
 }
 
 .wrapper {
@@ -126,9 +134,8 @@ div.header {
 }
 
 @media (max-width: 1040px) {
-
-	.back{
-		background-color: #031f27!important;
+	.back {
+		background-color:#031f27!important;
 	}
 }
 
@@ -209,50 +216,52 @@ td {
 div.barcode {
 	background-color:#fff;
 	width:90%;
-	min-width: 180px;
-
+	min-width:180px;
 	display:block;
 	margin:0 auto;
 	margin-top:5px;
 	margin-bottom:5px;
-		margin-left: 10px;
-	margin-right: 10px;
+	margin-left:10px;
+	margin-right:10px;
 	border-radius:8px;
 	color:#000;
 }
-.table-header{
-	height: 50px;
-	text-align: left;
-	padding-left: 24px;
-	font-size: 20px;
-	padding-top: 15px;
-	    border-color: #282C32;
-	    padding-bottom: 13px;
-	border-bottom: 3px solid #A0A6AD;
-	background-color: #1B1F25;
-	font-weight: 100;
-	color: white;
-	
+
+.table-header {
+	height:50px;
+	text-align:left;
+	padding-left:24px;
+	font-size:20px;
+	padding-top:15px;
+	border-color:#282C32;
+	padding-bottom:13px;
+	border-bottom:3px solid #A0A6AD;
+	background-color:#1B1F25;
+	font-weight:100;
+	color:#fff;
 }
 
 td.barcode img {
 	width:90%;
 	padding:10px;
 }
-.recent tr:nth-child(odd){
-	background-color: #EBEBEB;
-	color: #1B1F25;
-}
-.recent tr:nth-child(even) div.barcode {
-	border: 2px solid #EBEBEB;
-}
-.recent tr:nth-child(odd) div.barcode {
-	border: 2px solid #FFFFFF;
+
+.recent tr:nth-child(odd) {
+	background-color:#EBEBEB;
+	color:#1B1F25;
 }
 
-.recent tr:nth-child(even){
-	background-color: #FFFFFF;
-	color: #1B1F25;
+.recent tr:nth-child(even) div.barcode {
+	border:2px solid #EBEBEB;
+}
+
+.recent tr:nth-child(odd) div.barcode {
+	border:2px solid #FFF;
+}
+
+.recent tr:nth-child(even) {
+	background-color:#FFF;
+	color:#1B1F25;
 }
 
 table.recent {
@@ -263,8 +272,8 @@ table.recent {
 	border-collapse:collapse;
 	background-color:#4e6767;
 	color:#fff;
-	border: none;
-	    border-color: #282C32;
+	border:none;
+	border-color:#282C32;
 }
 
 table td:first-child {
@@ -277,8 +286,6 @@ td.model {
 }
 
 /* New Page */
-
-
 .page-title {
 	width:100%;
 	margin:0 auto;
@@ -397,27 +404,41 @@ input {
 	.page-title {
 		margin-top:10px!important;
 	}
-	.template-selector{
-		width: 100%;
-		padding: 20px;
+	
+	.template-selector {
+		width:100%;
+		padding:20px;
 	}
-	.template{
-		border: none;
+	
+	.template {
+		border:none;
 	}
 }
 
 /* Results Page */
-.search{
-	margin: 0 auto;
+
+.results_properties tr:nth-child(odd) {
+	background-color:#EBEBEB;
+	color:#1B1F25;
 }
+
+.results_properties tr:nth-child(even) {
+	background-color:#FFF;
+	color:#1B1F25;
+}
+
+.search {
+	margin:0 auto;
+}
+
 .results_properties,.property_name,.property_value {
-	border:1px solid #000;
+	    border: 1px solid #98a5b9;
 }
 
 .results_properties {
 	margin:0 auto;
-/*	display:block; */
 	border-collapse:collapse;
+	border-color:#282C32;
 }
 
 .property_name,.property_value {
@@ -427,18 +448,17 @@ input {
 .property_name {
 	background-color:#444;
 	color:#fff;
+	padding-left:22px;
+	font-size:18px;
+	font-weight:100;
+	border-color:#282C32;
+	border-right:3px solid #A0A6AD;
 }
 
-.property_value {
-	background-color:#fff;
-}
+
 
 .property_value#condition {
 	text-transform:capitalize;
-}
-
-.property_value#model,.property_value#brand {
-	text-transform:uppercase;
 }
 
 .tooltip {
