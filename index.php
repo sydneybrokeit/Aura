@@ -71,8 +71,9 @@
                                                 echo '<tr><td class="table-header">SKU</td><td class="table-header">Information</td><td class="table-header">Brand</td>';
                                                 foreach ($files as $key => $value) {
                                                     if (strpos($value, '.json')) {
-                                                        echo '<tr>';
-                                                        $sku = str_replace('.json', '', $value);
+	                                                      $sku = str_replace('.json', '', $value);
+                                                        echo '<tr onclick="window.document.location=\'results/result/?sku=' . $sku. '\';">';
+                                                      
                                                         $jsondata = json_decode(file_get_contents('results/data/'.$sku.'.json'), true);
 
                                                         if ($jsondata['Brand'] == '') {
