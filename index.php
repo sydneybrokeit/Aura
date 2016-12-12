@@ -55,11 +55,12 @@ $files = array_diff(scandir($path), array('.', '..'));
 
 usort($files, 'date_compare');
 $files = array_slice($files, 0, 4, true);
-echo '<tr><a href="results/result/?"><td class="header">SKU</td><td class="header">Information</td><td class="header">Brand</td>';
+echo '<tr><td class="header">SKU</td><td class="header">Information</td><td class="header">Brand</td>';
 foreach ($files as $key => $value) {
     if (strpos($value, '.json')) {
-        echo '<tr>';
         $sku = str_replace('.json', '', $value);
+        echo '<tr onclick="document.location = \'results/result/?sku='.$sku.'\';">';
+
         $jsondata = json_decode(file_get_contents('results/data/'.$sku.'.json'), true);
 
         if ($jsondata['Brand'] == '') {
@@ -70,7 +71,7 @@ foreach ($files as $key => $value) {
         }
         echo "<td class='barcode'><div class='barcode'>".generateBarcodeFrom($sku).'</div></td>';
         echo "<td class='model'>".$jsondata['Model'].', '.$jsondata['condition']."</td><td class='brand'>".$jsondata['Brand'].'</td>';
-        echo '</tr></a>';
+        echo '</tr>';
     }
 }
 ?>

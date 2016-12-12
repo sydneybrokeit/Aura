@@ -165,6 +165,7 @@ li {
 td {
     border: 1px solid black;
 }
+ tr { cursor: pointer; }
 
 div.barcode {
     background-color: white;
@@ -318,8 +319,8 @@ input {
 }
 
 .notes {
-    width: 40%;
-    padding-bottom: 20px;
+
+    padding-bottom: 50px;
 }
 
 

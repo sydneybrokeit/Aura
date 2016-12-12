@@ -22,7 +22,10 @@ foreach ($types['items'] as $field => $type) {
 ?>
   </select>
 </form>
-  <a class='back' href='../'>Home</a></form>
+<div class="footer">
+  <a class='back' href='../'>Home</a>
+</div>
+</form>
 </div>
   <div class="wrapper" id="forms">
 
