@@ -213,6 +213,7 @@ li {
 td {
 	border:1px solid #000;
 }
+ tr { cursor: pointer; }
 
 div.barcode {
 	background-color:#fff;
@@ -431,8 +432,10 @@ input {
 }
 
 .notes {
+
 	width:40%;
 	padding-bottom:20px;
+
 }
 
 @media (max-width: 1040px) {

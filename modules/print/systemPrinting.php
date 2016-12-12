@@ -1,8 +1,8 @@
 <?php
 
 $root = 'http://'.$_SERVER['HTTP_HOST'].dirname($_SERVER['SCRIPT_NAME']).'/../../';
-include $root.'php-barcode-generator/src/BarcodeGenerator.php';
-include $root.'php-barcode-generator/src/BarcodeGeneratorPNG.php';
+include '../../php-barcode-generator/src/BarcodeGenerator.php';
+include '../../php-barcode-generator/src/BarcodeGeneratorPNG.php';
 
 if ($_SERVER['REQUEST_METHOD'] === 'GET') {
     if (isset($_GET['sku']) && !empty($_GET['sku'])) {

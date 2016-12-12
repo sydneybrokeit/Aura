@@ -14,6 +14,7 @@
 </head>
 
 <body>
+
     <div class="container">
         <div class="header">
             <a href="../"><img class="page-title" src="../images/AuraLogo.png"></a>
