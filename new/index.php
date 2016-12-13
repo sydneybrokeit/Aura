@@ -21,7 +21,8 @@
 
             <div class="action">
                 <h1 class="page-title">New Label</h1>
-
+		
+		<! Template Dropdown Generation >
                 <form action="." method="post">
                     Category: <select name="template" onchange="this.form.submit()">
                         <option disabled selected value="">
@@ -42,14 +43,13 @@
             <?php
                             global $templateName;
                         date_default_timezone_set('UTC');
-
+                        #Process templates if POST request
                         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                             if (isset($_POST['template']) && !empty($_POST['template'])) {
                                 setupPageFromTemplate(parseTemplate($_POST['template']));
                             }
                         }
-                 
-
+			#Display success/error messages
                         if ($_SERVER['REQUEST_METHOD'] === 'GET') {
                             if (isset($_GET['success']) && !empty($_GET['success'])) {
                                 if ($_GET['success'] == 'true' && isset($_GET['sku']) && !empty($_GET['sku'])) {
@@ -63,12 +63,13 @@
                                 }
                             }
                         }
-
+			# Setup Page From Template
                         function setupPageFromTemplate($template)
                         {
                             basicFormsInserting($template);
                             echo "<input class='submit-button' type='submit' value='Submit'></form>";
                         }
+		 	# Basic Forms Inserting (function)
                         function basicFormsInserting($inserted)
                         {
                            
@@ -134,7 +135,7 @@
                             }
                             getPrint();
                         }
-
+			#Create HTML from Template (function)
                         function htmlFromTemplate($template)
                         {
                             foreach ($template['fields'] as $field => $type) {
@@ -171,6 +172,7 @@
                                 }
                             }
                         }
+			#Get List of Printers	 
                         function getPrint()
                         {
                             $settings = json_decode(file_get_contents('../config.json'), true);
@@ -184,7 +186,6 @@
                         {
                             return  json_decode(file_get_contents('../templates/'.$file), true);
                         }
-
                         function parseMasterTemplate()
                         {
                             return  json_decode(file_get_contents('../templates/master.json'), true);
