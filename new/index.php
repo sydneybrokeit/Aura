@@ -74,6 +74,7 @@
                         {
                             $template = parseMasterTemplate();
                             $name = $inserted['meta']['template_name'];
+                            $brand = null;
 
                             session_start();
 
@@ -82,6 +83,9 @@
                             $inherited = null;
                             if (isset($inserted['meta']['inherit'])) {
                                 $inherited = $inserted['meta']['inherit'];
+                            }
+                            if (isset($inserted['meta']['brand'])) {
+                                $brand = $inserted['meta']['brand'];
                             }
                             echo '<form id="template" class="template" action="submit.php" method="post"><input type="hidden" value='.$name.' name="category">';
 
@@ -121,6 +125,11 @@
                                             }
                                         } elseif ($type == 'date') {
                                             echo "<input id='date' type=".$type.' name='.$name.' value='.date('Y-m-d').'>';
+                                        } elseif ($name == 'Brand' && $brand != null) {
+                                            echo '<input class='.$name.' type='.$type.' name='.$name.' value='.$brand.'>';
+                                            if (isset($template['tooltips'][$name])) {
+                                                echo ' <p class="tooltiptext tooltip-right">'.$template['tooltips'][$name].'</p>';
+                                            }
                                         } else {
                                             echo '<input class='.$name.' type='.$type.' name='.$name.'>';
                                             if (isset($template['tooltips'][$name])) {
