@@ -1,0 +1,168 @@
+/* New Page */
+
+@import "main.scss";
+.page-title {
+ width:100%;
+ margin:0 auto;
+ display:block;
+ margin-bottom:20px;
+ text-align:center;
+}
+
+div.help {
+ margin-top:25%;
+ transform:translateY(-25%);
+}
+
+h2.help {
+ color:#fff;
+ font-size:50px;
+}
+
+.template-title {
+ display:inline-block;
+ margin-left:15px;
+ font-size:20px;
+ margin-top:20px;
+ padding:0;
+ margin-bottom:10px;
+}
+
+.template-selector {
+ width:97%;
+ margin-bottom:0;
+ background-color:#1eef79;
+ text-align:center;
+ padding-top:20px;
+ padding-bottom:20px;
+ color:#fff;
+ margin-left:-10px;
+ padding-right:20px;
+}
+
+.field-title {
+ display:inline-block;
+ width:auto;
+ padding:0;
+ margin:0;
+ box-sizing:border-box;
+}
+
+.form-option p {
+ display:inline-block;
+ width:auto;
+}
+
+.form-option {
+ text-align:left!important;
+}
+
+.quote {
+ width:78%;
+ margin:0 auto;
+ margin-top:25px;
+}
+
+.quote a:before {
+ content:"- ";
+}
+
+.quote a {
+ color:red;
+ text-decoration:none;
+ text-align:center;
+ display:block;
+ padding-top:12px;
+ font-style:italic;
+}
+
+.quote::first-line {
+ display:none;
+ color:transparent!important;
+}
+
+@media (max-width: 1210px) {
+ .template {
+   padding-top:60px;
+ }
+
+ .quote {
+   display:none;
+ }
+}
+
+.template {
+ display:table;
+ width:100%;
+ margin:0 auto;
+ background-color:#fff;
+ border-left:5px solid #1eef79;
+ height:100%;
+   padding-top: 30px;
+}
+
+.field-title {
+ font-size:20px;
+ min-width:260px;
+ text-align:left;
+ margin-left:20px;
+}
+
+div.radio {
+ background-color:#000;
+ width:100%;
+ color:#fff;
+ padding-top:20px;
+ text-align:left;
+ padding-bottom:20px;
+ margin-bottom:20px;
+}
+
+.radio-option {
+ margin-left:20px;
+}
+
+p {
+ display:table-row;
+}
+
+label {
+ display:table-cell;
+}
+
+input {
+ display:table-cell;
+}
+
+.submit-button {
+ text-align:center;
+ margin:0 auto;
+ display:block;
+ margin-bottom:55px;
+}
+
+.reason-field {
+ width:60%;
+}
+
+.notes {
+
+ width:40%;
+ padding-bottom:20px;
+
+}
+
+@media (max-width: 1210px) {
+ .page-title {
+   margin-top:10px!important;
+ }
+
+ .template-selector {
+   width:100%;
+   padding:20px;
+ }
+
+ .template {
+   border:none;
+ }
+}

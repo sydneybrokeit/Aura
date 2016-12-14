@@ -1,0 +1,88 @@
+@import "main.scss";
+
+/* Results Page */
+.results_properties tr:nth-child(odd) {
+ background-color:#EBEBEB;
+ color:#1B1F25;
+}
+
+.results_properties tr:nth-child(even) {
+ background-color:#FFF;
+ color:#1B1F25;
+}
+
+.search {
+ margin:0 auto;
+}
+
+.results_properties,.property_name,.property_value {
+ border:1px solid #98a5b9;
+}
+
+.results_properties {
+ margin:0 auto;
+ border-collapse:collapse;
+ border-color:#282C32;
+}
+
+.property_name,.property_value {
+ padding:15px;
+}
+
+.property_name {
+ background-color:#444;
+ color:#fff;
+ padding-left:22px;
+ font-size:18px;
+ font-weight:100;
+ border-color:#282C32;
+ border-right:3px solid #A0A6AD;
+}
+
+.property_value#condition {
+ text-transform:capitalize;
+}
+
+.tooltip {
+ position:relative;
+ display:block;
+}
+
+.tooltip .tooltiptext {
+ visibility:hidden;
+ position:absolute;
+ min-width:80px;
+ background-color:#555;
+ color:#fff;
+ font-size:12px;
+ text-align:center;
+ padding:10px;
+ border-radius:17px;
+ z-index:1;
+ opacity:0;
+ transition:opacity 1s;
+}
+
+.tooltip-right {
+ margin-top:-2px;
+ margin-left:15em;
+ margin-right:2em;
+}
+
+.tooltip:hover .tooltiptext {
+ visibility:visible;
+ opacity:1;
+}
+
+.reveal-if-active {
+ opacity:0;
+ max-height:0;
+ overflow:hidden;
+}
+
+input[type="radio"]:checked~.reveal-if-active,input[type="checkbox"]:checked~.reveal-if-active {
+ opacity:1;
+ max-height:100px;
+/* little bit of a magic number :( */
+ overflow:visible;
+}

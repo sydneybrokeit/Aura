@@ -1,0 +1,35 @@
+<div class="header">
+<a href="/"><img class="page-title" src="<%=asset_path "logo.png" %>"></a>
+    <% if @title == "Aura" %>
+
+    <div class="action">
+        <div class="links">
+            <a href="new">New</a>
+            <a href="results">Search</a>
+        </div>
+    </div>
+    <div class="quote">
+        <script type="text/javascript" src="https://www.brainyquote.com/link/quotear.js"></script>
+    </div>
+
+    <% elsif @title  == "New" %>
+
+      <div class="action">
+          <h1 class="page-title">New Label</h1>
+          <%= render 'layouts/template_selector' %>
+        </div>
+
+        <% elsif @title  == "Results" %>
+
+        <div class="action">
+            <h2 class="page-title">Search</h2>
+              <%= render 'layouts/search_results' %>
+        </div>
+
+
+
+        <% end %>
+      <div class="footer">
+          <a href="https://github.com/hschreck/Aura/issues">Support</a>
+        </div>
+</div>

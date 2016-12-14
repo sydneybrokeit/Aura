@@ -1,0 +1,13 @@
+<form>
+    Category:
+
+
+    <select name="template" onchange="this.form.submit()">
+        <option disabled selected value="">
+            Choose a template
+        </option>
+        <% @templates["items"].each do |template| %>
+        <option>  <%= template[0] %> </option>
+        <% end %>
+    </select>
+</form>
