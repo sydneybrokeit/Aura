@@ -91,10 +91,10 @@
                                     foreach ($type['options'] as $condition) {
                                         echo '<div class="tooltip radio-option">';
                                         if (isset($template['tooltips'][strtolower($condition)]) && in_array($condition, $type['reason']) == false) {
-                                            echo '<span class="tooltiptext tooltip-right">'.$template['tooltips'][strtolower($condition)].'</span>';
+                                            echo '<p class="tooltiptext tooltip-right">'.$template['tooltips'][strtolower($condition)].'</p>';
                                             echo '<input type='.$type['type'].' name='.strtolower($field).' value='.strtolower($condition).'>'.$condition;
                                         } else {
-                                            echo '<span class="tooltiptext tooltip-right tooltip-extra">'.$template['tooltips'][strtolower($condition)].'</span>';
+                                            echo '<p class="tooltiptext tooltip-right tooltip-extra">'.$template['tooltips'][strtolower($condition)].'</p>';
                                             echo '<input type='.$type['type'].' name='.strtolower($field).' value='.strtolower($condition).'>'.$condition;
 
                                             echo '<div class="reveal-if-active"><input type=text name="condition_reason" class="reason-field"  placeholder="Reason"></div>';
@@ -115,17 +115,17 @@
                                         $name = str_replace(' ', '_', $field);
 
                                         if ($type == 'textarea') {
-                                            if (isset($template['tooltips'][$name])) {
-                                                echo ' <span class="tooltiptext 2 tooltip-right">'.$template['tooltips'][$name].'</span>';
-                                            }
                                             echo '<textarea class="'.$name.'" cols="50" rows="10" name='.$name.'></textarea>';
+                                            if (isset($template['tooltips'][$name])) {
+                                                echo ' <p class="tooltiptext 2 tooltip-right">'.$template['tooltips'][$name].'</p>';
+                                            }
                                         } elseif ($type == 'date') {
                                             echo "<input id='date' type=".$type.' name='.$name.' value='.date('Y-m-d').'>';
                                         } else {
-                                            if (isset($template['tooltips'][$name])) {
-                                                echo ' <span class="tooltiptext tooltip-right">'.$template['tooltips'][$name].'</span>';
-                                            }
                                             echo '<input class='.$name.' type='.$type.' name='.$name.'>';
+                                            if (isset($template['tooltips'][$name])) {
+                                                echo ' <p class="tooltiptext tooltip-right">'.$template['tooltips'][$name].'</p>';
+                                            }
                                         }
                                         echo '</div>';
                                     }
@@ -142,10 +142,10 @@
                                     foreach ($type['options'] as $condition) {
                                         echo '<div class="tooltip">';
                                         if (isset($template['tooltips'][strtolower($condition)]) && in_array($condition, $type['condition_reason']) == false) {
-                                            echo '<span class="tooltiptext tooltip-right">'.$template['tooltips'][strtolower($condition)].'</span>';
+                                            echo '<p class="tooltiptext tooltip-right">'.$template['tooltips'][strtolower($condition)].'</p>';
                                             echo '<input class='.$name.' type='.$type['type'].' name='.strtolower($field).' value='.strtolower($condition).'>'.$condition;
                                         } else {
-                                            echo '<span class="tooltiptext tooltip-right tooltip-extra">'.$template['tooltips'][strtolower($condition)].'</span>';
+                                            echo '<p class="tooltiptext tooltip-right tooltip-extra">'.$template['tooltips'][strtolower($condition)].'</p>';
                                             echo '<input class='.$name.' type='.$type['type'].' name='.strtolower($field).' value='.strtolower($condition).'>'.$condition;
 
                                             echo '<div class="reveal-if-active"><input class="reason-field" type=text name="condition_reason"  placeholder="Reason"></div>';
@@ -161,7 +161,7 @@
 
                                     if ($type != 'date') {
                                         if (isset($template['tooltips'][$name])) {
-                                            echo ' <span class="tooltiptext tooltip-right">'.$template['tooltips'][$name].'</span>';
+                                            echo ' <p class="tooltiptext tooltip-right">'.$template['tooltips'][$name].'</p>';
                                         }
                                         echo '<input class='.$name.' type='.$type.' name='.$name.'>';
                                     } else {
