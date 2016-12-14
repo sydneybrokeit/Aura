@@ -1,0 +1,14 @@
+<% @title="New" ; @style="new"%>
+<% if @template != nil %>
+
+<form id="template" class="template"><input type="hidden" value='<%= @template["name"] %>' name="category">
+<h3><%= @template["meta"]["template_name"] %></h3>
+<% @template["fields"].each do |field| %>
+<div class="tooltip form-option">
+<label class="field-title"><%= field[0] %>: </label>
+<input type="<%= field[1] %>" name="<%= field[0] %>" class="<%= field[0] %>">
+</div>
+<% end %>
+<% end %>
+
+</form>

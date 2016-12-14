@@ -1,0 +1,3 @@
+[submodule "app/assets/templates"]
+	path = app/assets/templates
+	url = https://github.com/128keaton/aura-templates
