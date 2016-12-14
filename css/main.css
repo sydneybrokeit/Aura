@@ -61,7 +61,7 @@ div.header {
 	}
 }
 
-@media (max-width: 1040px) {
+@media (max-width: 1210px) {
 	.header {
 		background-color:#031f27;
 		height:200px!important;
@@ -72,15 +72,15 @@ div.header {
 		float:none!important;
 		flex-direction:column;
 	}
-	
+
 	img.page-title {
 		width:50px;
 	}
-	
+
 	.page-title {
 		margin-top:0!important;
 	}
-	
+
 	.footer {
 		display:none!important;
 	}
@@ -134,7 +134,7 @@ div.header {
 	padding-bottom:20px;
 }
 
-@media (max-width: 1040px) {
+@media (max-width: 1210px) {
 	.back {
 		background-color:#031f27!important;
 	}
@@ -368,11 +368,11 @@ h2.help {
 	color:transparent!important;
 }
 
-@media (max-width: 1040px) {
+@media (max-width: 1210px) {
 	.template {
 		padding-top:60px;
 	}
-	
+
 	.quote {
 		display:none;
 	}
@@ -438,16 +438,16 @@ input {
 
 }
 
-@media (max-width: 1040px) {
+@media (max-width: 1210px) {
 	.page-title {
 		margin-top:10px!important;
 	}
-	
+
 	.template-selector {
 		width:100%;
 		padding:20px;
 	}
-	
+
 	.template {
 		border:none;
 	}
