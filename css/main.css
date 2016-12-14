@@ -213,7 +213,7 @@ li {
 td {
 	border:1px solid #000;
 }
- tr { cursor: pointer; }
+
 
 div.barcode {
 	background-color:#fff;
@@ -241,6 +241,7 @@ div.barcode {
 	background-color:#1B1F25;
 	font-weight:100;
 	color:#fff;
+	cursor: default;
 }
 
 td.barcode img {
@@ -265,7 +266,9 @@ td.barcode img {
 	background-color:#FFF;
 	color:#1B1F25;
 }
-
+.recent tr{
+	 cursor: pointer;
+}
 table.recent {
 	width:auto;
 	margin:0 auto;
