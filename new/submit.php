@@ -12,11 +12,11 @@
 error_reporting(E_ALL | E_STRICT);
 
 ini_set('display_errors', 'On');
-
+date_default_timezone_set('America/Chicago');
 header('Access-Control-Allow-Origin: *');
 function generateRandomString($length = 19)/*{{{*/
 {
-    #To change length of SKU, adjust length above
+    //To change length of SKU, adjust length above
     $characters = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';
     $charactersLength = strlen($characters);
     $randomString = '';
@@ -26,7 +26,7 @@ function generateRandomString($length = 19)/*{{{*/
 
     return $randomString;
 }/*}}}*/
-#send SKU to printer/*{{{*/
+//send SKU to printer/*{{{*/
 function sendSKU($printer, $sku)
 {
     header('location: '.str_replace(basename($_SERVER['PHP_SELF']), '', $_SERVER['REQUEST_URI']).'../modules/print/?sku='.$sku);
@@ -39,15 +39,15 @@ function returnWithError($error = 'None')/*{{{*/
 $sku = generateRandomString(15);
 $filename = '../results/data/'.$sku.'.json';
 $clean = $_POST;
-
-#Remove blanks in the POSTed data/*{{{*/
+$clean['date'] = date('Y/m/d h:i:s a', time());
+//Remove blanks in the POSTed data/*{{{*/
 foreach ($_POST as $key => $value) {
     if ($value == '') {
         unset($clean[$key]);
     }
 }/*}}}*/
 
-#Save file and print SKU/*{{{*/
+//Save file and print SKU/*{{{*/
 if (file_put_contents($filename, json_encode($clean))) {
     if (isset($_POST['printer'])) {
         setcookie('printer', $_POST['printer']);
