@@ -21,7 +21,7 @@
 
             <div class="action">
                 <h1 class="page-title">New Label</h1>
-		
+
 		<! Template Dropdown Generation >
                 <form action="." method="post">
                     Category: <select name="template" onchange="this.form.submit()">
@@ -30,7 +30,7 @@
                         </option><?php
                                             $types = json_decode(file_get_contents('../templates/items.json'), true);
                                             foreach ($types['items'] as $field => $type) {
-                                                echo "<option name='template' value=".$type.'>'. ucwords($field).'</option>';
+                                                echo "<option name='template' value=".$type.'>'.ucwords($field).'</option>';
                                             }
 
                                             ?>
@@ -43,13 +43,13 @@
             <?php
                             global $templateName;
                         date_default_timezone_set('UTC');
-                        #Process templates if POST request
+                        //Process templates if POST request
                         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                             if (isset($_POST['template']) && !empty($_POST['template'])) {
                                 setupPageFromTemplate(parseTemplate($_POST['template']));
                             }
                         }
-			#Display success/error messages
+            //Display success/error messages
                         if ($_SERVER['REQUEST_METHOD'] === 'GET') {
                             if (isset($_GET['success']) && !empty($_GET['success'])) {
                                 if ($_GET['success'] == 'true' && isset($_GET['sku']) && !empty($_GET['sku'])) {
@@ -63,30 +63,28 @@
                                 }
                             }
                         }
-			# Setup Page From Template
+            // Setup Page From Template
                         function setupPageFromTemplate($template)
                         {
                             basicFormsInserting($template);
                             echo "<input class='submit-button' type='submit' value='Submit'></form>";
                         }
-		 	# Basic Forms Inserting (function)
+            // Basic Forms Inserting (function)
                         function basicFormsInserting($inserted)
                         {
-                           
-                
                             $template = parseMasterTemplate();
                             $name = $inserted['meta']['template_name'];
-                        
-                             session_start();
 
-                             $_SESSION['name']=$name;
+                            session_start();
+
+                            $_SESSION['name'] = $name;
                             $category = $inserted['meta']['category'];
                             $inherited = null;
                             if (isset($inserted['meta']['inherit'])) {
                                 $inherited = $inserted['meta']['inherit'];
                             }
                             echo '<form id="template" class="template" action="submit.php" method="post"><input type="hidden" value='.$name.' name="category">';
-                           
+
                             foreach ($template['fields'] as $field => $type) {
                                 if (is_array($type) && $type['type'] == 'radio') {
                                     echo '<div class="'.$type['type'].'"><label class="field-title">'.$field.'</label>';
@@ -106,9 +104,9 @@
                                     echo '</div>';
                                 } elseif ($type == 'insertion') {
                                     if ($inherited != null) {
-                                        htmlFromTemplate(parseTemplate($inherited));
+                                        htmlFromTemplate(parseTemplate($inherited, $inserted));
                                     }
-                                    htmlFromTemplate($inserted);
+                                    htmlFromTemplate($inserted, $inserted);
                                 } else {
                                     if ($type != 'insertion') {
                                         echo '<div class="tooltip form-option">';
@@ -135,8 +133,8 @@
                             }
                             getPrint();
                         }
-			#Create HTML from Template (function)
-                        function htmlFromTemplate($template)
+            //Create HTML from Template (function)
+                        function htmlFromTemplate($template, $parent)
                         {
                             foreach ($template['fields'] as $field => $type) {
                                 if (is_array($type) && $type['type'] == 'radio') {
@@ -157,6 +155,7 @@
                                     echo '</div>';
                                 } else {
                                     echo '<div class="tooltip form-option">';
+
                                     echo '<label class="field-title">'.$field.':</label>';
                                     $name = str_replace(' ', '_', $field);
 
@@ -172,7 +171,7 @@
                                 }
                             }
                         }
-			#Get List of Printers	 
+            //Get List of Printers
                         function getPrint()
                         {
                             $settings = json_decode(file_get_contents('../config.json'), true);

@@ -1,9 +1,0 @@
-{
-    "items": {
-        "servers": "servers.json",
-        "switches": "master.json",
-        "projectors": "projectors.json",
-	"cisco switches": "ciscoswitch.json",
-	"cisco routers": "ciscorouter.json"
-    }
-}
