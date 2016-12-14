@@ -2,17 +2,22 @@
 
 <html>
 <head>
-    <link rel="stylesheet" type="text/css" href="/Aura/css/main.css">
+      <link rel="stylesheet" type="text/css" href="../../css/main.css">
+    <link rel="icon" type="image/png" sizes="32x32" href="<?php echo str_replace(basename($_SERVER['PHP_SELF']), '', $_SERVER['REQUEST_URI']); ?>../images/favicons/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="96x96" href="<?php echo str_replace(basename($_SERVER['PHP_SELF']), '', $_SERVER['REQUEST_URI']); ?>../images/favicons/favicon-96x96.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="<?php echo str_replace(basename($_SERVER['PHP_SELF']), '', $_SERVER['REQUEST_URI']); ?>../images/favicons/favicon-16x16.png">
+    <link rel="shortcut icon" href="<?php echo str_replace(basename($_SERVER['PHP_SELF']), '', $_SERVER['REQUEST_URI']); ?>../images/favicons/favicon.ico" type="image/x-icon">
+    <link rel="icon" href="<?php echo str_replace(basename($_SERVER['PHP_SELF']), '', $_SERVER['REQUEST_URI']); ?>../images/favicons/favicon.ico" type="image/x-icon">
 
     <title>Aura|<?php
-    if (isset($_GET["sku"])) {
-        echo $_GET["sku"];
+    if (isset($_GET['sku'])) {
+        echo $_GET['sku'];
     }?></title>
 </head>
 
 <body>
     <div class="container">
-        <div class="header" id="home">
+                <div class="header" id="home">
             <a href="../../"><img class="page-title" src="../../images/AuraLogo.png"></a>
 
             <div class="action">
@@ -29,28 +34,30 @@
         </div>
 
         <div class="wrapper">
+            <div class="inner-wrapper">
             <?php
-            if (isset($_GET["sku"])) {
-                $jsondata = json_decode(file_get_contents("../data/" . $_GET["sku"] . ".json"), true);
+            if (isset($_GET['sku'])) {
+                $jsondata = json_decode(file_get_contents('../data/'.$_GET['sku'].'.json'), true);
 
-                echo "<h1 class='result-title'>Result: " . $_GET["sku"] . "</h1>";
+                echo "<h1 class='result-title'>Result: ".$_GET['sku'].'</h1>';
                 echo "<table class='results_properties'>";
-                foreach ($jsondata as $key=>$value) {
+                foreach ($jsondata as $key => $value) {
                     $keyID = $key;
-                    $key = str_replace("_", " ", $key);
-                    if ($keyID == "Power_Adaptor"){
-                        $value = str_replace("on", "Yes", $value);
-                        $value = str_replace("off", "No", $value);
+                    $key = str_replace('_', ' ', $key);
+                    if ($keyID == 'Power_Adaptor') {
+                        $value = str_replace('on', 'Yes', $value);
+                        $value = str_replace('off', 'No', $value);
                     }
 
-                    echo "<tr><td class='property_name' id='" . $keyID . "'>"  . ucwords($key) . ":</td><td class='property_value' id='" . $keyID . "'>" . $value . "</td></tr>";
+                    echo "<tr><td class='property_name' id='".$keyID."'>".ucwords($key).":</td><td class='property_value' id='".$keyID."'>".$value.'</td></tr>';
                 }
 
-                echo "</table>";
+                echo '</table>';
             }
 
             ?>
         </div>
+      </div>
     </div>
 </body>
 </html>
