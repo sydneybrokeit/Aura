@@ -39,7 +39,7 @@ function returnWithError($error = 'None')/*{{{*/
 $sku = generateRandomString(15);
 $filename = '../results/data/'.$sku.'.json';
 $clean = $_POST;
-$clean['date'] = date('Y-m-d', time());
+$clean['Date'] = date('Y-m-d', time());
 //Remove blanks in the POSTed data/*{{{*/
 foreach ($_POST as $key => $value) {
     if ($value == '') {
