@@ -1,26 +1,27 @@
 <?php
-	use Aura\Settings as Settings;
-	include ('../../settings/settings.php');
-	
+
 
 if ($_SERVER['REQUEST_METHOD'] === 'GET') {
-	if (isset($_GET["sku"]) && !empty($_GET["sku"])) {
-		directPrinting($_GET["sku"]);
-	}
+    if (isset($_GET['sku']) && !empty($_GET['sku'])) {
+        $settings = json_decode(file_get_contents('http://'.$_SERVER['HTTP_HOST'].dirname($_SERVER['SCRIPT_NAME']).'/../../config.json'), true);
+        if ($settings['printMethod'] == 'system') {
+            systemPrint($_GET['sku']);
+        } else {
+            barcodeWeb($_GET['sku'], 'Stage1');
+        }
+    }
 }
 
-function directPrinting($sku){
-	$settings = new Settings;
-	if($settings->getPrintMethod() == "System"){
-		header("location: systemPrinting.php?sku=" . $sku);
-	}else{
-		header("location: barcodeWeb.php?sku=" . $sku);
-	}
+function systemPrint($sku)
+{
+    echo 'system';
+    header('location: systemPrinting.php?sku='.$sku);
 }
-if (!isset($_GET["sku"]) && empty($_GET["sku"])) {
-	$settings = new Settings;
-	header("location: " , $settings->getRoot());
-	
+function barcodeWeb($sku, $printer)
+{
+    header('location: barcodeWeb.php?sku='.$sku.'&printer='.$printer);
 }
 
-?>
+if (!isset($_GET['sku']) && empty($_GET['sku'])) {
+    header('location: '.$root);
+}
