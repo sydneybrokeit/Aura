@@ -10,6 +10,8 @@
     <link rel="shortcut icon" href="<?php echo str_replace(basename($_SERVER['PHP_SELF']), '', $_SERVER['REQUEST_URI']); ?>../images/favicons/favicon.ico" type="image/x-icon">
     <link rel="icon" href="<?php echo str_replace(basename($_SERVER['PHP_SELF']), '', $_SERVER['REQUEST_URI']); ?>i../mages/favicons/favicon.ico" type="image/x-icon">
     <script src="../js/jquery-3.1.1.min.js" type="text/javascript">
+
+
 </script>
 </head>
 
