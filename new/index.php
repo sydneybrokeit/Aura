@@ -105,9 +105,9 @@
 
                                             if (isset($type['checkbox'][$condition])) {
                                                 if (isset($template['tooltips']['checkbox-'.array_search($type['checkbox'][$condition], $type['checkbox'])])) {
-                                                    echo '<p class="tooltiptext tooltip-right">'.$template['tooltips']['checkbox-'.array_search($type['checkbox'][$condition], $type['checkbox'])].'</p>';
+                                                    echo '<p class="tooltiptext tooltip-right more-space">'.$template['tooltips']['checkbox-'.array_search($type['checkbox'][$condition], $type['checkbox'])].'</p>';
                                                 }
-                                                echo $type['checkbox'][$condition].':<input type="checkbox" name='.strtolower($type['checkbox'][$condition]).' value='.strtolower($type['checkbox'][$condition]).'><br>';
+                                                echo '<p class="checkbox-title">'.$type['checkbox'][$condition].':<input type="checkbox" name='.strtolower($type['checkbox'][$condition]).' value='.strtolower($type['checkbox'][$condition]).'></p><br>';
                                             }
                                             echo '<input type=text name="condition_reason" class="reason-field"  placeholder="Reason"></div>';
                                         }
