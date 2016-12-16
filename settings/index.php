@@ -16,7 +16,7 @@
           <a href="../"><img class="page-title" src="../images/AuraLogo.png"></a>
           <div class="action">
               <div class="links">
-                  <a href="new">New</a> <a href="results">Search</a>
+                  <a href="../new">New</a> <a href="../results">Search</a>
               </div>
           </div>
           <div class="footer">
