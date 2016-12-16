@@ -43,12 +43,19 @@
                                         date_default_timezone_set('America/Chicago');
                                         function date_compare($a, $b)
                                         {
-                                            $f1 = json_decode(file_get_contents('data/'. $a), true);
-                                            $f2 = json_decode(file_get_contents('data/'. $b), true);
+                                            $f1 = json_decode(file_get_contents('data/'.$a), true);
+                                            $f2 = json_decode(file_get_contents('data/'.$b), true);
                                             $t1 = strtotime($f1['Date']);
                                             $t2 = strtotime($f2['Date']);
 
-                                            return $t2 - $t1;
+                                            if (!isset($f1['Date'])) {
+                                                $t1 = strtotime($f1['date']);
+                                            }
+                                            if (!isset($f2['Date'])) {
+                                                $t2 = strtotime($f2['date']);
+                                            }
+
+                                            return $t1 - $t2;
                                         }
 
                                         function generateBarcodeFrom($sku)
@@ -61,26 +68,39 @@
                                         $files = scandir($path);
                                         $files = array_diff(scandir($path), array('.', '..'));
 
-                                        if(empty($files) == false){
-
+                                        if (empty($files) == false) {
                                             usort($files, 'date_compare');
+                                            $files = array_reverse($files);
                                             $files = array_slice($files, 0, 4, true);
                                             echo '<tr><td class="table-header">SKU</td><td class="table-header">Information</td><td class="table-header">Brand</td>';
                                             foreach ($files as $key => $value) {
                                                 if (strpos($value, '.json')) {
-	                                                $sku = str_replace('.json', '', $value);
-                                                    echo '<tr onclick="window.document.location=\'result/?sku=' . $sku. '\';">';
-                                                    
+                                                    $sku = str_replace('.json', '', $value);
+                                                    echo '<tr onclick="window.document.location=\'result/?sku='.$sku.'\';">';
+
                                                     $jsondata = json_decode(file_get_contents('data/'.$sku.'.json'), true);
+
+                                                    if ($jsondata['Date'] == '') {
+                                                        $jsondata['Date'] = 'Not supplied';
+                                                        if ($jsondata['date'] != '') {
+                                                            $jsondata['Date'] = $jsondata['date'];
+                                                        }
+                                                    }
 
                                                     if ($jsondata['Brand'] == '') {
                                                         $jsondata['Brand'] = 'Not supplied';
+                                                        if ($jsondata['brand'] != '') {
+                                                            $jsondata['Brand'] = $jsondata['brand'];
+                                                        }
                                                     }
                                                     if ($jsondata['Model'] == '') {
                                                         $jsondata['Model'] = 'Not supplied';
+                                                        if ($jsondata['model'] != '') {
+                                                            $jsondata['Model'] = $jsondata['model'];
+                                                        }
                                                     }
                                                     echo "<td class='barcode'><div class='barcode'>".generateBarcodeFrom($sku).'</div></td>';
-                                                    echo "<td class='model'>Model: ".$jsondata['Model'].', Date: '. $jsondata["Date"]."</td><td class='brand'>".$jsondata['Brand'].'</td>';
+                                                    echo "<td class='model'>Model: ".$jsondata['Model'].', Date: '.$jsondata['Date']."</td><td class='brand'>".$jsondata['Brand'].'</td>';
                                                     echo '</tr></a>';
                                                 }
                                             }

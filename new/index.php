@@ -101,7 +101,12 @@
                                             echo '<p class="tooltiptext tooltip-right tooltip-extra">'.$template['tooltips'][strtolower($condition)].'</p>';
                                             echo '<input type='.$type['type'].' name='.strtolower($field).' value='.strtolower($condition).'>'.$condition;
 
-                                            echo '<div class="reveal-if-active"><input type=text name="condition_reason" class="reason-field"  placeholder="Reason"></div>';
+                                            echo '<div class="reveal-if-active">';
+
+                                            if (isset($type['checkbox'][$condition])) {
+                                                echo '   '.$type['checkbox'][$condition].':<input type="checkbox" name='.strtolower($type['checkbox'][$condition]).' value='.strtolower($type['checkbox'][$condition]).'><br>';
+                                            }
+                                            echo '<input type=text name="condition_reason" class="reason-field"  placeholder="Reason"></div>';
                                         }
                                         echo '</div>';
                                     }

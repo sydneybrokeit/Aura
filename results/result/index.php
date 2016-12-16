@@ -43,10 +43,15 @@
                 echo "<table class='results_properties'>";
                 foreach ($jsondata as $key => $value) {
                     $keyID = $key;
+
                     $key = str_replace('_', ' ', $key);
                     if ($keyID == 'Power_Adaptor') {
                         $value = str_replace('on', 'Yes', $value);
                         $value = str_replace('off', 'No', $value);
+                    }
+                    if ($keyID == 'basic') {
+                        $value = str_replace('basic', 'Indeed!', $value);
+                        $key = 'Basic Functionality';
                     }
 
                     echo "<tr><td class='property_name' id='".$keyID."'>".ucwords($key).":</td><td class='property_value' id='".$keyID."'>".$value.'</td></tr>';

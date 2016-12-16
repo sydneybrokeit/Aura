@@ -47,13 +47,21 @@
 
                                                 function date_compare($a, $b)
                                                 {
-                                                    $f1 = json_decode(file_get_contents('results/data/'.$a), true);
-                                                    $f2 = json_decode(file_get_contents('results/data/'.$b), true);
+                                                    $f1 = json_decode(file_get_contents('data/'.$a), true);
+                                                    $f2 = json_decode(file_get_contents('data/'.$b), true);
                                                     $t1 = strtotime($f1['Date']);
                                                     $t2 = strtotime($f2['Date']);
 
-                                                    return $t2 - $t1;
+                                                    if (!isset($f1['Date'])) {
+                                                        $t1 = strtotime($f1['date']);
+                                                    }
+                                                    if (!isset($f2['Date'])) {
+                                                        $t2 = strtotime($f2['date']);
+                                                    }
+
+                                                    return $t1 - $t2;
                                                 }
+
                                                 function generateBarcodeFrom($sku)
                                                 {
                                                     $generator = new \Picqer\Barcode\BarcodeGeneratorPNG();
@@ -66,6 +74,7 @@
 
                                                 if (empty($files) == false) {
                                                     usort($files, 'date_compare');
+                                                    $files = array_reverse($files);
                                                     $files = array_slice($files, 0, 4, true);
                                                     echo '<tr><td class="table-header">SKU</td><td class="table-header">Information</td><td class="table-header">Brand</td>';
                                                     foreach ($files as $key => $value) {

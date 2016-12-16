@@ -64,7 +64,7 @@ div.header {
 @media (max-width: 1210px) {
 	.header {
 		background-color:#031f27;
-		height:200px!important;
+		height:240px!important;
 		position:relative;
 		color:#fff;
 		width:100%!important;
@@ -83,6 +83,9 @@ div.header {
 
 	.footer {
 		background-color: #031f27!important;
+		position: relative!important;
+		height: auto!important;
+		margin-bottom: 20px!important;
 
 	}
 }
