@@ -25,12 +25,19 @@
 		<! Template Dropdown Generation >
                 <form action="." method="post">
                     Category: <select name="template" onchange="this.form.submit()">
-                        <option disabled selected value="">
+                        <option disabled <?php  if (!isset($_POST['template'])) {
+    echo 'selected';
+} ?> value="">
                             Choose a template
-                        </option><?php
+                        </option>
+                        <?php
                                             $types = json_decode(file_get_contents('../templates/items.json'), true);
                                             foreach ($types['items'] as $field => $type) {
-                                                echo "<option name='template' value=".$type.'>'.ucwords($field).'</option>';
+                                                if ($type == $_POST['template']) {
+                                                    echo "<option selected name='template ".$field."' value=".$type.'>'.ucwords($field).'</option>';
+                                                } else {
+                                                    echo "<option name='template ".$_POST['template']."' value=".$type.'>'.ucwords($field).'</option>';
+                                                }
                                             }
 
                                             ?>
@@ -127,7 +134,7 @@
                                         $name = str_replace(' ', '_', $field);
 
                                         if ($type == 'textarea') {
-                                            echo '<textarea class="'.$name.'" cols="50" rows="10" name='.$name.'></textarea>';
+                                            echo '<textarea rows="2" cols="5" wrap="hard" class="'.$name.'" cols="50" rows="10" name='.$name.'></textarea>';
                                             if (isset($template['tooltips'][$name])) {
                                                 echo ' <p class="tooltiptext 2 tooltip-right">'.$template['tooltips'][$name].'</p>';
                                             }
