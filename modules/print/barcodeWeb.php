@@ -11,11 +11,10 @@ $settings = json_decode(file_get_contents($root.'config.json'), true);
 function sendSKU($sku)
 {
     $printer = 'Stage1';
-    echo $_COOKIE['printer'];
-
+    print_r($_COOKIE);
     if (isset($_COOKIE['printer'])) {
         $printer = $_COOKIE['printer'];
-        echo '<br> Using cookie';
+        echo $printer;
     }
 
     echo '<script>
@@ -27,7 +26,7 @@ function sendSKU($sku)
 
             //Send the proper header information along with the request
             http.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
-        http.send(params);
+      http.send(params);
 		window.location.href = "' .$root.'../../new/index.php?success=true&sku='.$sku.'";
         </script>';
 }

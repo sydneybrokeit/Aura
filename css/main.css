@@ -82,7 +82,8 @@ div.header {
 	}
 
 	.footer {
-		display:none!important;
+		background-color: #031f27!important;
+
 	}
 }
 
