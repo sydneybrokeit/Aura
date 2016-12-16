@@ -313,6 +313,13 @@ h2.help {
 	color:#fff;
 	font-size:50px;
 }
+.checkbox-title{
+	margin-top: 20px;
+	padding-left: 10px;
+display: block;
+padding-bottom: 0;
+-webkit-margin-after: 0em;
+}
 
 .template-title {
 	display:inline-block;
