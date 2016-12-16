@@ -1,5 +1,7 @@
 #!/bin/bash
 
+cd templates
+
 echo "If you are using Linux, make an alias to sed, like 'alias gsed=sed'"
 
 git add .
@@ -13,4 +15,4 @@ git -c color.status=false status \
 
 git pull && git push
 
-echo "Run ./update-templates.sh to update templates next"
+echo "Done!"
