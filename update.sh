@@ -12,4 +12,17 @@ git -c color.status=false status \
 | git commit -F -
 
 git pull && git push
-echo "Commited, pulled, and pushed"
+cd templates
+
+git add .
+git -c color.status=false status \
+| gsed -n -r -e '1,/Changes to be committed:/ d' \
+            -e '1,1 d' \
+            -e '/^Untracked files:/,$ d' \
+            -e 's/^\s*//' \
+            -e '/./p' \
+| git commit -F -
+
+git pull && git push
+
+echo "Committed, pulled, and pushed"
