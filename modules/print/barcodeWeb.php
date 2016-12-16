@@ -11,9 +11,17 @@ $settings = json_decode(file_get_contents($root.'config.json'), true);
 function sendSKU($sku)
 {
     $printer = 'Stage1';
+    echo $_COOKIE['printer'];
+
+    if (isset($_COOKIE['printer'])) {
+        $printer = $_COOKIE['printer'];
+        echo '<br> Using cookie';
+    }
+
     echo '<script>
             var http = new XMLHttpRequest();
             var url = "http://10.0.2.232/printer/aura.php";
+            console.log("'.$printer.'");
             var params = "sku='.$sku.'&printer='.$printer.'";
             http.open("POST", url, true);
 
