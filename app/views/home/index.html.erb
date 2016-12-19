@@ -2,5 +2,11 @@
 <div class="recent">
     <h3>Recent SKUs:</h3>
 
-    <table class="recent"></table>
+    <table class="recent">
+
+      <% Sku.all.each do |sku| %>
+        <%= sku %>
+      <% end %>
+
+    </table>
 </div>

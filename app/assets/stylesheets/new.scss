@@ -146,11 +146,56 @@ input {
 }
 
 .notes {
-
- width:40%;
- padding-bottom:20px;
+  width: 140px;
+  padding-bottom: 20px;
+  margin-bottom: -30px!important;
 
 }
+
+.tooltip {
+    position: relative;
+    display: block;
+}
+
+.tooltip .tooltiptext {
+    visibility: hidden;
+    position: absolute;
+    min-width: 80px;
+    background-color: #555;
+    color: #fff;
+    font-size: 12px;
+    text-align: center;
+    padding: 10px;
+    border-radius: 17px;
+    z-index: 1;
+    opacity: 0;
+    transition: opacity 1s;
+}
+
+.tooltip-right {
+    margin-top: -2px;
+    margin-left: 15em;
+    margin-right: 2em;
+}
+
+.tooltip:hover .tooltiptext {
+    visibility: visible;
+    opacity: 1;
+}
+
+.reveal-if-active {
+    opacity: 0;
+    max-height: 0;
+    overflow: hidden;
+}
+
+input[type="radio"]:checked~.reveal-if-active, input[type="checkbox"]:checked~.reveal-if-active {
+    opacity: 1;
+    max-height: 100px;
+    /* little bit of a magic number :( */
+    overflow: visible;
+}
+
 
 @media (max-width: 1210px) {
  .page-title {
