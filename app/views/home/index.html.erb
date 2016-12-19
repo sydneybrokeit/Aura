@@ -5,7 +5,7 @@
     <table class="recent">
 
       <% Sku.all.each do |sku| %>
-        <%= sku %>
+        <%= sku.jsonData? %>
       <% end %>
 
     </table>
