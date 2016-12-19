@@ -1,0 +1,29 @@
+<% @title="Results"; @style="results" %>
+
+<h1>Result:
+    <%= params['sku'] %></h1>
+
+<table class='results_properties'>
+    <% @editlist = ["category", "sku"] %>
+    <% @noShow = ["controller", "action", "commit", "utf8", "authenticity_token"] %>
+    <% if !@data.instance_of?(String) %>
+    <% @data.each do |key, value| %>
+    <% if @editlist.include?(key); key = key.titleize; end%>
+    <% if !@noShow.include?(key)%>
+    <% if value.blank?; value = "Not provided"; end %>
+    <tr>
+        <td class="property_name"><%= key %></td>
+        <td><%= value %></td>
+    </tr>
+    <% end %>
+    <% end %>
+<% else %>
+    <p><%= @data %> <%= params['sku'] %></p>
+    <% end %>
+</table>
+
+<% Sku.all.each do |sku| %>
+<%= sku %>
+<%= JSON.parse(sku.json)["sku"] %>
+<%= JSON.parse(sku.json)["Model"] %>
+<% end %>
