@@ -1,12 +1,18 @@
 <% @title="Aura" %>
+
+    <div class="inner-wrapper">
 <div class="recent">
     <h3>Recent SKUs:</h3>
 
     <table class="recent">
 
       <% Sku.all.each do |sku| %>
-        <%= sku.jsonData? %>
+      <tr>
+
+        <%= JSON.parse sku.json %>
+      </tr>
       <% end %>
 
     </table>
+</div>
 </div>
