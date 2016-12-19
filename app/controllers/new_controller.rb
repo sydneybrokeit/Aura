@@ -70,7 +70,7 @@ class NewController < ApplicationController
                 @returnedTemplate.push('<label class="field-title">' + field[0] + ': </label>')
                 returnIfTooltip(field[0], @masterTemplate)
                 if field[0] == 'Notes'
-                    @returnedTemplate.push('<textarea type="' + field[0].downcase + '" name="' + field[0] + '" class="' + field[0].downcase + '"></textarea>')
+                    @returnedTemplate.push('<textarea rows="2" cols="5" wrap="hard" type="' + field[0].downcase + '" name="' + field[0] + '" class="' + field[0].downcase + '"></textarea>')
                 else
                     @returnedTemplate.push('<input type="' + field[1] + '" name="' + field[0] + '" class="' + field[0].downcase + '">')
                 end

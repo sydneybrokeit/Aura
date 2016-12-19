@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  get 'process/submit'
+
   get 'results/search'
 
   get 'new/create'
@@ -14,7 +16,8 @@ Rails.application.routes.draw do
   get '/new' => 'new#create'
   get '/new?template=:template' => 'new#create'
   get '/new/:template' => 'new#create'
-
+  get '/create_tag' => 'new#create', as: :to_create
+  post :create_tag, to: "process#submit", as: :create_tag
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'
 

@@ -1,13 +1,15 @@
 <% @title="New" ; @style="new"%>
 <% if @template != nil %>
 
-<form id="template" class="template"><input type="hidden" value='<%= @template["name"] %>' name="category">
+ <%= form_tag create_tag_url do %>
+
+  <input type="hidden" value='<%= @template["name"] %>' name="category">
     <h3><%= @template["meta"]["template_name"] %></h3>
 
-
-      <% @returnedTemplate.each do |line| %>
-        <%= line.html_safe %>
-      <% end %>
-
+    <% @returnedTemplate.each do |line| %>
+    <%= line.html_safe %>
+    <% end %>
+     <%= submit_tag "Create" %>
+   <% end %>
 </form>
 <% end %>
