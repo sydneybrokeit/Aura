@@ -1,18 +1,28 @@
 <% @title="Aura" %>
 
-    <div class="inner-wrapper">
-<div class="recent">
-    <h3>Recent SKUs:</h3>
+<div class="inner-wrapper">
+    <div class="recent">
+        <h3>Recent SKUs:</h3>
 
-    <table class="recent">
+        <table class="recent">
+          <tr>
+              <td class="table-header">SKU</td>
+              <td class="table-header">Information</td>
+              <td class="table-header">Brand</td>
+          </tr>
+            <% @skus.each do |sku| %>
+            <%  @json = sku%>
 
-      <% Sku.all.each do |sku| %>
-      <tr>
+            <tr onclick="window.document.location='/result?sku=<%= @json["sku"] %>';">
+                <td class='barcode'>
 
-        <%= JSON.parse sku.json %>
-      </tr>
-      <% end %>
+                    <div class='barcode'><%= base64_image(generateBarcode(@json["sku"]))  %><%= @json["sku"] %></div>
+                </td>
+                <td class="model"><%= @json["Model"] %>
+                </td>
+                <td class='brand'><%= @json["Brand"] %></tr>
 
-    </table>
-</div>
-</div>
+                <% end %>
+            </table>
+        </div>
+    </div>

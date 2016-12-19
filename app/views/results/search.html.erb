@@ -1,4 +1,27 @@
 <% @title="Results" %>
-<h2>SKUs:</h2>
+<div class="inner-wrapper">
+    <div class="recent">
+        <h3>Recent SKUs:</h3>
 
-<table class="recent"></table>
+        <table class="recent">
+            <tr>
+                <td class="table-header">SKU</td>
+                <td class="table-header">Information</td>
+                <td class="table-header">Brand</td>
+            </tr>
+            <% @skus.each do |sku| %>
+
+
+            <tr onclick="window.document.location='/result?sku=<%= sku[" sku"] %>';">
+                <td class='barcode'>
+
+                    <div class='barcode'><%= base64_image(generateBarcode(sku["sku"])) %><%= sku["sku"] %></div>
+                </td>
+                <td class="model"><%= sku["Model"] %>
+                </td>
+                <td class='brand'><%= sku["Brand"] %></tr>
+
+                <% end %>
+            </table>
+        </div>
+    </div>
