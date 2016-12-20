@@ -17,7 +17,7 @@ header('Access-Control-Allow-Origin: *');
 function generateRandomString($length = 12)/*{{{*/
 {
     //To change length of SKU, adjust length above
-    $characters = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';
+    $characters = '0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ';
     $charactersLength = strlen($characters);
     $randomString = '';
     for ($i = 0; $i < $length; ++$i) {
