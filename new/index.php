@@ -10,6 +10,8 @@
     <link rel="shortcut icon" href="<?php echo str_replace(basename($_SERVER['PHP_SELF']), '', $_SERVER['REQUEST_URI']); ?>../images/favicons/favicon.ico" type="image/x-icon">
     <link rel="icon" href="<?php echo str_replace(basename($_SERVER['PHP_SELF']), '', $_SERVER['REQUEST_URI']); ?>i../mages/favicons/favicon.ico" type="image/x-icon">
     <script src="../js/jquery-3.1.1.min.js" type="text/javascript">
+
+
 </script>
 </head>
 
@@ -25,12 +27,19 @@
 		<! Template Dropdown Generation >
                 <form action="." method="post">
                     Category: <select name="template" onchange="this.form.submit()">
-                        <option disabled selected value="">
+                        <option disabled <?php  if (!isset($_POST['template'])) {
+    echo 'selected';
+} ?> value="">
                             Choose a template
-                        </option><?php
+                        </option>
+                        <?php
                                             $types = json_decode(file_get_contents('../templates/items.json'), true);
                                             foreach ($types['items'] as $field => $type) {
-                                                echo "<option name='template' value=".$type.'>'.ucwords($field).'</option>';
+                                                if ($type == $_POST['template']) {
+                                                    echo "<option selected name='template ".$field."' value=".$type.'>'.ucwords($field).'</option>';
+                                                } else {
+                                                    echo "<option name='template ".$_POST['template']."' value=".$type.'>'.ucwords($field).'</option>';
+                                                }
                                             }
 
                                             ?>
@@ -74,6 +83,7 @@
                         {
                             $template = parseMasterTemplate();
                             $name = $inserted['meta']['template_name'];
+                            $brand = null;
 
                             session_start();
 
@@ -82,6 +92,9 @@
                             $inherited = null;
                             if (isset($inserted['meta']['inherit'])) {
                                 $inherited = $inserted['meta']['inherit'];
+                            }
+                            if (isset($inserted['meta']['brand'])) {
+                                $brand = $inserted['meta']['brand'];
                             }
                             echo '<form id="template" class="template" action="submit.php" method="post"><input type="hidden" value='.$name.' name="category">';
 
@@ -97,7 +110,15 @@
                                             echo '<p class="tooltiptext tooltip-right tooltip-extra">'.$template['tooltips'][strtolower($condition)].'</p>';
                                             echo '<input type='.$type['type'].' name='.strtolower($field).' value='.strtolower($condition).'>'.$condition;
 
-                                            echo '<div class="reveal-if-active"><input type=text name="condition_reason" class="reason-field"  placeholder="Reason"></div>';
+                                            echo '<div class="reveal-if-active">';
+
+                                            if (isset($type['checkbox'][$condition])) {
+                                                if (isset($template['tooltips']['checkbox-'.array_search($type['checkbox'][$condition], $type['checkbox'])])) {
+                                                    echo '<p class="tooltiptext tooltip-right more-space">'.$template['tooltips']['checkbox-'.array_search($type['checkbox'][$condition], $type['checkbox'])].'</p>';
+                                                }
+                                                echo '<p class="checkbox-title">'.$type['checkbox'][$condition].':<input type="checkbox" name='.strtolower($type['checkbox'][$condition]).' value='.strtolower($type['checkbox'][$condition]).'></p><br>';
+                                            }
+                                            echo '<input type=text name="condition_reason" class="reason-field"  placeholder="Reason"></div>';
                                         }
                                         echo '</div>';
                                     }
@@ -115,12 +136,17 @@
                                         $name = str_replace(' ', '_', $field);
 
                                         if ($type == 'textarea') {
-                                            echo '<textarea class="'.$name.'" cols="50" rows="10" name='.$name.'></textarea>';
+                                            echo '<textarea rows="2" cols="5" wrap="hard" class="'.$name.'" cols="50" rows="10" name='.$name.'></textarea>';
                                             if (isset($template['tooltips'][$name])) {
                                                 echo ' <p class="tooltiptext 2 tooltip-right">'.$template['tooltips'][$name].'</p>';
                                             }
                                         } elseif ($type == 'date') {
                                             echo "<input id='date' type=".$type.' name='.$name.' value='.date('Y-m-d').'>';
+                                        } elseif ($name == 'Brand' && $brand != null) {
+                                            echo '<input class='.$name.' type='.$type.' name='.$name.' value='.$brand.'>';
+                                            if (isset($template['tooltips'][$name])) {
+                                                echo ' <p class="tooltiptext tooltip-right">'.$template['tooltips'][$name].'</p>';
+                                            }
                                         } else {
                                             echo '<input class='.$name.' type='.$type.' name='.$name.'>';
                                             if (isset($template['tooltips'][$name])) {
