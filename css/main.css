@@ -413,9 +413,9 @@ h2.help {
 }
 
 div.radio {
-    background-color: #000;
+    background-color: #ececec;
     width: 100%;
-    color: #fff;
+    color: #000000;
     padding-top: 20px;
     text-align: left;
     padding-bottom: 20px;
@@ -423,7 +423,7 @@ div.radio {
 }
 
 .radio-option {
-    margin-left: 20px;
+    margin-left: 280px;
 }
 
 p {
@@ -442,6 +442,7 @@ input {
     text-align: center;
     margin: 0 auto;
     display: block;
+    margin-top: 55px;
     margin-bottom: 55px;
 }
 
