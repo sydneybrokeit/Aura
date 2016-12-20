@@ -14,7 +14,7 @@ error_reporting(E_ALL | E_STRICT);
 ini_set('display_errors', 'On');
 date_default_timezone_set('America/Chicago');
 header('Access-Control-Allow-Origin: *');
-function generateRandomString($length = 19)/*{{{*/
+function generateRandomString($length = 12)/*{{{*/
 {
     //To change length of SKU, adjust length above
     $characters = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';
@@ -36,7 +36,7 @@ function returnWithError($error = 'None')/*{{{*/
     echo $error;
     //echo '<script>window.location.href = "index.php?success=false&error='.$error.'"; </script>';
 }/*}}}*/
-$sku = generateRandomString(15);
+$sku = generateRandomString(12);
 $filename = '../results/data/'.$sku.'.json';
 $clean = $_POST;
 $clean['Date'] = date('Y-m-d', time());
