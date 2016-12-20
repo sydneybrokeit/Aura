@@ -11,7 +11,7 @@
 
     <title>Aura|<?php
     if (isset($_GET['sku'])) {
-        $uppersku = strtoupper($_GET['sku'])
+        $uppersku = strtoupper($_GET['sku']);
         echo $uppersku;
     }?></title>
 </head>
