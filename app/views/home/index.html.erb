@@ -11,12 +11,13 @@
               <td class="table-header">Brand</td>
           </tr>
             <% @skus.each do |sku| %>
-            <%  @json = sku%>
+            <%  @json = sku.values[0] %>
+            <% @skuID = sku.keys[0] %>
 
-            <tr onclick="window.document.location='/result?sku=<%= @json["sku"] %>';">
+            <tr onclick="window.document.location='/result?sku=<%= @skuID %>';">
                 <td class='barcode'>
 
-                    <div class='barcode'><%= base64_image(generateBarcode(@json["sku"]))  %><%= @json["sku"] %></div>
+                    <div class='barcode'><%= base64_image(generateBarcode(@skuID))  %><%= @skuID %></div>
                 </td>
                 <td class="model"><%= @json["Model"] %>
                 </td>
