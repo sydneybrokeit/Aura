@@ -11,12 +11,13 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20161219185018) do
+ActiveRecord::Schema.define(version: 20161225010300) do
 
   create_table "skus", force: :cascade do |t|
     t.text     "json"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string   "sku"
   end
 
 end

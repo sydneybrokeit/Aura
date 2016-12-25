@@ -2,12 +2,17 @@ class ProcessController < ApplicationController
     def submit
         sku = Sku.new
         jsonData = params
-        jsonData['sku'] = generate_sku(19)
+        jsonData.delete("commit")
+        jsonData.delete("utf8")
+        jsonData.delete("authenticity_token")
+        jsonData.delete("action")
+        jsonData.delete("controller")
+        sku.sku = generate_sku(12)
         sku.json = jsonData.to_json
 
         require 'aura-print'
-        @output = AuraPrint.barcodeWeb(jsonData['sku'], 'Tech')
-        @sku = jsonData['sku']
+        #@output = AuraPrint.barcodeWeb(jsonData['sku'], 'Tech')
+        @sku = sku.sku
           sku.save!
     end
 
