@@ -9,10 +9,11 @@ class HomeController < ApplicationController
     def index
         @skus = []
         Sku.all.each do |sku|
+            @skuID = sku.sku
             @json = JSON.parse(sku.json)
             @json['Brand'] = 'Not specified' if @json['Brand'] == ''
             @json['Model'] = 'Not specified' if @json['Model'] == ''
-            @skus.push(@json)
+            @skus.push({@skuID => @json})
         end
   end
 
@@ -24,6 +25,6 @@ class HomeController < ApplicationController
         barcode = Barby::Code128B.new(sku)
         @img = barcode.to_image
         @img.format = 'png'
-        Base64.encode64(@img.to_blob).gsub(/\n/, "") 
+        Base64.encode64(@img.to_blob).gsub(/\n/, "")
     end
 end
