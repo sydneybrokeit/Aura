@@ -21,9 +21,3 @@
     <p><%= @data %> <%= params['sku'] %></p>
     <% end %>
 </table>
-
-<% Sku.all.each do |sku| %>
-<%= sku %>
-<%= JSON.parse(sku.json)["sku"] %>
-<%= JSON.parse(sku.json)["Model"] %>
-<% end %>
