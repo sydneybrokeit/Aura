@@ -20,6 +20,28 @@ body {
     height: 100%;
 }
 
+.new {
+    display: block;
+    background-color: #32ce3e;
+    padding-top: 30px;
+    width: 80px;
+    height: 50px;
+    margin: 0 auto;
+    color: white;
+    text-decoration: none;
+    margin-top: -40px;
+    margin-bottom: 20px;
+    font-size: 60px;
+    border-radius: 50%;
+    line-height: 0.2;
+    -webkit-transition: -webkit-transform .4s ease-in-out;
+         transition:         transform .4s ease-in-out;
+}
+.new:hover{
+  -webkit-transform: rotate(360deg);
+           transform: rotate(360deg);
+}
+
 .header {
     padding-top: 10px;
     color: #3c3737;
