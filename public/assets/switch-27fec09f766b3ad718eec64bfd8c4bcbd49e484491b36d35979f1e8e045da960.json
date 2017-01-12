@@ -1,0 +1,13 @@
+{
+  "meta": {
+    "template_name": "Switch",
+    "category": "none"
+  },
+  "fields": {
+    "Number of ethernet ports": "text",
+    "Number of SFP/fiber ports": "text",
+    "Gigabit ethernet?": "checkbox",
+    "POE": "checkbox",
+    "FW version": "text"
+  }
+}

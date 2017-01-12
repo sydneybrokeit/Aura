@@ -1,2 +1,24 @@
-<h1><%= @output %></h1>
-<p>SKU created: <%= @sku %></p>
+<script>
+
+function redirect(url,seconds)
+{
+	var ss = seconds * 1000;
+	window.setTimeout('window.location="'+url+'"; ',ss);
+}
+
+
+</script>
+<% if @error == nil %>
+<% @title="SKU Created: #{@sku}" ; @style="process" %>
+<h1 class="success-sku">Success!</h1>
+<div class="barcode">
+    <%=@image %>
+    <%=@sku%>
+</div>
+<% else %>
+<% @title="SKU not created" ; @style="process" %>
+<h1 class="success-sku">Error!</h1>
+<%=@error%>
+<p>Returning back to previous page shortly</p>
+<script>redirect(document.referrer, 2);</script>
+<% end %>

@@ -1,24 +1,27 @@
 <div class="header">
+  <script src="https://use.fontawesome.com/a130987cbe.js"></script>
 <a href="/"><img class="page-title" src="<%=asset_path "logo.png" %>"></a>
     <% if @title == "Aura" %>
 
-    <div class="action">
-
-            <a class="new" href="new">+</a>
-
 
           <%= render 'layouts/search_results' %>
-    </div>
-    <div class="quote">
-        <script type="text/javascript" src="https://www.brainyquote.com/link/quotear.js"></script>
-    </div>
 
+          <div class="lower-area">
+            <span class="page-title-text">Home</span>
+            <a href="new" class="new">Create</a>
+            <a href="new" class="new">Support</a>
+          </div>
     <% elsif @title  == "New" %>
 
-      <div class="action">
-          <h1 class="page-title">New Label</h1>
-          <%= render 'layouts/template_selector' %>
+
+
+        <div class="lower-area">
+          <span class="page-title-text">Home</span>
+          <a href="new" class="new">Create</a>
+          <a href="new" class="new">Support</a>
+        
         </div>
+
 
         <% elsif @title  == "Results" %>
 
@@ -30,7 +33,4 @@
 
 
         <% end %>
-      <div class="footer">
-          <a href="https://github.com/hschreck/Aura/issues">Support</a>
-        </div>
 </div>

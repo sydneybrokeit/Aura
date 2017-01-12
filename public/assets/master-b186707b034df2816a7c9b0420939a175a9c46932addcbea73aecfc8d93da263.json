@@ -1,0 +1,42 @@
+{
+  "meta": {
+    "template_name": "General",
+    "category": "None"
+  },
+  "conditional": {
+    "issues": "If any"
+  },
+  "tooltips": {
+    "Brand": "Manufacturer or brand, such as Apple, Samsung, Cisco, etc",
+    "Model": "Model Number and Name (if available), such as ATA 188 Analog Telephone Adapter",
+    "Power_Adapter" : "Unit either uses standard power adapter, or unit includes adapter",
+    "Notes": "Notes about condition, quantity, or useful information for Online Sales",
+    "tested/reset" : "Device is tested to be fully functional, and all sensitive data has been erased.",
+    "parts": "Device did not pass testing but may have parts value, or device may be more valuable as parts.  Note reason for classification (missing functionality or parts, etc).",
+    "untestable": "Device is untestable, either fully or beyond a basic power test.  Be sure to note reason for being untestable.",
+    "checkbox-Parts": "Buttons, knobs, switches, etc all seem to work"
+  },
+  "fields": {
+    "Brand": "text",
+    "Model": "text",
+    "Power Adapter" : "checkbox",
+    "yield": "insertion",
+    "Condition": {
+      "type": "radio",
+      "options": [
+        "Tested/Reset",
+        "Parts",
+        "Untestable"
+      ],
+      "reason": [
+        "Parts",
+        "Untestable"
+      ],
+      "checkbox":{
+        "Parts" : "Basic functionality"
+      }
+
+    },
+    "Notes": "textarea"
+  }
+}

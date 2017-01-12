@@ -1,4 +1,6 @@
 class ProcessController < ApplicationController
+    require 'aura-print'
+
     def submit
         sku = Sku.new
         jsonData = params
@@ -7,13 +9,25 @@ class ProcessController < ApplicationController
         jsonData.delete("authenticity_token")
         jsonData.delete("action")
         jsonData.delete("controller")
-        sku.sku = generate_sku(12)
-        sku.json = jsonData.to_json
+        if jsonData["Condition"] != nil
+          sku.sku = generate_sku(12)
+          sku.json = jsonData.to_json
 
-        require 'aura-print'
-        #@output = AuraPrint.barcodeWeb(jsonData['sku'], 'Tech')
-        @sku = sku.sku
+          require 'aura-print'
+          @output = AuraPrint.barcodeWeb(jsonData['sku'], 'Tech')
+          @sku = sku.sku
           sku.save!
+          @blob = Base64.encode64(AuraPrint.systemPrintImage(@sku).to_blob).gsub(/\n/, "")
+          @image = base64_image(@blob)
+        else
+          @error = "Missing values in field"
+        end
+    end
+    def referer
+      @env['HTTP_REFERER'] || '/'
+    end
+    def base64_image(image_data)
+        "<img src='data:image/png;base64,#{image_data}' />".html_safe
     end
 
     def generate_sku(size = 6)

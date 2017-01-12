@@ -20,26 +20,13 @@ body {
     height: 100%;
 }
 
-.new {
+.button {
     display: block;
-    background-color: #32ce3e;
-    padding-top: 30px;
-    width: 80px;
-    height: 50px;
-    margin: 0 auto;
+    width: 100%;
+    background-color: #43c343;
+    font-size: 25px;
     color: white;
     text-decoration: none;
-    margin-top: -40px;
-    margin-bottom: 20px;
-    font-size: 60px;
-    border-radius: 50%;
-    line-height: 0.2;
-    -webkit-transition: -webkit-transform .4s ease-in-out;
-         transition:         transform .4s ease-in-out;
-}
-.new:hover{
-  -webkit-transform: rotate(360deg);
-           transform: rotate(360deg);
 }
 
 .header {
@@ -52,15 +39,12 @@ body {
 }
 
 .action {
-    text-align: center;
-    background-color: #e43e04;
-    padding: 10px;
+    float: right;
+    width: 250px;
 }
 
 div.header {
     background-color: #031f27;
-    float: left;
-    height: 100%;
     position: relative;
     z-index: 2;
     color: #fff;
@@ -68,42 +52,11 @@ div.header {
     border-radius: 0;
     margin-top: -10px;
     opacity: 0.99;
-    width: 330px;
+    width: 100%;
     margin-left: 0;
     margin-right: 0;
-    height: 100%;
-    display: flex;
-    flex-direction: column;
-}
-@media (max-width: 650px) {
-    .inner-wrapper {
-        width: 100%!important;
-        padding: 10px !important;
-    }
-}
-@media (max-width: 1210px) {
-    .header {
-        background-color: #031f27;
-        height: 200px!important;
-        position: relative;
-        color: #fff;
-        width: 100%!important;
-        display: flex;
-        float: none!important;
-        flex-direction: column;
-    }
-
-    img.page-title {
-        width: 50px;
-    }
-
-    .page-title {
-        margin-top: 0 !important;
-    }
-
-    .footer {
-        display: none!important;
-    }
+    height: 90px;
+    margin-bottom: 25px;
 }
 
 .footer {
@@ -127,13 +80,44 @@ div.header {
     color: #fff;
 }
 
+.searchy {
+    float: right;
+    padding: 20px;
+}
+
+.new {
+    margin-left: 25px;
+    font-size: 20px;
+    text-decoration: underline;
+    color: white;
+}
+
+.lower-area {
+    float: left;
+    position: relative;
+    width: 100%;
+    display: block;
+    padding: 25px;
+    background-color: #e8411c;
+    margin-top: -50px;
+    z-index: -10;
+    color: white;
+    margin-bottom: 25px;
+}
+
+.page-title-text {
+    font-size: 20px;
+    text-align: center;
+    color: white;
+}
+
 .page-title {
     font-weight: 300;
-    width: 100%;
-    margin: 0 auto;
+    width: 100px;
+    float: left;
     display: block;
     margin-bottom: 20px;
-    text-align: center;
+    text-align: left;
 }
 
 .quote {

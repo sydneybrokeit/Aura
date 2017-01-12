@@ -1,15 +1,47 @@
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
 <% @title="New" ; @style="new"%>
 <% if @template != nil %>
+<div class="step-two">
+    <p class="step-title">step 2.</p>
+    <%= form_tag create_tag_url do %>
 
- <%= form_tag create_tag_url do %>
-
-  <input type="hidden" value='<%= @template["name"] %>' name="category">
-    <h3><%= @template["meta"]["template_name"] %></h3>
+    <input type="hidden" value='<%= @template["name"] %>' name="category">
+    <p class="template-title">Template:
+        <%= @template["meta"]["template_name"] %></p>
 
     <% @returnedTemplate.each do |line| %>
     <%= line.html_safe %>
     <% end %>
-     <%= submit_tag "Create" %>
-   <% end %>
+    <%= submit_tag "Create", :id=> "submit" %>
+    <% end %>
 </form>
+
+</div>
+<% else %>
+
+<div class="step-one">
+<p class="step-title" style="text-align: left;">step 1.</p>
+<p class="template-title">Choose a template.</p>
+<%= render 'layouts/template_selector' %>
+
+</div>
+<div class="descriptions">
+  <h3>Descriptions:</h3>
+<%= render 'layouts/descriptions' %>
+</div>
 <% end %>
+
+<% if @test != nil %>
+<%= @test %>
+<% end %>
+
+<script type='text/javascript'>
+$('#submit').attr("disabled", "disabled");
+$('#preflight').click(function () {
+    if ($(this).attr('checked') == false) {
+        $('#submit').attr("disabled", "disabled");
+    } else {
+        $('#submit').removeAttr('disabled');
+    }
+});
+</script>

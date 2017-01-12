@@ -1,0 +1,14 @@
+{
+  "meta": {
+    "template_name": "Cisco Switch",
+    "category": "none",
+    "brand": "Cisco"
+  },
+  "fields": {
+    "Number of ethernet ports": "text",
+    "Number of SFP/fiber ports": "text",
+    "Gigabit ethernet?": "checkbox",
+    "POE": "checkbox",
+    "IOS version": "text"
+  }
+}

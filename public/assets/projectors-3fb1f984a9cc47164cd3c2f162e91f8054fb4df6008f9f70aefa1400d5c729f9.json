@@ -1,0 +1,10 @@
+{
+  "meta": {
+    "template_name": "Projectors",
+    "category": "None"
+  },
+  "fields": {
+    "Lamp hours": "number",
+    "Filter hours": "number"
+  }
+}

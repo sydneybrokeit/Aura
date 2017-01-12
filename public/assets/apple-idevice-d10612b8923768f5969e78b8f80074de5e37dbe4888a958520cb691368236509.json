@@ -1,0 +1,28 @@
+{
+	"meta": {
+		"template_name": "iDevice",
+		"category": "none",
+		"brand": "Apple"
+	},
+	"tooltips": {
+		"Firmware version": "Version reported in Settings->General->About, e.g. 7.1.2",
+		"Connector type": "Should be either 30-pin or Lightning",
+		"Device type": "e.g. iPhone, iPod, iPad"
+	},
+	"dropdowns":{
+		"Device type":[
+			"iPhone",
+			"iPod",
+			"iPad"
+		],
+		"Connector type":[
+			"30-pin",
+			"Lightning"
+		]
+	},
+	"fields": {
+		"Firmware version": "text",
+		"Connector type": "dropdown",
+		"Device type": "dropdown"
+	}
+}

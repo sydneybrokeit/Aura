@@ -1,0 +1,12 @@
+{
+  "meta": {
+    "template_name": "Servers",
+    "category": "Servers"
+  },
+  "fields": {
+    "RAM Slots": "number",
+    "CPU(s)": "number",
+    "CPU Brand" : "text",
+    "CPU Model": "text"
+  }
+}

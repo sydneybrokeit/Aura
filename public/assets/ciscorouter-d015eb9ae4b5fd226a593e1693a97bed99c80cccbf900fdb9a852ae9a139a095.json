@@ -1,0 +1,15 @@
+{
+  "meta": {
+    "template_name": "Cisco Routers",
+    "category": "none",
+    "brand": "Cisco"
+  },
+  "rename":{
+    "CPU(s)": "Potato(s)"
+  },
+  "fields": {
+    "Number of ethernet ports": "text",
+    "Gigabit ethernet?": "checkbox",
+    "IOS version": "text"
+  }
+}
