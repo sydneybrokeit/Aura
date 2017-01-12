@@ -1,4 +1,7 @@
- <%= form_tag search_sku_url, :class=>"searchy" do %>
-    <input type="text" name="sku placeholder="search">
-    <%= submit_tag "Search" %>
+<!--all hail rails!-->
+<div class="searchy">
+<%= form_tag search_sku_url do %>
+   <input type="text" name="sku" placeholder="search">
+   <%= submit_tag "Search" %>
 <% end %>
+</div>

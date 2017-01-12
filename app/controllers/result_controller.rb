@@ -7,9 +7,8 @@ class ResultController < ApplicationController
         if @sku = Sku.find_by_sku(mainSku)
             JSON.parse(@sku.json)
         else
-
-          @error = 'Sorry, that SKU could not be found'
-
+            Sku.find_by_sku(mainSku)
+            @error = 'Sorry, that SKU could not be found'
         end
     end
 end

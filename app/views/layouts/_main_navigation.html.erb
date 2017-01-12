@@ -1,36 +1,9 @@
 <div class="header">
-  <script src="https://use.fontawesome.com/a130987cbe.js"></script>
 <a href="/"><img class="page-title" src="<%=asset_path "logo.png" %>"></a>
-    <% if @title == "Aura" %>
-
-
           <%= render 'layouts/search_results' %>
-
           <div class="lower-area">
             <span class="page-title-text">Home</span>
             <a href="new" class="new">Create</a>
-            <a href="new" class="new">Support</a>
+            <a href="https://github.com/hschreck/Aura/issues" class="new">Support</a>
           </div>
-    <% elsif @title  == "New" %>
-
-
-
-        <div class="lower-area">
-          <span class="page-title-text">Home</span>
-          <a href="new" class="new">Create</a>
-          <a href="new" class="new">Support</a>
-        
-        </div>
-
-
-        <% elsif @title  == "Results" %>
-
-        <div class="action">
-            <h2 class="page-title">Search</h2>
-              <%= render 'layouts/search_results' %>
-        </div>
-
-
-
-        <% end %>
 </div>

@@ -89,6 +89,10 @@ class NewController < ApplicationController
                     returnIfTooltip(field, @masterTemplate)
 
                     @returnedTemplate.push('<input type="' + @type + '" name="' + @title + '" class="' + field.downcase + '" id="preflight">' + field + '</input>')
+                    # checks if we've got a notes field
+                    if @selection["reason"].include? @title
+                      @returnedTemplate.push('<div class="reveal-if-active"></div>')
+                    end
                     @returnedTemplate.push('</div>')
                 end
                 @returnedTemplate.push('</div>')
