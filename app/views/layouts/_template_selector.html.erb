@@ -4,7 +4,7 @@
             Choose a template
         </option>
         <% @templates["items"].each do |template| %>
-        <option>  <%= template[0] %> </option>
+        <option>  <%= JSON.parse(File.read('app/assets/templates/' + template[1]))['meta']['template_name'] %></option>
         <% end %>
     </select>
 </form>
