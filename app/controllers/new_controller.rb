@@ -90,8 +90,8 @@ class NewController < ApplicationController
 
                     @returnedTemplate.push('<input type="' + @type + '" name="' + @title + '" class="' + field.downcase + '" id="preflight">' + field + '</input>')
                     # checks if we've got a notes field
-                    if @selection["reason"].include? @title
-                      @returnedTemplate.push('<div class="reveal-if-active"></div>')
+                    if @selection["reason"].include? field
+                      @returnedTemplate.push('<div class="reveal-if-active"><input type=text name="condition_reason" class="reason-field"  placeholder="Reason"></div>')
                     end
                     @returnedTemplate.push('</div>')
                 end

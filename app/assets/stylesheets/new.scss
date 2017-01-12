@@ -31,16 +31,15 @@ h2.help {
 
 .step-one {
     width: 60%;
-    margin: 0 auto;
-
-    margin-top: 55px;
+    margin: 55px auto 0;
     padding: 20px;
     font-size: 25px;
 }
-.descriptions{
-  width: 60%;
-  margin: 0 auto;
-  text-align: left;
+
+.descriptions {
+    width: 60%;
+    margin: 0 auto;
+    text-align: left;
 }
 
 .step-two {
@@ -139,6 +138,12 @@ div.radio {
     text-align: left;
     padding-bottom: 20px;
     margin-bottom: 20px;
+}
+
+#submit {
+    display: block;
+    text-align: center;
+    margin: 120px auto 0;
 }
 
 .radio-option {
