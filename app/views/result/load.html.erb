@@ -1,5 +1,6 @@
 <% @title="Results"; @style="results" %>
 
+<% if @error == nil %>
 <h1>Result:
     <%= params['sku'] %></h1>
 
@@ -21,3 +22,10 @@
     <p><%= @data %> <%= params['sku'] %></p>
     <% end %>
 </table>
+
+<% else %>
+
+<h1>Error</h1>
+<%= @error %>
+
+<% end %>
