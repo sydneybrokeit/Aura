@@ -1,0 +1,39 @@
+<% @title="SKUs"; @style="result" %>
+<div class="inner-wrapper">
+    <div class="recent">
+        <div class="filtery">
+            <%= form_tag filter_sku_url do %>
+            <input type="text" name="sku" placeholder="ZTMZNNY6AGP3" value="<%= @partial %>">
+            <%= submit_tag "Search" %>
+            <% end %>
+        </div>
+        <br>
+        <% if @sorted.count != 0 %>
+        <table class="recent">
+            <tr>
+                <td class="table-header">SKU</td>
+                <td class="table-header">Model</td>
+                <td class="table-header">Brand</td>
+            </tr>
+            <% @skus.take(5).each do |sku| %>
+            <%  @json = sku.values[0] %>
+            <% @skuID = sku.keys[0] %>
+
+            <tr onclick="window.document.location='/result?sku=<%= @skuID %>';">
+                <td class='barcode'>
+
+                    <div class='barcode'><%= base64_image(generateBarcode(@skuID))  %><%= @skuID %></div>
+                </td>
+                <td class="model"><%=  @json["Model"] %>
+                </td>
+                <td class='brand'><%=  @json["Brand"] %></tr>
+
+                <% end %>
+            </table>
+        <% else %>
+            <h1>Error</h1>
+            <span>No results found</span>
+
+            <% end %>
+        </div>
+    </div>

@@ -1,16 +1,27 @@
 <% @title="Aura" %>
 
 <div class="inner-wrapper">
+    <div class="welcome">
+        <h1>Welcome to Aura</h1>
+
+        <h2>To get started with Aura, either click 'Create' at the top, or search for an existing SKU</h2>
+
+        <h3>What is Aura?</h3>
+        <p class="welcome-help">Aura is a basic SKU generation system designed to improve communication between online sales and tech.</p>
+        <h3>What do I do?</h3>
+        <p class="welcome-help">It is pretty easy to get started with Aura, creating a SKU from a template is as easy as looking something up on eBay.</p>
+        <h3>How can I find my SKU?</h3>
+        <p class="welcome-help">Simply navigate to the top of the page and click 'SKUs'. Scroll or find your way through the page to locate your SKU.</p>
+
+    </div>
     <div class="recent">
-        <h3>Recent SKUs:</h3>
 
         <table class="recent">
-          <tr>
-              <td class="table-header">SKU</td>
-              <td class="table-header">Information</td>
-              <td class="table-header">Brand</td>
-          </tr>
-            <% @skus.each do |sku| %>
+            <tr>
+                <td class="table-header">Recently Created:</td>
+
+            </tr>
+            <% @skus.take(5).each do |sku| %>
             <%  @json = sku.values[0] %>
             <% @skuID = sku.keys[0] %>
 
@@ -18,10 +29,8 @@
                 <td class='barcode'>
 
                     <div class='barcode'><%= base64_image(generateBarcode(@skuID))  %><%= @skuID %></div>
-                </td>
-                <td class="model"><%= @json["Model"] %>
-                </td>
-                <td class='brand'><%= @json["Brand"] %></tr>
+                    <%= @json["Brand"] %>,
+                    <%= @json["Model"] %></tr>
 
                 <% end %>
             </table>

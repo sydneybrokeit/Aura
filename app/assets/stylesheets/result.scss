@@ -1,3 +1,109 @@
-// Place all the styles related to the Result controller here.
-// They will automatically be included in application.css.
-// You can use Sass (SCSS) here: http://sass-lang.com/
+/* All SKUs */
+@import "main.scss";
+
+.wrapper {
+	flex-grow: 0!important;
+	width: 100%;
+}
+
+.recent h3 {
+	font-size: 50px;
+	font-weight: 100;
+	margin-top: 0;
+	margin-bottom: 0;
+	color: #000;
+}
+
+#home h1 {
+	font-size: 100px;
+	background-color: #da2626;
+}
+
+.inner-wrapper {
+	width: 85%;
+	margin: 25px auto 0;
+	display: -webkit-box;
+	display: -moz-box;
+	display: -ms-flexbox;
+	display: -webkit-flex;
+	display: flex;
+	-webkit-flex-flow: row wrap;
+	justify-content: space-around;
+	padding: 55px;
+}
+
+
+td {
+	border-bottom: 1px solid #000;
+	padding: 12px;
+}
+
+div.barcode {
+	background-color: #fff;
+	width: 90%;
+	min-width: 180px;
+	display: block;
+	margin: 5px 10px;
+	border-radius: 8px;
+	color: #000;
+	margin-bottom: 14px;
+}
+
+.table-header {
+	height: 50px;
+	text-align: center;
+	padding-left: 24px;
+	font-size: 20px;
+	padding-top: 15px;
+	padding-right: 10px;
+	border-color: #282C32;
+	padding-bottom: 13px;
+	border-bottom: 3px solid #A0A6AD;
+	background-color: #1B1F25;
+	font-weight: 100;
+	color: #fff;
+	cursor: default;
+}
+
+td.barcode img {
+	width: 60%;
+	padding: 10px;
+}
+
+.recent tr:nth-child(odd) {
+	background-color: #EBEBEB;
+	color: #1B1F25;
+}
+
+.recent tr:nth-child(even) div.barcode {
+	border: 2px solid #EBEBEB;
+}
+
+.recent tr:nth-child(odd) div.barcode {
+	border: 2px solid #FFF;
+}
+
+.recent tr:nth-child(even) {
+	background-color: #FFF;
+	color: #1B1F25;
+}
+
+.recent tr {
+	cursor: pointer;
+	padding-bottom: 12px;
+}
+
+table.recent {
+	width: auto;
+	text-align: center;
+	border-collapse: collapse;
+	background-color: #4e6767;
+	color: #fff;
+	border: none;
+	border-color: #282C32;
+	margin: 0 auto;
+}
+
+table td:first-child {
+	width: 30%;
+}

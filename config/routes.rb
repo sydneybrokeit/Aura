@@ -14,13 +14,15 @@ Rails.application.routes.draw do
 
   # You can have the root of your site routed with "root"
   root 'home#index'
-  get '/results' => 'results#search'
+  get '/results' => 'results#index'
+    get '/all' => 'results#index'
   get '/new' => 'new#create'
   get '/new?template=:template' => 'new#create'
   get '/new/:template' => 'new#create'
   get '/create_tag' => 'new#create', as: :to_create
   post :create_tag, to: "process#submit", as: :create_tag
   post :search_sku, to: "result#load", as: :search_sku
+  post :filter_sku, to: "results#index", as: :filter_sku
   get '/result' => "result#load"
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'

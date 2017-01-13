@@ -1,4 +1,6 @@
 /*  Main */
+@import url('https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700');
+
 body,
 html {
     height: 100%!important;
@@ -7,8 +9,8 @@ html {
 }
 
 body {
-    font-family: sans-serif;
-    font-weight: 300;
+    font-family: 'Source Sans Pro', sans-serif;
+
     background-color: #e2e2e2;
     overflow-x: hidden;
     margin: 0;
@@ -85,11 +87,31 @@ div.header {
     padding: 20px;
 }
 
-.new {
+.link {
     margin-left: 25px;
     font-size: 20px;
-    text-decoration: underline;
+    text-decoration: none;
     color: white;
+    -webkit-transition: 0.1s;
+    transition: 0.1s;
+}
+
+.link:focus,
+.link:hover,
+.page-title-text:hover,
+.page-title-text:focus {
+    opacity: 0.75;
+    -webkit-transform: translateY(3px);
+    transform: translateY(3px);
+}
+
+ .page-title-text {
+    color: white;
+    font-size: 20px;
+    text-decoration: none!important;
+    color: white;
+    -webkit-transition: 0.1s;
+    transition: 0.1s;
 }
 
 .lower-area {
@@ -99,17 +121,13 @@ div.header {
     display: block;
     padding: 25px;
     background-color: #e8411c;
+    background-image: linear-gradient( red, #f06d06 );
     margin-top: -50px;
     z-index: -10;
     color: white;
     margin-bottom: 25px;
 }
 
-.page-title-text {
-    font-size: 20px;
-    text-align: center;
-    color: white;
-}
 
 .page-title {
     font-weight: 300;

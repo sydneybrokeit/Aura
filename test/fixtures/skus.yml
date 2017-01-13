@@ -1,7 +1,13 @@
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
 one:
-  json: MyText
+  brand: MyString
+  model: MyString
+  sku: MyString
+  json: MyString
 
 two:
-  json: MyText
+  brand: MyString
+  model: MyString
+  sku: MyString
+  json: MyString

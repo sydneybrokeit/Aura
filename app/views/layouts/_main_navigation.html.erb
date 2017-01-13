@@ -1,9 +1,13 @@
 <div class="header">
-<a href="/"><img class="page-title" src="<%=asset_path "logo.png" %>"></a>
-          <%= render 'layouts/search_results' %>
-          <div class="lower-area">
+    <a href="/"><img class="page-title" src="<%=asset_path "logo.png" %>"></a>
+    <%= render 'layouts/search_results' %>
+    <div class="lower-area">
+        <a class="page-title-text" href="/">
             <span class="page-title-text">Home</span>
-            <a href="new" class="new">Create</a>
-            <a href="https://github.com/hschreck/Aura/issues" class="new">Support</a>
-          </div>
+        </a>
+
+        <a href="new" class="link">Create</a>
+        <a href="https://github.com/hschreck/Aura/issues" class="link">Support</a>
+        <a href="all" class="link">All SKUs</a>
+    </div>
 </div>

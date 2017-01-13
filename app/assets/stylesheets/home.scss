@@ -1,31 +1,10 @@
 /* Home */
 @import "main.scss";
 
-.quote {
-	width: 78%;
-	margin: 25px auto 0;
+.wrapper {
+	flex-grow: 0!important;
+	width: 100%;
 }
-
-.quote a:before {
-	content: "- ";
-}
-
-.quote a {
-	color: red;
-	text-decoration: none;
-	text-align: center;
-	display: block;
-	padding-top: 12px;
-	font-style: italic;
-}
-
-.quote::first-line {
-	display: none;
-	color: transparent!important;
-}
-
-
-
 
 .recent h3 {
 	font-size: 50px;
@@ -41,14 +20,46 @@
 }
 
 .inner-wrapper {
-	display: table;
-	width: 80%;
-	padding: 40px;
+	width: 85%;
+	margin: 25px auto 0;
+	display: -webkit-box;
+	display: -moz-box;
+	display: -ms-flexbox;
+	display: -webkit-flex;
+	display: flex;
+	-webkit-flex-flow: row wrap;
+	justify-content: space-around;
+	padding: 55px;
+}
+
+.welcome {
+	background-color: white;
 	margin: 0 auto;
+	text-align: left;
+	flex-grow: 1;
+	padding: 25px;
+}
+
+.welcome h2 {
+	text-align: center;
+	font-size: 22px;
+}
+
+.welcome h1 {
+	font-size: 55px;
+	font-weight: 300;
+	text-align: center;
+	border-bottom: 2px solid #d44323;
+}
+
+.recent {
+	flex-shrink: 1;
+	padding: 0 0 0 25px;
 }
 
 td {
-	border: 1px solid #000;
+	border-bottom: 1px solid #000;
+	padding: 12px;
 }
 
 div.barcode {
@@ -59,11 +70,12 @@ div.barcode {
 	margin: 5px 10px;
 	border-radius: 8px;
 	color: #000;
+	margin-bottom: 14px;
 }
 
 .table-header {
 	height: 50px;
-	text-align: left;
+	text-align: center;
 	padding-left: 24px;
 	font-size: 20px;
 	padding-top: 15px;
@@ -78,7 +90,7 @@ div.barcode {
 }
 
 td.barcode img {
-	width: 90%;
+	width: 60%;
 	padding: 10px;
 }
 
@@ -102,24 +114,21 @@ td.barcode img {
 
 .recent tr {
 	cursor: pointer;
+	padding-bottom: 12px;
 }
 
 table.recent {
 	width: auto;
-	margin: 50px auto 0;
 	text-align: center;
 	border-collapse: collapse;
 	background-color: #4e6767;
 	color: #fff;
 	border: none;
 	border-color: #282C32;
+	width: 200px;
+	margin: 0 auto;
 }
 
 table td:first-child {
 	width: 30%;
-}
-
-td.model {
-	text-align: left;
-	padding: 10px;
 }

@@ -1,88 +1,142 @@
 @import "main.scss";
-
 /* Results Page */
 .results_properties tr:nth-child(odd) {
- background-color:#EBEBEB;
- color:#1B1F25;
+    background-color: #c5c5c5;
+    color: #423f3f;
 }
 
 .results_properties tr:nth-child(even) {
- background-color:#FFF;
- color:#1B1F25;
+    background-color: #FFF;
+    color: #1B1F25;
 }
 
 .search {
- margin:0 auto;
+    margin: 0 auto;
 }
 
-.results_properties,.property_name,.property_value {
- border:1px solid #98a5b9;
+div.barcode {
+    background-color: #fff;
+    width: 200px;
+
+    border-radius: 8px;
+    color: #000;
+    margin: 0 auto;
+    border: dashed 1px gray;
+    justify-content: space-between;
+    height: 142px;
+    margin: auto;
+
+}
+
+.faux-barcode {
+    width: 200px;
+    border: 1px dashed gray;
+    height: 142px;
+
+    border-radius: 8px;
+    background-color: clear;
+    justify-content: space-between;
+
+        margin: auto;
+}
+
+.barcode-banner {
+
+    margin: 20px 0;
+    padding: 3px;
+    height: 148px;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+      justify-content: space-between;
+}
+
+.results_properties td {
+    min-width: 200px;
+}
+
+.property_name,
+.property_value,
+.results_properties {
+    border: 1px solid #98a5b9;
 }
 
 .results_properties {
- margin:0 auto;
- border-collapse:collapse;
- border-color:#282C32;
+    margin: 0 auto;
+    border-collapse: collapse;
+    border-color: #282C32;
+    box-shadow:0 1px 1px rgba(0,0,0,0.15),
+    /* The top layer shadow */
+    0 10px 0 -5px #eee,
+    /* The second layer */
+    0 10px 1px -4px rgba(0,0,0,0.15),
+    /* The second layer shadow */
+    0 20px 0 -10px #eee,
+    /* The third layer */
+    0 20px 1px -9px rgba(0,0,0,0.15);
+    /* The third layer shadow */
 }
 
-.property_name,.property_value {
- padding:15px;
+.property_name,
+.property_value {
+    padding: 15px;
 }
 
 .property_name {
- background-color:#444;
- color:#fff;
- padding-left:22px;
- font-size:18px;
- font-weight:100;
- border-color:#282C32;
- border-right:3px solid #A0A6AD;
+    background-color: #444;
+    color: #fff;
+    padding-left: 22px;
+    font-size: 18px;
+    font-weight: 100;
+    border-color: #282C32;
+    border-right: 3px solid #A0A6AD;
 }
 
 .property_value#condition {
- text-transform:capitalize;
+    text-transform: capitalize;
 }
 
 .tooltip {
- position:relative;
- display:block;
+    position: relative;
+    display: block;
 }
 
 .tooltip .tooltiptext {
- visibility:hidden;
- position:absolute;
- min-width:80px;
- background-color:#555;
- color:#fff;
- font-size:12px;
- text-align:center;
- padding:10px;
- border-radius:17px;
- z-index:1;
- opacity:0;
- transition:opacity 1s;
+    visibility: hidden;
+    position: absolute;
+    min-width: 80px;
+    background-color: #555;
+    color: #fff;
+    font-size: 12px;
+    text-align: center;
+    padding: 10px;
+    border-radius: 17px;
+    z-index: 1;
+    opacity: 0;
+    transition: opacity 1s;
 }
 
 .tooltip-right {
- margin-top:-2px;
- margin-left:15em;
- margin-right:2em;
+    margin-top: -2px;
+    margin-left: 15em;
+    margin-right: 2em;
 }
 
 .tooltip:hover .tooltiptext {
- visibility:visible;
- opacity:1;
+    visibility: visible;
+    opacity: 1;
 }
 
 .reveal-if-active {
- opacity:0;
- max-height:0;
- overflow:hidden;
+    opacity: 0;
+    max-height: 0;
+    overflow: hidden;
 }
 
-input[type="radio"]:checked~.reveal-if-active,input[type="checkbox"]:checked~.reveal-if-active {
- opacity:1;
- max-height:100px;
-/* little bit of a magic number :( */
- overflow:visible;
+input[type="checkbox"]:checked~.reveal-if-active,
+input[type="radio"]:checked~.reveal-if-active {
+    opacity: 1;
+    max-height: 100px;
+    /* little bit of a magic number :( */
+    overflow: visible;
 }

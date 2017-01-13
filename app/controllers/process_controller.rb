@@ -12,6 +12,8 @@ class ProcessController < ApplicationController
         if jsonData["Condition"] != nil
           sku.sku = generate_sku(12)
           sku.json = jsonData.to_json
+          sku.model = jsonData["Model"]
+          sku.brand = jsonData["Brand"]
 
           require 'aura-print'
           @output = AuraPrint.barcodeWeb(jsonData['sku'], 'Tech')

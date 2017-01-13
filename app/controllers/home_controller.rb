@@ -7,14 +7,18 @@ class HomeController < ApplicationController
     require 'barby/outputter/rmagick_outputter'
     require 'barby'
     def index
+        @sorted =  Sku.all.order(:created_at)
         @skus = []
-        Sku.all.each do |sku|
+        @sorted.all.each do |sku|
             @skuID = sku.sku
             @json = JSON.parse(sku.json)
             @json['Brand'] = 'Not specified' if @json['Brand'] == ''
             @json['Model'] = 'Not specified' if @json['Model'] == ''
+            @json['Tested'] = 'Not specified' if sku['created_at'] == ''
             @skus.push({@skuID => @json})
         end
+        @stuff = Sku.column_names
+        #@skus = @skus.sort_by &:created_at
   end
 
     def base64_image(image_data)
