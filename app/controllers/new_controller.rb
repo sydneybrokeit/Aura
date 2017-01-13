@@ -15,7 +15,11 @@ class NewController < ApplicationController
             @templateFileName.delete! '+'
             @templateParam = @templateFileName
             @masterTemplate = JSON.parse(File.read('app/assets/templates/master.json'))
-            @template = JSON.parse(File.read('app/assets/templates/' << @templates['items'][@templateParam]))
+            @templates["items"].each do |line|
+                if JSON.parse(File.read('app/assets/templates/' + line[1]))['meta']['template_name'] == @templateParam
+                    @template = JSON.parse(File.read('app/assets/templates/' + line[1]))
+              end
+            end
             fromTemplate(@template)
 
         end
@@ -44,20 +48,19 @@ class NewController < ApplicationController
                         # field[1] will be the type of the object, e.g. "text"
                         ##
 
-
                         @returnedTemplate.push('<div class="tooltip form-option">')
                         @returnedTemplate.push('<label class="field-title">' + field[0] + ': </label>')
                         returnIfTooltip(field[0], @embeddedTemplate)
                         if field[1] == 'dropdown'
-                          @returnedTemplate.push('<select name="' + field[0] + '" class="' + field[0].downcase + '">')
-                          unless @embeddedTemplate['dropdowns'][field[0]].nil?
-                              @embeddedTemplate['dropdowns'][field[0]].each do |dropdown|
-                                  @returnedTemplate.push('<option>' + dropdown + '</option>')
+                            @returnedTemplate.push('<select name="' + field[0] + '" class="' + field[0].downcase + '">')
+                            unless @embeddedTemplate['dropdowns'][field[0]].nil?
+                                @embeddedTemplate['dropdowns'][field[0]].each do |dropdown|
+                                    @returnedTemplate.push('<option>' + dropdown + '</option>')
+                                end
                               end
-                            end
-                          @returnedTemplate.push('</select>')
+                            @returnedTemplate.push('</select>')
                         else
-                          @returnedTemplate.push('<input type="' + field[1] + '" name="' + field[0] + '" class="' + field[0].downcase + '">')
+                            @returnedTemplate.push('<input type="' + field[1] + '" name="' + field[0] + '" class="' + field[0].downcase + '">')
                         end
                         @returnedTemplate.push('</div>')
                     end
@@ -88,10 +91,10 @@ class NewController < ApplicationController
                     @returnedTemplate.push('<div class="tooltip radio-option">')
                     returnIfTooltip(field, @masterTemplate)
 
-                    @returnedTemplate.push('<input type="' + @type + '" name="' + @title + '" class="' + field.downcase + '" id="preflight">' + field + '</input>')
+                    @returnedTemplate.push('<input type="' + @type + '" name="' + @title + '" class="' + field.downcase + '" value="' + field.downcase + '" id="preflight">' + field + '</input>')
                     # checks if we've got a notes field
-                    if @selection["reason"].include? field
-                      @returnedTemplate.push('<div class="reveal-if-active"><input type=text name="condition_reason" class="reason-field"  placeholder="Reason"></div>')
+                    if @selection['reason'].include? field
+                        @returnedTemplate.push('<div class="reveal-if-active"><input type=text name="condition_reason" class="reason-field"  placeholder="Reason"></div>')
                     end
                     @returnedTemplate.push('</div>')
                 end
