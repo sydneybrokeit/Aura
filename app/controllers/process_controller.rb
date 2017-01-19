@@ -4,30 +4,45 @@ class ProcessController < ApplicationController
     def submit
         sku = Sku.new
         jsonData = params
-        jsonData.delete("commit")
-        jsonData.delete("utf8")
-        jsonData.delete("authenticity_token")
-        jsonData.delete("action")
-        jsonData.delete("controller")
-        if jsonData["Condition"] != nil
-          sku.sku = generate_sku(12)
-          sku.json = jsonData.to_json
-          sku.model = jsonData["Model"]
-          sku.brand = jsonData["Brand"]
+        jsonData.delete('commit')
+        jsonData.delete('utf8')
+        jsonData.delete('authenticity_token')
+        jsonData.delete('action')
+        jsonData.delete('controller')
+        if jsonData['Condition']
+            sku.sku = generate_sku(12)
+            sku.json = jsonData.to_json
+            sku.model = jsonData['Model']
+            sku.brand = jsonData['Brand']
 
-          require 'aura-print'
-          @output = AuraPrint.barcodeWeb(jsonData['sku'], 'Tech')
-          @sku = sku.sku
-          sku.save!
-          @blob = Base64.encode64(AuraPrint.systemPrintImage(@sku).to_blob).gsub(/\n/, "")
-          @image = base64_image(@blob)
+            @sku = sku.sku
+            @output = AuraPrint.barcodeWeb(@sku, 'Tech')
+
+            barcode = Barby::Code128B.new(@sku)
+            @blob = barcode.to_image
+            @blob.format = 'png'
+            @image = Base64.encode64(@blob.to_blob).delete("\n")
+            @image = base64_image(@image)
+
+            if sku.save
+                flash[:success] = "Thanks! I'll be in touch soon!"
+                redirect_to controller: 'new', action: 'create', printed: @output
+            else
+                redirect_to controller: 'new', action: 'create'
+            end
+
         else
-          @error = "Missing values in field"
+            @error = 'Missing values in field'
         end
     end
+
     def referer
-      @env['HTTP_REFERER'] || '/'
+        @env['HTTP_REFERER'] || '/'
     end
+    def success
+
+    end
+
     def base64_image(image_data)
         "<img src='data:image/png;base64,#{image_data}' />".html_safe
     end

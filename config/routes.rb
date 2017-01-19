@@ -15,8 +15,9 @@ Rails.application.routes.draw do
   # You can have the root of your site routed with "root"
   root 'home#index'
   get '/results' => 'results#index'
-    get '/all' => 'results#index'
+  get '/all' => 'results#index'
   get '/new' => 'new#create'
+  #route matches {:action=>"new", :controller=>"process"}
   get '/new?template=:template' => 'new#create'
   get '/new/:template' => 'new#create'
   get '/create_tag' => 'new#create', as: :to_create

@@ -22,7 +22,7 @@
             <tr onclick="window.document.location='/result?sku=<%= @skuID %>';">
                 <td class='barcode'>
 
-                    <div class='barcode'><%= base64_image(generateBarcode(@skuID))  %><%= @skuID %></div>
+                    <div class='barcode'><%= base64_image(generateBarcode(@skuID))  %><p><%= @skuID %></p></div>
                 </td>
                 <td class="model"><%=  @json["Model"] %>
                 </td>

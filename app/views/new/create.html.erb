@@ -21,6 +21,9 @@
 <% else %>
 
 <div class="step-one">
+<% if params['printed'] %>
+<p class="status <%= params['printed'] %>"><%= params['printed'] %></p>
+<% end %>
 <p class="step-title" style="text-align: left;">step 1.</p>
 <p class="template-title">Choose a template.</p>
 <%= render 'layouts/template_selector' %>
@@ -32,13 +35,4 @@
 <% end %>
 
 
-<script type='text/javascript'>
-$('#submit').attr("disabled", "disabled");
-$('#preflight').click(function () {
-    if ($(this).attr('checked') == false) {
-        $('#submit').attr("disabled", "disabled");
-    } else {
-        $('#submit').removeAttr('disabled');
-    }
-});
-</script>
+<%= javascript_include_tag "submit_button_enable" %>

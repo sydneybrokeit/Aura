@@ -95,6 +95,11 @@ div.header {
     -webkit-transition: 0.1s;
     transition: 0.1s;
 }
+.old{
+  float: right;
+  margin-right: 45px;
+  margin-left: 0;
+}
 
 .link:focus,
 .link:hover,
@@ -184,10 +189,11 @@ div.header {
     padding-top: 20px;
     padding-bottom: 20px;
 }
-@media (max-width: 1210px) {
-    .back {
-        background-color: #031f27!important;
+@media (max-width: 600px) {
+    .searchy, .old{
+      display: none;
     }
+
 }
 
 ul {

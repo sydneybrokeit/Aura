@@ -17,6 +17,15 @@ h2.help {
     color: #9a9797;
 }
 
+.status{
+  display: block;
+  font-size: 25px;
+  margin: 0 auto;
+  text-align: center;
+}
+.Success{
+  color: green;
+}
 .template-selector {
     width: 97%;
     margin-bottom: 0;
@@ -55,8 +64,7 @@ h2.help {
 
 .step-one form {
     position: relative;
-    top: 50%;
-    transform: translateY(-50%);
+    margin-top: 1.5em;
     width: 200px;
     margin: 0 auto;
     border: 2px solid #e04343;
@@ -112,7 +120,24 @@ h2.help {
         display: none;
     }
 }
+@media (max-width: 550px) {
+  .status {
+    text-align: left;
+  }
+  .step-one form{
+      margin: 0;
+        margin-top: 25px;
 
+  }
+  .step-one, .descriptions, .step-two{
+    width: 100%;
+    padding: 25px;
+    padding-top: 0;
+  }
+  .tooltiptext{
+    display: none;
+  }
+}
 .template {
     display: table;
     width: 100%;

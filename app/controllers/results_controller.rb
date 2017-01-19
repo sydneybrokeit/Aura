@@ -11,33 +11,36 @@ class ResultsController < ApplicationController
         @partial = nil
         @sorted = []
         @partial = params['sku'] unless params['sku'].nil?
-        @sorted = Sku.all.order(:created_at)
 
-        unless @partial.nil?
-            @sorted = Sku.where('sku LIKE ?', "#{@partial}%")
+        if @partial != nil
+            @sorted = Sku.search_for(@partial + "* ")
+            @skus = []
 
-            if @sorted.count == 0 && Sku.where('model LIKE ?', "#{@partial}%").count > 0
-                @sorted = Sku.where('model LIKE ?', "#{@partial}%")
-            elsif @sorted.count == 0
-                @sorted = Sku.where('brand LIKE ?', "#{@partial}%")
-            else
-              @sorted = 0
+            @sorted.each do |sku|
+                @skuID = sku.sku
+                @json = JSON.parse(sku.json)
+                @json['Brand'] = 'Not specified' if @json['Brand'] == ''
+                @json['Model'] = 'Not specified' if @json['Model'] == ''
+                @json['Tested'] = 'Not specified' if sku['created_at'] == ''
+                @skus.push(@skuID => @json)
+            end
+        else
 
+            @sorted = Sku.all.order(:created_at)
+            @skus = []
+
+            @sorted.all.each do |sku|
+                @skuID = sku.sku
+                @json = JSON.parse(sku.json)
+                @json['Brand'] = 'Not specified' if @json['Brand'] == ''
+                @json['Model'] = 'Not specified' if @json['Model'] == ''
+                @json['Tested'] = 'Not specified' if sku['created_at'] == ''
+                @json['date'] = sku["created_at"]
+
+                @skus.push(@skuID => @json)
             end
 
 
-              @sorted = Sku.all.order(:created_at) if @partial == ''
-      end
-
-
-        @skus = []
-        @sorted.all.each do |sku|
-            @skuID = sku.sku
-            @json = JSON.parse(sku.json)
-            @json['Brand'] = 'Not specified' if @json['Brand'] == ''
-            @json['Model'] = 'Not specified' if @json['Model'] == ''
-            @json['Tested'] = 'Not specified' if sku['created_at'] == ''
-            @skus.push(@skuID => @json)
         end
     end
 

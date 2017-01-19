@@ -10,7 +10,7 @@ function redirect(url,seconds)
 </script>
 <% if @error == nil %>
 <% @title="SKU Created: #{@sku}" ; @style="process" %>
-<h1 class="success-sku">Success!</h1>
+<h1 class="success-sku"><%= @output %></h1>
 <div class="barcode">
     <%=@image %>
     <%=@sku%>
