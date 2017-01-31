@@ -27,7 +27,7 @@
             <%  @json = sku.values[0] %>
             <% @skuID = sku.keys[0] %>
 
-            <tr onclick="window.document.location='/result?sku=<%= @skuID %>';">
+            <tr onclick="window.document.location='<%=url_for(controller: 'result', action: 'load', sku: @skuID) %>';">
                 <td class='barcode'>
 
                     <div class='barcode'><%= base64_image(generateBarcode(@skuID))  %><%= @skuID %></div>

@@ -1,14 +1,14 @@
 <div class="header">
-    <a href="/"><img class="page-title" src="<%=asset_path "logo.png" %>"></a>
+    <a href="<%= url_for(controller: 'home', action: 'index') %>"><img class="page-title" src="<%=asset_path "logo.png" %>"></a>
     <%= render 'layouts/search_results' %>
     <div class="lower-area">
-        <a class="page-title-text" href="/">
+        <a class="page-title-text" href="<%= url_for(controller: 'home', action: 'index')%>">
             <span class="page-title-text">Home</span>
         </a>
 
-        <a href="new" class="link">Create</a>
+        <a href="<%= url_for(controller: 'new', action: 'create') %>" class="link">Create</a>
         <a href="https://github.com/hschreck/Aura/issues" class="link">Support</a>
-        <a href="all" class="link">Search</a>
+        <a href="<%= url_for(controller: 'results', action: 'index')%>" class="link">Search</a>
         <a href="https://github.com/hschreck/Aura/wiki" class="link">Wiki</a>
         <a href="http://10.0.2.232/Aura/" class="link old">Classic Aura</a>
     </div>
