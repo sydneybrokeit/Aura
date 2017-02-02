@@ -2,7 +2,25 @@
 <% @title="New" ; @style="new"%>
 <% if @template != nil %>
 <div class="step-two">
+  <div class="hidden-notice" id="hidden-notice">
+    <p>Are you sure that you've filled <b>everything</b> out that you can?</p>
+  </div>
     <p class="step-title">step 2.</p>
+    <form style="text-align: left;">
+        <select name="template" onchange="this.form.submit()">
+            <% @templates["items"].each do |template| %>
+            <% option = JSON.parse(File.read('app/assets/templates/' + template[1]))['meta']['template_name'] %>
+            <% if option == @template["meta"]["template_name"]   %>
+            <option selected>
+                <%= option %></option>
+        <% else %>
+            <option>
+                <%= option %></option>
+            <% end %>
+            <% end %>
+        </select>
+    </form>
+
     <%= form_tag create_tag_url do %>
 
     <input type="hidden" value='<%= @template["name"] %>' name="category">
@@ -12,17 +30,20 @@
     <% @returnedTemplate.each do |line| %>
     <%= line.html_safe %>
     <% end %>
-    <%= submit_tag "Create", :id=> "submit" %>
+
+    <%= submit_tag "Yes, I promise!", :id=> "submit" %>
+
     <% end %>
 </form>
-
+<input type="submit" name="commit" value="Create" id="false-submit" class="false-submit" disabled="disabled">
 </div>
 
 <% else %>
 
 <div class="step-one">
 <% if params['printed'] %>
-<p class="status <%= params['printed'] %>"><%= params['printed'] %></p>
+<p class="status <%= params['printed'] %>"><%= params['sku'] %> printed.</p>
+
 <% end %>
 <p class="step-title" style="text-align: left;">step 1.</p>
 <p class="template-title">Choose a template.</p>
@@ -33,6 +54,5 @@
 <%= render 'layouts/descriptions' %>
 </div>
 <% end %>
-
 
 <%= javascript_include_tag "submit_button_enable" %>

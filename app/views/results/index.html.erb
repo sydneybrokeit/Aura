@@ -22,7 +22,9 @@
             <tr onclick="window.document.location='<%=url_for(controller: 'result', action: 'load', sku: @skuID) %>';">
                 <td class='barcode'>
 
-                    <div class='barcode'><%= base64_image(generateBarcode(@skuID))  %><p><%= @skuID %></p></div>
+                    <div class='barcode'><%= base64_image(generateBarcode(@skuID))  %>
+                        <p><%= @skuID %></p>
+                    </div>
                 </td>
                 <td class="model"><%=  @json["Model"] %>
                 </td>
@@ -31,8 +33,16 @@
                 <% end %>
             </table>
         <% else %>
+            <% if params['sku'] == nil %>
+            <h1>Type to begin search</h1>
+            <% elsif  params['sku'] == ""  %>
+            <h1>Search field empty</h1>
+            <span>Please, actually type something this time.</span>
+        <% else %>
+
             <h1>Error</h1>
             <span>No results found</span>
+            <% end %>
 
             <% end %>
         </div>

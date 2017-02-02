@@ -15,7 +15,7 @@ class NewController < ApplicationController
             @templateFileName.delete! '+'
             @templateParam = @templateFileName
             @masterTemplate = JSON.parse(File.read('app/assets/templates/master.json'))
-            @templates["items"].each do |line|
+            @templates['items'].each do |line|
                 if JSON.parse(File.read('app/assets/templates/' + line[1]))['meta']['template_name'] == @templateParam
                     @template = JSON.parse(File.read('app/assets/templates/' + line[1]))
               end
@@ -48,10 +48,10 @@ class NewController < ApplicationController
                         # field[1] will be the type of the object, e.g. "text"
                         ##
 
-                        @returnedTemplate.push('<div class="tooltip form-option">')
-                        @returnedTemplate.push('<label class="field-title">' + field[0] + ': </label>')
                         returnIfTooltip(field[0], @embeddedTemplate)
                         if field[1] == 'dropdown'
+                            @returnedTemplate.push('<div class="tooltip form-option">')
+                            @returnedTemplate.push('<label class="field-title">' + field[0] + ': </label>')
                             @returnedTemplate.push('<select name="' + field[0] + '" class="' + field[0].downcase + '">')
                             unless @embeddedTemplate['dropdowns'][field[0]].nil?
                                 @embeddedTemplate['dropdowns'][field[0]].each do |dropdown|
@@ -59,8 +59,29 @@ class NewController < ApplicationController
                                 end
                               end
                             @returnedTemplate.push('</select>')
+                        elsif field[1].include? '-group'
+
+                          if @embeddedTemplate['groups'][field[1].gsub("-group", "")]
+                            @returnedTemplate.push('<div class="tooltip form-option grouped">')
+                            @groupTitle = field[1].gsub("-group", "")
+                            @returnedTemplate.push('<label class="field-title">' + @groupTitle + ': </label><br>')
+                            @returnedTemplate.push('<div class="group">')
+                            @embeddedTemplate['groups'][field[1].gsub("-group", "")].each do |groupfield|
+
+                            @returnedTemplate.push('<div class="group-object"><label class="field-title">' + groupfield[0].gsub(@groupTitle, "") + ': </label>')
+
+                            @type = groupfield[1].gsub("-group", "")
+                            @returnedTemplate.push('<input type="' + @type + '" name="' + groupfield[0] + '" class="' + groupfield[0].downcase + '"></div>')
+                          end
+                            @returnedTemplate.push('</div>')
+
+                          end
+
                         else
-                            @returnedTemplate.push('<input type="' + field[1] + '" name="' + field[0] + '" class="' + field[0].downcase + '">')
+                          @returnedTemplate.push('<div class="tooltip form-option">')
+                          @returnedTemplate.push('<label class="field-title">' + field[0] + ': </label>')
+                          returnIfTooltip(field[0], @embeddedTemplate)
+                          @returnedTemplate.push('<input type="' + field[1] + '" name="' + field[0] + '" class="' + field[0].downcase + '">')
                         end
                         @returnedTemplate.push('</div>')
                     end
@@ -90,8 +111,8 @@ class NewController < ApplicationController
                 @selection['options'].each do |field|
                     @returnedTemplate.push('<div class="tooltip radio-option">')
                     returnIfTooltip(field, @masterTemplate)
-
-                    @returnedTemplate.push('<input type="' + @type + '" name="' + @title + '" class="' + field.downcase + '" value="' + field.downcase + '" id="' + field.downcase + '">' + field + '</input>')
+                    @id = field.downcase.delete('/')
+                    @returnedTemplate.push('<input type="' + @type + '" name="' + @title + '" class="' + field.downcase + '" value="' + field.downcase + '" id="' + @id + '">' + field + '</input>')
                     # checks if we've got a notes field
                     if @selection['reason'].include? field
                         @returnedTemplate.push('<div class="reveal-if-active"><input type=text name="condition_reason" class="reason-field"  placeholder="Reason"></div>')
@@ -102,15 +123,23 @@ class NewController < ApplicationController
 
             else
                 ## Fallback for semi-regular fields.
-                @returnedTemplate.push('<div class="tooltip form-option">')
-                @returnedTemplate.push('<label class="field-title">' + field[0] + ': </label>')
-                returnIfTooltip(field[0], @masterTemplate)
-                if field[0] == 'Notes'
-                    @returnedTemplate.push('<textarea rows="2" cols="5" wrap="hard" type="' + field[0].downcase + '" name="' + field[0] + '" class="' + field[0].downcase + '"></textarea>')
-                else
+                if field[1] == 'checkbox'
+                    @returnedTemplate.push('<div class="tooltip form-option checkbox-container">')
+                    @returnedTemplate.push('<label class="field-title">' + field[0] + ': </label>')
+                    returnIfTooltip(field[0], @masterTemplate)
                     @returnedTemplate.push('<input type="' + field[1] + '" name="' + field[0] + '" class="' + field[0].downcase + '">')
-                end
+                else
+                    @returnedTemplate.push('<div class="tooltip form-option">')
+                    @returnedTemplate.push('<label class="field-title">' + field[0] + ': </label>')
+                    returnIfTooltip(field[0], @masterTemplate)
+                    if field[0] == 'Notes'
+                        @returnedTemplate.push('<textarea rows="2" cols="5" wrap="hard" type="' + field[0].downcase + '" name="' + field[0] + '" class="' + field[0].downcase + '"></textarea>')
+                    else
+                        @returnedTemplate.push('<input type="' + field[1] + '" name="' + field[0] + '" class="' + field[0].downcase + '">')
+                    end
+              end
                 @returnedTemplate.push('</div>')
+
           end
         end
     end

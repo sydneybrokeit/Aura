@@ -26,7 +26,7 @@ class ProcessController < ApplicationController
 
             if sku.save
                 flash[:success] = "Thanks! I'll be in touch soon!"
-                redirect_to controller: 'new', action: 'create', printed: @output
+                redirect_to controller: 'new', action: 'create', printed: @output, sku: @sku
             else
                 redirect_to controller: 'new', action: 'create'
             end
