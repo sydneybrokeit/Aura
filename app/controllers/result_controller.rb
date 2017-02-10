@@ -7,8 +7,15 @@ class ResultController < ApplicationController
 
     def load
 
-        @barcodeImage = base64_image(barcode(params['sku']))
-        @data = getData(params['sku'])
+
+
+        if params['sku'] != nil && params['sku'] != ""
+          @barcodeImage = base64_image(barcode(params['sku']))
+          @data = getData(params['sku'])
+        else
+          @error = "There was an error with your barcode. Try scanning again."
+        end
+
 
       end
 
