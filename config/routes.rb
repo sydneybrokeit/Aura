@@ -13,7 +13,8 @@ Rails.application.routes.draw do
   get '/new/:template' => 'new#create'
   get '/create_tag' => 'new#create', as: :to_create
   post :create_tag, to: "process#submit", as: :create_tag
-  get :search_sku, to: "result#load", as: :search_sku
+  get '/search_sku', to: "result#load"
+  post '/search_sku', to: "result#load"
   post :filter_sku, to: "results#index", as: :filter_sku
   get '/result' => "result#load"
   # Example of regular route:
