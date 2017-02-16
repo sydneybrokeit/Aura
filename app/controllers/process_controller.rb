@@ -16,7 +16,9 @@ class ProcessController < ApplicationController
             sku.brand = jsonData['Brand']
 
             @sku = sku.sku
-            @output = AuraPrint.barcodeWeb(@sku, 'Tech')
+            @printer = 'Tech'
+            @printer = cookies[:printer] unless cookies[:printer].nil?
+            @output = AuraPrint.barcodeWeb(@sku, @printer)
 
             barcode = Barby::Code128B.new(@sku)
             @blob = barcode.to_image
@@ -39,9 +41,8 @@ class ProcessController < ApplicationController
     def referer
         @env['HTTP_REFERER'] || '/'
     end
-    def success
 
-    end
+    def success; end
 
     def base64_image(image_data)
         "<img src='data:image/png;base64,#{image_data}' />".html_safe

@@ -1,6 +1,8 @@
 source 'https://rubygems.org'
 
-
+if defined?(RUBY_DESCRIPTION) && RUBY_DESCRIPTION.start_with?("ruby 2.4")
+  gem "openssl"
+end
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '4.2.6'
 gem 'will_paginate'

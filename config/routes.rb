@@ -1,5 +1,7 @@
 Rails.application.routes.draw do
 
+  get 'settings/index'
+
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 
@@ -8,6 +10,7 @@ Rails.application.routes.draw do
   get '/results' => 'results#index'
   get '/all' => 'results#index'
   get '/new' => 'new#create'
+  get '/settings' => 'settings#index'
   #route matches {:action=>"new", :controller=>"process"}
   get '/new?template=:template' => 'new#create'
   get '/new/:template' => 'new#create'
