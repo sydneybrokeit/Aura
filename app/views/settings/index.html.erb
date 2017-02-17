@@ -1,15 +1,17 @@
-<script type="text/javascript" src="<%= asset_path('settings_cookies.js') %>"></script>
 <% @title="Settings"; @style="new" %>
 <div class="step-one">
-  <label>Printer</label>
-<form>
-    <select id="printSelect" name="template" onchange="savePrinter(this.value);">
-        <% @printers.each do |template| %>
-
-        <option>
-            <%= template %></option>
-        <% end %>
-
-    </select>
-  </form>
+    <label>Printer</label>
+    <form>
+        <select name="printer" onchange="this.form.submit()">
+            <% @printers.each do |printer| %>
+            <% if cookies[:printer] == printer %>
+            <option selected>
+                <%= printer %></option>
+        <% else %>
+            <option>
+                <%= printer %></option>
+            <% end %>
+            <% end %>
+        </select>
+    </form>
 </div>

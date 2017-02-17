@@ -11,6 +11,7 @@ Rails.application.routes.draw do
   get '/all' => 'results#index'
   get '/new' => 'new#create'
   get '/settings' => 'settings#index'
+get 'print' => "result#print"
   #route matches {:action=>"new", :controller=>"process"}
   get '/new?template=:template' => 'new#create'
   get '/new/:template' => 'new#create'
@@ -20,6 +21,7 @@ Rails.application.routes.draw do
   post '/search_sku', to: "result#load"
   post :filter_sku, to: "results#index", as: :filter_sku
   get '/result' => "result#load"
+  post 'results/action'
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'
 

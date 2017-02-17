@@ -4,9 +4,10 @@ class ResultController < ApplicationController
     require 'barby/barcode/code_128'
     require 'barby/outputter/rmagick_outputter'
     require 'barby'
+    require 'aura-print'
 
     def load
-
+        @sku = params['sku']
 
 
         if params['sku'] != nil && params['sku'] != ""
@@ -22,7 +23,11 @@ class ResultController < ApplicationController
     def base64_image(image_data)
         "<img src='data:image/png;base64,#{image_data}' />".html_safe
     end
-
+    def print()
+      @printer = 'Tech'
+      @printer = cookies[:printer] unless cookies[:printer].nil?
+      @output = AuraPrint.barcodeWeb(@sku, @printer)
+    end
     def barcode(sku)
         barcode = Barby::Code128B.new(sku)
         @img = barcode.to_image

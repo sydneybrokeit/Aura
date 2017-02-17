@@ -12,8 +12,9 @@ class ResultsController < ApplicationController
         @sorted = []
         @partial = params['sku'] unless params['sku'].nil?
 
-        if @partial != nil
-            @sorted = Sku.search_for(@partial + "* ")
+
+        if !@partial.nil?
+            @sorted = Sku.search_for(@partial + '* ')
             @skus = []
 
             @sorted.each do |sku|
@@ -35,17 +36,26 @@ class ResultsController < ApplicationController
                 @json['Brand'] = 'Not specified' if @json['Brand'] == ''
                 @json['Model'] = 'Not specified' if @json['Model'] == ''
                 @json['Tested'] = 'Not specified' if sku['created_at'] == ''
-                @json['date'] = sku["created_at"]
+                @json['date'] = sku['created_at']
 
                 @skus.push(@skuID => @json)
             end
-
 
         end
     end
 
     def base64_image(image_data)
         "<img src='data:image/png;base64,#{image_data}' />".html_safe
+    end
+
+    def action
+        sku = params['sku']
+
+        printer = cookies[:printer]
+        printer = 'Tech' if printer.nil?
+        require 'aura-print'
+        output = AuraPrint.barcodeWeb(sku, printer)
+        redirect_to controller: 'results', action: 'index', output: output, printer: printer
     end
 
     def generateBarcode(sku)

@@ -1,5 +1,6 @@
 <% @title="Search"; @style="result" %>
 <div class="inner-wrapper">
+
     <div class="recent">
         <div class="filtery">
             <%= form_tag filter_sku_url do %>
@@ -14,6 +15,7 @@
                 <td class="table-header">SKU</td>
                 <td class="table-header">Model</td>
                 <td class="table-header">Brand</td>
+                <td class="table-header"></td>
             </tr>
             <% @skus.take(5).each do |sku| %>
             <%  @json = sku.values[0] %>
@@ -28,7 +30,7 @@
                 </td>
                 <td class="model"><%=  @json["Model"] %>
                 </td>
-                <td class='brand'><%=  @json["Brand"] %></tr>
+                <td class='brand'><%=  @json["Brand"] %></td><td><%= button_to 'Print', results_action_path, method: :post,  params: { sku: @skuID } %></td></tr>
 
                 <% end %>
             </table>
